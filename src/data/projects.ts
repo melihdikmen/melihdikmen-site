@@ -26,10 +26,10 @@ export const projects: Project[] = [
     name: "Param",
     status: "live",
     description: {
-      tr: "Lisanslı e-para kuruluşu Param'ın tüketici cüzdanı: kartlar, para transferi, fatura ödemesi, kampanyalar. 2023'ten beri ana katkıcısıyım.",
-      en: "The consumer wallet of licensed e-money institution Param: cards, transfers, bill payments, campaigns. Primary contributor since 2023.",
+      tr: "Lisanslı e-para kuruluşu Param'ın dijital cüzdanı: kartlar, para transferi, fatura ödemesi, kampanyalar. 2023'te React Native ile sıfırdan başlattım, ana katkıcısıyım.",
+      en: "The digital wallet of licensed e-money institution Param: cards, transfers, bill payments, campaigns. Started it from scratch with React Native in 2023; primary contributor since.",
     },
-    tech: ["React Native", "TypeScript", "Redux Toolkit", "Reanimated", "Sentry"],
+    tech: ["React Native", "TypeScript", "Redux Toolkit", "Firebase", "Sentry", "CodePush"],
     accent: "#E8541E",
     links: {
       // TODO: Param uygulamasının App Store ve Google Play adreslerini ekle.
@@ -52,10 +52,10 @@ export const projects: Project[] = [
     name: "Turkcell BiP",
     status: "live",
     description: {
-      tr: "Turkcell'in mesajlaşma, arama ve kanal uygulaması. TODO: üstlendiğin bölümü bir cümleyle yaz.",
-      en: "Turkcell's messaging, calling and channels app. TODO: describe the part you owned in one sentence.",
+      tr: "Turkcell'in milyonlarca kullanıcısı olan mesajlaşma ve arama uygulaması. VoIP ekibinde Jitsi Meet tabanlı gerçek zamanlı görüşme özelliklerini entegre ettim ve özelleştirdim.",
+      en: "Turkcell's messaging and calling app with millions of users. In the VoIP team I integrated and customised Jitsi Meet based real-time calling features.",
     },
-    tech: ["React Native", "TypeScript", "Firebase"],
+    tech: ["React Native", "Redux", "Jitsi Meet", "WebRTC"],
     accent: "#1D4ED8",
     links: {
       // TODO: BiP mağaza adreslerini ekle.

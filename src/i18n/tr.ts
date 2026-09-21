@@ -21,6 +21,7 @@ export const tr = {
     title: "Hakkımda",
     focusTitle: "Uzmanlık alanları",
     leadTitle: "Liderlik",
+    educationTitle: "Eğitim",
   },
   experience: { title: "Deneyim", present: "Bugün" },
   projects: {

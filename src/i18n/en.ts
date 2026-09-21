@@ -23,6 +23,7 @@ export const en: Dictionary = {
     title: "About",
     focusTitle: "Focus areas",
     leadTitle: "Leadership",
+    educationTitle: "Education",
   },
   experience: { title: "Experience", present: "Present" },
   projects: {

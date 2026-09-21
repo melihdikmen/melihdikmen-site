@@ -26,10 +26,9 @@ Tüm içerik `src/data/` altında, kod değişikliği gerekmez:
 Metin alanları `{ tr: "...", en: "..." }` şeklinde iki dilli. Arayüz metinleri `src/i18n/tr.ts` ve `src/i18n/en.ts` içinde.
 
 ### Yapılacaklar
-- `public/cv/Melih-Dikmen-CV.pdf` dosyasını ekle.
-- `experience.ts` içindeki Turkcell BiP ve Başarsoft tarihlerini ve `TODO` maddelerini doldur.
 - `projects.ts` içindeki mağaza linklerini ekle; istersen `public/projects/` altına görsel koyup `image` alanına yaz.
 - `profile.ts` içindeki `siteUrl` ve `linkedin` adreslerini doğrula.
+- CV'yi güncellediğinde `public/cv/Melih-Dikmen-CV.pdf` dosyasının üzerine yaz.
 
 ## İletişim formu
 

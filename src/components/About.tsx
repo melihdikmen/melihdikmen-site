@@ -30,6 +30,20 @@ export function About({ locale, dict }: { locale: Locale; dict: Dictionary }) {
             <h3 className="font-mono text-xs uppercase tracking-[0.1em] text-muted">{dict.about.leadTitle}</h3>
             <p className="mt-3 text-[15px] leading-relaxed text-muted">{t(profile.leadership, locale)}</p>
           </Reveal>
+          <Reveal delay={200}>
+            <h3 className="font-mono text-xs uppercase tracking-[0.1em] text-muted">{dict.about.educationTitle}</h3>
+            <ul className="mt-3 space-y-2">
+              {profile.education.map((e) => (
+                <li key={e.school.en} className="text-[15px]">
+                  <span className="font-semibold">{t(e.school, locale)}</span>
+                  <span className="block text-muted">{t(e.degree, locale)}</span>
+                  <span className="block font-mono text-xs text-muted tabular-nums">
+                    {e.period} · {t(e.location, locale)}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </div>
       </div>
     </Section>
