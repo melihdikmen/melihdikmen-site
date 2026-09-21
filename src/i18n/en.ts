@@ -18,6 +18,8 @@ export const en: Dictionary = {
     contact: "Get in touch",
     cv: "Download CV",
     available: "Open to remote work",
+    scroll: "Scroll",
+    badge: "React Native · Team Lead · Fintech · ",
   },
   about: {
     title: "About",
@@ -25,10 +27,20 @@ export const en: Dictionary = {
     leadTitle: "Leadership",
     educationTitle: "Education",
   },
+  bento: {
+    time: "Time in Ankara",
+    location: "Location",
+    status: "Status",
+    statusValue: "Open to new roles and remote collaboration",
+    now: "Right now",
+    nowValue: "Digital wallet and mobile team lead at Param",
+    stack: "Daily toolkit",
+  },
   experience: { title: "Experience", present: "Present" },
   projects: {
     title: "Projects",
     subtitle: "Apps in the stores, work in progress, and things I built for myself.",
+    featured: "Featured",
     earlier: "Earlier projects",
     earlierSubtitle: "The Başarsoft years and before: map-based field apps, native Android and Flutter.",
     appStore: "App Store",
@@ -63,6 +75,7 @@ export const en: Dictionary = {
     sending: "Sending…",
     sent: "Got it. I'll get back to you soon.",
     error: "The message could not be sent. You can email me directly:",
+    big: "Let's talk.",
     orMail: "or write directly:",
   },
   phone: {

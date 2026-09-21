@@ -6,10 +6,31 @@ import { SpotlightCard } from "./SpotlightCard";
 
 const order: SkillGroup[] = ["mobile", "backend", "database", "tools"];
 
+function Row({ items, reverse = false }: { items: string[]; reverse?: boolean }) {
+  const row = [...items, ...items];
+  return (
+    <ul className={`${reverse ? "marquee-track-rev" : "marquee-track"} flex w-max gap-4 whitespace-nowrap`}>
+      {row.map((item, i) => (
+        <li
+          key={`${item}-${i}`}
+          className="rounded-full border border-line bg-surface px-5 py-2.5 font-display text-lg font-bold tracking-tight"
+        >
+          {item}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export function Skills({ dict }: { dict: Dictionary }) {
   return (
     <Section id="skills" title={dict.skills.title}>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="marquee space-y-4 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_8%,black_92%,transparent)]" aria-hidden>
+        <Row items={[...skills.mobile, ...skills.tools]} />
+        <Row items={[...skills.backend, ...skills.database, ...skills.mobile.slice(0, 4)]} reverse />
+      </div>
+
+      <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {order.map((group, i) => (
           <Reveal key={group} delay={i * 60} className="h-full">
             <SpotlightCard className="gradient-border h-full rounded-2xl bg-surface p-6">

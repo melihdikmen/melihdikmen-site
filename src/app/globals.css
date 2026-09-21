@@ -198,3 +198,89 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .aurora span, .phone-float, .marquee-track { animation: none !important; }
 }
+
+/* ---------- v3: sahne, kontur tipografi, tilt ---------- */
+/* .stage: temadan bağımsız her zaman koyu bölüm (hero, iletişim). */
+.stage {
+  --bg: #07090d;
+  --surface: #0f1319;
+  --ink: #eef1f5;
+  --muted: #8f9aa8;
+  --line: #222a35;
+  --accent: #6d8dff;
+  --accent-ink: #0f1318;
+  --teal: #3fbfb2;
+  --tint: #131a2b;
+  --g1: #6d8dff;
+  --g2: #b48cff;
+  --g3: #2dd4bf;
+  --glow: rgba(109, 141, 255, 0.45);
+  color-scheme: dark;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--ink);
+  text-stroke: 1.5px var(--ink);
+}
+.text-outline-gradient {
+  color: transparent;
+  -webkit-text-stroke: 1.5px transparent;
+  background: linear-gradient(90deg, var(--g1), var(--g2), var(--g3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  opacity: 0.9;
+}
+
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.spin-slow { animation: spin-slow 22s linear infinite; }
+
+@keyframes marquee-rev { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+.marquee-track-rev { animation: marquee-rev 46s linear infinite; }
+
+@keyframes scroll-hint { 0%, 100% { transform: translateY(0); opacity: .9 } 50% { transform: translateY(8px); opacity: .3 } }
+.scroll-hint { animation: scroll-hint 1.8s ease-in-out infinite; }
+
+.tilt {
+  transform-style: preserve-3d;
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.25s ease;
+  will-change: transform;
+}
+.tilt .glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.18), transparent 45%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+.tilt:hover .glare { opacity: 1; }
+
+.bento {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+@media (max-width: 900px) {
+  .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bento > * { grid-column: span 2 !important; }
+}
+
+.noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spin-slow, .marquee-track-rev, .scroll-hint { animation: none !important; }
+  .tilt { transform: none !important; }
+}

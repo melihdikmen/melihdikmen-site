@@ -16,6 +16,8 @@ export const tr = {
     contact: "İletişime geç",
     cv: "CV indir",
     available: "Remote çalışmaya açık",
+    scroll: "Kaydır",
+    badge: "React Native · Takım Lideri · Fintech · ",
   },
   about: {
     title: "Hakkımda",
@@ -23,10 +25,20 @@ export const tr = {
     leadTitle: "Liderlik",
     educationTitle: "Eğitim",
   },
+  bento: {
+    time: "Ankara'da saat",
+    location: "Konum",
+    status: "Durum",
+    statusValue: "Yeni fırsatlara ve remote işbirliğine açık",
+    now: "Şu an",
+    nowValue: "Param'da dijital cüzdan ve mobil ekip liderliği",
+    stack: "Günlük araç çantam",
+  },
   experience: { title: "Deneyim", present: "Bugün" },
   projects: {
     title: "Projeler",
     subtitle: "Mağazada olan, üzerinde çalıştığım ve kendim için yaptığım işler.",
+    featured: "Öne çıkan",
     earlier: "Önceki projeler",
     earlierSubtitle: "Başarsoft dönemi ve öncesi: harita tabanlı saha uygulamaları, native Android ve Flutter.",
     appStore: "App Store",
@@ -61,6 +73,7 @@ export const tr = {
     sending: "Gönderiliyor…",
     sent: "Mesajın ulaştı. En kısa sürede dönüş yapacağım.",
     error: "Mesaj gönderilemedi. Doğrudan e-posta ile yazabilirsin:",
+    big: "Konuşalım.",
     orMail: "ya da doğrudan yaz:",
   },
   phone: {

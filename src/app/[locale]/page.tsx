@@ -11,6 +11,8 @@ import { Blog } from "@/components/Blog";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { posts } from "@/data/posts";
+import { CursorGlow } from "@/components/CursorGlow";
+import { ScrollProgress } from "@/components/ScrollProgress";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -21,6 +23,8 @@ export default async function Page({ params }: Props) {
 
   return (
     <>
+      <ScrollProgress />
+      <CursorGlow />
       <Header locale={locale} dict={dict} showBlog={posts.length > 0} />
       <main className="flex-1">
         <Hero locale={locale} dict={dict} />
