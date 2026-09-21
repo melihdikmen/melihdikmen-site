@@ -1,0 +1,27 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import type { Locale } from "@/i18n/config";
+
+export function LocaleSwitch({ locale, label, short }: { locale: Locale; label: string; short: string }) {
+  const pathname = usePathname() ?? `/${locale}`;
+  const other: Locale = locale === "tr" ? "en" : "tr";
+  const target = pathname.replace(new RegExp(`^/${locale}(?=/|$)`), `/${other}`) || `/${other}`;
+  return (
+    <Link
+      href={target}
+      hrefLang={other}
+      aria-label={label}
+      title={label}
+      onClick={() => {
+        try {
+          document.cookie = `locale=${other}; path=/; max-age=31536000; samesite=lax`;
+        } catch {}
+      }}
+      className="inline-flex h-9 items-center rounded-full border border-line px-3 font-mono text-xs text-muted transition-colors hover:border-accent hover:text-ink"
+    >
+      {short}
+    </Link>
+  );
+}
