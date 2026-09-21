@@ -63,6 +63,17 @@ export const tr = {
     error: "Mesaj gönderilemedi. Doğrudan e-posta ile yazabilirsin:",
     orMail: "ya da doğrudan yaz:",
   },
+  phone: {
+    balance: "Toplam bakiye",
+    card: "Sanal kart",
+    recent: "Son işlemler",
+    t1: "Market",
+    t2: "Fatura ödemesi",
+    t3: "Gelen transfer",
+    send: "Gönder",
+    request: "İste",
+    wallet: "Cüzdan",
+  },
   footer: {
     rights: "Tüm hakları saklıdır.",
     built: "Next.js ve Tailwind ile yapıldı.",

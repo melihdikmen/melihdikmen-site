@@ -28,7 +28,7 @@ export function ContactForm({ dict, email }: { dict: Dictionary; email: string }
   }
 
   const field =
-    "w-full rounded-lg border border-line bg-surface px-4 py-3 text-[15px] text-ink placeholder:text-muted/70 focus:border-accent focus:outline-none";
+    "w-full rounded-xl border border-line bg-surface/80 px-4 py-3 backdrop-blur text-[15px] text-ink placeholder:text-muted/70 focus:border-accent focus:outline-none";
 
   return (
     <form onSubmit={onSubmit} className="grid gap-4" noValidate={false}>
@@ -54,7 +54,7 @@ export function ContactForm({ dict, email }: { dict: Dictionary; email: string }
           type="submit"
           id="contact-submit"
           disabled={state === "sending"}
-          className="inline-flex items-center rounded-lg bg-accent px-5 py-3 font-display text-base font-bold text-accent-ink transition-transform hover:-translate-y-px disabled:opacity-60"
+          className="glow inline-flex items-center rounded-xl bg-[linear-gradient(135deg,var(--g1),var(--g2))] px-6 py-3 font-display text-base font-bold text-white transition-transform hover:-translate-y-0.5 disabled:opacity-60"
         >
           {state === "sending" ? dict.contact.sending : dict.contact.send}
         </button>

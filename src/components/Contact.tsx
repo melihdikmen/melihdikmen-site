@@ -10,8 +10,13 @@ export function Contact({ locale, dict }: { locale: Locale; dict: Dictionary }) 
   void locale;
   return (
     <Section id="contact" title={dict.contact.title}>
-      <div className="grid gap-10 rounded-2xl bg-tint p-6 md:grid-cols-[2fr_3fr] md:p-10">
-        <Reveal>
+      <div className="gradient-border relative grid gap-10 overflow-hidden rounded-3xl bg-tint p-6 md:grid-cols-[2fr_3fr] md:p-12">
+        <div className="aurora" aria-hidden>
+          <span />
+          <span />
+          <span />
+        </div>
+        <Reveal className="relative">
           <h3 className="font-display text-2xl font-bold tracking-tight text-balance md:text-3xl">{dict.contact.subtitle}</h3>
           <ul className="mt-8 space-y-3 text-[15px]">
             <li>
@@ -31,7 +36,7 @@ export function Contact({ locale, dict }: { locale: Locale; dict: Dictionary }) 
             </li>
           </ul>
         </Reveal>
-        <Reveal delay={80}>
+        <Reveal delay={80} className="relative">
           <ContactForm dict={dict} email={profile.email} />
         </Reveal>
       </div>

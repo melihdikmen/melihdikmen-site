@@ -65,6 +65,17 @@ export const en: Dictionary = {
     error: "The message could not be sent. You can email me directly:",
     orMail: "or write directly:",
   },
+  phone: {
+    balance: "Total balance",
+    card: "Virtual card",
+    recent: "Recent activity",
+    t1: "Groceries",
+    t2: "Bill payment",
+    t3: "Incoming transfer",
+    send: "Send",
+    request: "Request",
+    wallet: "Wallet",
+  },
   footer: {
     rights: "All rights reserved.",
     built: "Built with Next.js and Tailwind.",

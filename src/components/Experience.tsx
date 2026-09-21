@@ -13,7 +13,8 @@ function period(start: string | undefined, end: string | undefined, locale: Loca
 export function Experience({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   return (
     <Section id="experience" title={dict.experience.title}>
-      <ol className="relative border-l border-line pl-8 md:pl-10">
+      <ol className="relative pl-8 md:pl-10">
+        <span aria-hidden className="absolute bottom-0 left-0 top-0 w-px bg-[linear-gradient(180deg,var(--g1),var(--g2)_40%,var(--line)_85%,transparent)]" />
         {experience.map((job, i) => {
           const when = period(job.start, job.end, locale, dict.experience.present);
           return (
@@ -21,12 +22,12 @@ export function Experience({ locale, dict }: { locale: Locale; dict: Dictionary 
               <span
                 aria-hidden
                 className={`absolute -left-[calc(2rem+5px)] top-2 h-[9px] w-[9px] rounded-full ring-4 ring-bg md:-left-[calc(2.5rem+5px)] ${
-                  i === 0 ? "bg-accent" : "bg-line"
+                  i === 0 ? "bg-[linear-gradient(135deg,var(--g1),var(--g2))] shadow-[0_0_0_6px_var(--glow)]" : "bg-line"
                 }`}
               />
               <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-                <h3 className={`font-display font-bold tracking-tight ${job.compact ? "text-base" : "text-xl"}`}>
-                  {t(job.role, locale)} <span className="text-muted">· {job.company}</span>
+                <h3 className={`font-display font-bold tracking-tight ${job.compact ? "text-base" : "text-2xl"}`}>
+                  {t(job.role, locale)} <span className={i === 0 ? "text-gradient" : "text-muted"}>· {job.company}</span>
                 </h3>
                 <p className="font-mono text-xs text-muted tabular-nums">
                   {when ?? ""}

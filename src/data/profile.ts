@@ -20,6 +20,14 @@ export const profile = {
     tr: "Milyonların ödeme yaptığı ve mesajlaştığı uygulamaları geliştiriyorum.",
     en: "I build the apps millions of people pay and message with.",
   } satisfies Localized,
+  /** Başlıkta gradyanla vurgulanacak kelime(ler); headline içinde birebir geçmeli. */
+  headlineHighlight: { tr: "ödeme yaptığı ve mesajlaştığı", en: "pay and message with" } satisfies Localized,
+  stats: [
+    { value: 7, suffix: "+", label: { tr: "yıl mobil geliştirme", en: "years building mobile" } },
+    { value: 2100, suffix: "+", label: { tr: "commit, Param cüzdanı", en: "commits on the Param wallet" } },
+    { value: 11, suffix: "", label: { tr: "yayınlanan uygulama", en: "apps shipped" } },
+    { value: 3, suffix: "", label: { tr: "platform: RN, Android, Flutter", en: "platforms: RN, Android, Flutter" } },
+  ],
   tagline: {
     tr: "React Native ve TypeScript ile fintech ve iletişim uygulamaları geliştiren, ekip yöneten bir mobil geliştiriciyim.",
     en: "A mobile engineer who ships fintech and messaging apps with React Native and TypeScript, and leads the team doing it.",

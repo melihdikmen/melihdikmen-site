@@ -12,6 +12,10 @@
   --accent-ink: #ffffff;
   --teal: #0f766e;
   --tint: #e7ebfb;
+  --g1: #2749d6;
+  --g2: #7c3aed;
+  --g3: #0ea5a4;
+  --glow: rgba(39, 73, 214, 0.35);
   color-scheme: light;
 }
 
@@ -25,6 +29,10 @@
   --accent-ink: #0f1318;
   --teal: #3fbfb2;
   --tint: #161b2e;
+  --g1: #6d8dff;
+  --g2: #a78bfa;
+  --g3: #2dd4bf;
+  --glow: rgba(109, 141, 255, 0.4);
   color-scheme: dark;
 }
 
@@ -38,6 +46,9 @@
   --color-accent-ink: var(--accent-ink);
   --color-teal: var(--teal);
   --color-tint: var(--tint);
+  --color-g1: var(--g1);
+  --color-g2: var(--g2);
+  --color-g3: var(--g3);
   --font-display: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   --font-sans: var(--font-body), "Helvetica Neue", Arial, sans-serif;
   --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -92,4 +103,98 @@ body {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
   }
+}
+
+/* ---------- Şaşalı katman ---------- */
+.text-gradient {
+  background: linear-gradient(90deg, var(--g1) 0%, var(--g2) 55%, var(--g3) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.aurora {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.aurora span {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.5;
+  will-change: transform;
+  animation: drift 22s ease-in-out infinite alternate;
+}
+.dark .aurora span {
+  opacity: 0.35;
+}
+.aurora span:nth-child(1) { width: 46vw; height: 46vw; left: -10vw; top: -18vw; background: var(--g1); }
+.aurora span:nth-child(2) { width: 38vw; height: 38vw; right: -8vw; top: -6vw; background: var(--g2); animation-duration: 28s; animation-delay: -8s; }
+.aurora span:nth-child(3) { width: 30vw; height: 30vw; right: 18vw; bottom: -14vw; background: var(--g3); animation-duration: 26s; animation-delay: -14s; }
+
+@keyframes drift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(9%, -7%, 0) scale(1.18); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-16px) rotate(-5deg); }
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+@keyframes shine {
+  from { transform: translateX(-120%) skewX(-18deg); }
+  to { transform: translateX(220%) skewX(-18deg); }
+}
+
+.phone-float { animation: float 7s ease-in-out infinite; }
+.marquee-track { animation: marquee 40s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+/* Fareyi izleyen ışık */
+.spotlight { position: relative; }
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in srgb, var(--accent) 16%, transparent),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.spotlight:hover::before { opacity: 1; }
+.spotlight > * { position: relative; z-index: 1; }
+
+/* Gradyan çerçeve */
+.gradient-border { position: relative; isolation: isolate; }
+.gradient-border::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--g1), var(--g2) 50%, var(--g3));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.55;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.gradient-border:hover::after { opacity: 1; }
+
+.glow { box-shadow: 0 30px 80px -30px var(--glow); }
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora span, .phone-float, .marquee-track { animation: none !important; }
 }

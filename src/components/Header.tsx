@@ -24,10 +24,10 @@ export function Header({ locale, dict, showBlog }: Props) {
 
   return (
     <header className="sticky top-0 z-40 border-b border-line/70 bg-bg/80 backdrop-blur supports-[backdrop-filter]:bg-bg/70">
-      <div className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between gap-4 px-5">
+      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-5">
         <Link href={`/${locale}`} className="font-display text-lg font-extrabold tracking-tight">
           {profile.name}
-          <span className="text-accent">.</span>
+          <span className="text-gradient">.</span>
         </Link>
 
         <nav aria-label="Primary" className="hidden md:block">
@@ -60,7 +60,7 @@ export function Header({ locale, dict, showBlog }: Props) {
       </div>
 
       <nav id="mobile-nav" hidden={!open} aria-label="Mobile" className="border-t border-line md:hidden">
-        <ul className="mx-auto flex max-w-5xl flex-col px-5 py-2">
+        <ul className="mx-auto flex max-w-6xl flex-col px-5 py-2">
           {items.map(([id, label]) => (
             <li key={id}>
               <a

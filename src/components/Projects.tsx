@@ -6,6 +6,7 @@ import { Section } from "./Section";
 import { Reveal } from "./Reveal";
 import { ProjectCover } from "./ProjectCover";
 import { AppleIcon, ExternalIcon, GitHubIcon, PlayIcon } from "./Icons";
+import { SpotlightCard } from "./SpotlightCard";
 
 const statusTone: Record<string, string> = {
   live: "text-teal",
@@ -28,7 +29,8 @@ export function Projects({ locale, dict }: { locale: Locale; dict: Dictionary })
 
           return (
             <Reveal as="li" key={p.slug} delay={(i % 2) * 80}>
-              <article className="flex h-full flex-col overflow-hidden rounded-xl border border-line bg-surface transition-colors hover:border-accent">
+              <SpotlightCard className="gradient-border h-full rounded-2xl bg-surface transition-transform duration-300 hover:-translate-y-1.5 hover:glow">
+              <article className="flex h-full flex-col overflow-hidden rounded-2xl">
                 <ProjectCover project={p} />
                 <div className="flex flex-1 flex-col gap-3 p-5">
                   <header className="flex items-baseline justify-between gap-3">
@@ -64,6 +66,7 @@ export function Projects({ locale, dict }: { locale: Locale; dict: Dictionary })
                   )}
                 </div>
               </article>
+              </SpotlightCard>
             </Reveal>
           );
         })}
