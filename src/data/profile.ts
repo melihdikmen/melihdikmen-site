@@ -6,6 +6,7 @@ import type { Localized } from "@/i18n/config";
 export const profile = {
   name: "Melih Dikmen",
   firstName: "Melih",
+  lastName: "Dikmen",
   email: "melihdikmen06@gmail.com",
   location: { tr: "Ankara, Türkiye", en: "Ankara, Türkiye" } satisfies Localized,
   /** Canlı site adresi — Vercel'e deploy ettikten sonra güncelle. */
@@ -16,12 +17,6 @@ export const profile = {
     github: "https://github.com/melihdikmen",
     linkedin: "https://www.linkedin.com/in/melih-dikmen-79669a119/",
   },
-  headline: {
-    tr: "Milyonların ödeme yaptığı ve mesajlaştığı uygulamaları geliştiriyorum.",
-    en: "I build the apps millions of people pay and message with.",
-  } satisfies Localized,
-  /** Başlıkta gradyanla vurgulanacak kelime(ler); headline içinde birebir geçmeli. */
-  headlineHighlight: { tr: "ödeme yaptığı ve mesajlaştığı", en: "pay and message with" } satisfies Localized,
   stats: [
     { value: 7, suffix: "+", label: { tr: "yıl mobil geliştirme", en: "years building mobile" } },
     { value: 2100, suffix: "+", label: { tr: "commit, Param cüzdanı", en: "commits on the Param wallet" } },

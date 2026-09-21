@@ -8,18 +8,6 @@ import { PhoneMockup } from "./PhoneMockup";
 import { Stats } from "./Stats";
 import { Marquee } from "./Marquee";
 
-function Headline({ text, highlight }: { text: string; highlight: string }) {
-  const i = highlight ? text.indexOf(highlight) : -1;
-  if (i < 0) return <>{text}</>;
-  return (
-    <>
-      {text.slice(0, i)}
-      <span className="text-gradient">{highlight}</span>
-      {text.slice(i + highlight.length)}
-    </>
-  );
-}
-
 export function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   return (
     <section className="relative overflow-hidden">
@@ -48,8 +36,10 @@ export function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
             </span>
             {dict.hero.eyebrow} · {t(profile.location, locale)}
           </p>
-          <h1 className="mt-7 max-w-[16ch] font-display text-[clamp(2.6rem,7vw,5.2rem)] font-extrabold leading-[0.98] tracking-[-0.03em] text-balance">
-            <Headline text={t(profile.headline, locale)} highlight={t(profile.headlineHighlight, locale)} />
+          <h1 className="mt-7 font-display text-[clamp(3rem,9vw,6.5rem)] font-extrabold leading-[0.95] tracking-[-0.035em]">
+            {profile.firstName}
+            <br />
+            <span className="text-gradient">{profile.lastName}</span>
           </h1>
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted md:text-xl">{t(profile.tagline, locale)}</p>
           <div className="mt-9 flex flex-wrap items-center gap-3">
