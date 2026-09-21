@@ -19,7 +19,7 @@ export const profile = {
   },
   stats: [
     { value: 7, suffix: "+", label: { tr: "yıl mobil geliştirme", en: "years building mobile" } },
-    { value: 2100, suffix: "+", label: { tr: "commit, Param cüzdanı", en: "commits on the Param wallet" } },
+    { value: 3, suffix: "", label: { tr: "şirket: Param, Turkcell, Başarsoft", en: "companies: Param, Turkcell, Başarsoft" } },
     { value: 11, suffix: "", label: { tr: "yayınlanan uygulama", en: "apps shipped" } },
     { value: 3, suffix: "", label: { tr: "platform: RN, Android, Flutter", en: "platforms: RN, Android, Flutter" } },
   ],

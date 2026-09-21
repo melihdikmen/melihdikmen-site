@@ -26,8 +26,8 @@ export const experience: Experience[] = [
     },
     highlights: [
       {
-        tr: "Param dijital cüzdan uygulamasını React Native ile sıfırdan geliştirdim; kod tabanının en aktif katkıcısıyım (2.100+ commit).",
-        en: "Built the Param digital wallet app from scratch with React Native; most active contributor to the codebase (2,100+ commits).",
+        tr: "Param dijital cüzdan uygulamasını React Native ile sıfırdan geliştirdim; kod tabanının en aktif katkıcısıyım.",
+        en: "Built the Param digital wallet app from scratch with React Native; most active contributor to the codebase.",
       },
       {
         tr: "Mobil ekibi yönetiyorum: kod kalitesi, ekip koordinasyonu ve iş hedefleriyle uyumlu geliştirme süreci planlaması.",
