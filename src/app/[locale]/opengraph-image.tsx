@@ -30,7 +30,7 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
           <div style={{ fontSize: 88, fontWeight: 800, letterSpacing: -3, lineHeight: 1 }}>{profile.name}</div>
-          <div style={{ fontSize: 34, color: "#ff6a2c", maxWidth: 1000, lineHeight: 1.25 }}>
+          <div style={{ fontSize: 34, color: "#6d8dff", maxWidth: 1000, lineHeight: 1.25 }}>
             {profile.headline[locale]}
           </div>
         </div>
