@@ -29,6 +29,8 @@ export const en: Dictionary = {
   projects: {
     title: "Projects",
     subtitle: "Apps in the stores, work in progress, and things I built for myself.",
+    earlier: "Earlier projects",
+    earlierSubtitle: "The Başarsoft years and before: map-based field apps, native Android and Flutter.",
     appStore: "App Store",
     playStore: "Google Play",
     github: "GitHub",

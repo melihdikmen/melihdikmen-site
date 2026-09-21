@@ -16,5 +16,5 @@ export const skills: Record<SkillGroup, string[]> = {
   ],
   backend: [".NET Web API", "C#", "Node.js", "REST", "Firebase", "Supabase"],
   database: ["Oracle PL/SQL", "PostgreSQL", "SQL", "MMKV", "SQLite"],
-  tools: ["Git", "GitHub Actions", "EAS", "CodePush", "Sentry", "Smartlook", "Jest", "Testing Library", "Figma"],
+  tools: ["Git", "GitHub Actions", "Jenkins", "EAS", "CodePush", "Sentry", "Smartlook", "Jest", "Testing Library", "Figma"],
 };

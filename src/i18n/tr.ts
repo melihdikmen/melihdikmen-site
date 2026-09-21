@@ -27,6 +27,8 @@ export const tr = {
   projects: {
     title: "Projeler",
     subtitle: "Mağazada olan, üzerinde çalıştığım ve kendim için yaptığım işler.",
+    earlier: "Önceki projeler",
+    earlierSubtitle: "Başarsoft dönemi ve öncesi: harita tabanlı saha uygulamaları, native Android ve Flutter.",
     appStore: "App Store",
     playStore: "Google Play",
     github: "GitHub",

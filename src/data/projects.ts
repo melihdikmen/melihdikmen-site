@@ -74,3 +74,77 @@ export const projects: Project[] = [
     links: {},
   },
 ];
+
+export type PastProject = {
+  year: string;
+  name: string;
+  platform: string;
+  description: Localized;
+};
+
+/** Başarsoft dönemi ve öğrencilik projeleri; kompakt liste olarak gösterilir. */
+export const pastProjects: PastProject[] = [
+  {
+    year: "2021",
+    name: "Orman Yangını Karar Destek Sistemi",
+    platform: "React Native · GIS",
+    description: {
+      tr: "Aktif ve sönmüş yangınları haritada gösteren, girilen parametrelere göre yangının yayılımını tahmin eden, söndürme ekiplerinin konumlarını, alan ve mesafe ölçümünü sunan uygulama.",
+      en: "Shows active and extinguished fires on the map, estimates fire spread from entered parameters, and displays firefighting units' positions with area and distance measurement.",
+    },
+  },
+  {
+    year: "2021",
+    name: "Saka Su Teslimatçı",
+    platform: "Flutter",
+    description: {
+      tr: "Saka Su bayilerinin sipariş dağıtım uygulaması. Siparişler harita ve listede zamana göre sıralanır, arka planda her dakika yenilenir; yeni, değişen ve iptal edilen siparişler bildirimle gelir, teslimat rotası haritada çizilir.",
+      en: "Order distribution app for Saka Su dealers. Orders are listed and mapped by time, refreshed in the background every minute; new, changed and cancelled orders arrive as notifications, and the delivery route is drawn on the map.",
+    },
+  },
+  {
+    year: "2020",
+    name: "Saka Su Dağıtım",
+    platform: "Android",
+    description: {
+      tr: "Aynı dağıtım akışının native Android sürümü: sipariş listesi ve haritası, bildirimler, teslimat rotası ve teslim edilen siparişler için ayrı ekran.",
+      en: "The native Android version of the same distribution flow: order list and map, notifications, delivery route, and a separate screen for delivered orders.",
+    },
+  },
+  {
+    year: "2020",
+    name: "Erikli Dağıtım",
+    platform: "Android",
+    description: {
+      tr: "Erikli su bayilerinin kullandığı sipariş uygulaması. Gelen siparişler haritada ve listede sıralanır, seçilen sipariş için rota çizilir, sipariş içeriği güncellenip iptal edilebilir.",
+      en: "Order app used by Erikli water dealers. Incoming orders are sorted on the map and in a list, a route is drawn for the chosen order, and order contents can be updated or cancelled.",
+    },
+  },
+  {
+    year: "2020",
+    name: "GFK Anket",
+    platform: "Android",
+    description: {
+      tr: "GFK'nın 10 ülkede aktif kullanılan anket uygulamasının geliştirme ve hata düzeltme çalışmaları.",
+      en: "Development and bug fixing on GFK's survey app, actively used in 10 countries.",
+    },
+  },
+  {
+    year: "2019",
+    name: "Başar Filo",
+    platform: "React Native",
+    description: {
+      tr: "Şirket araçlarının yönetimi için mobil uygulama. Araçlar için rezervasyon yapılır, yönetici bildirimle onaylar, onay kullanıcıya bildirim olarak döner; araç bilgileri yöneticiden düzenlenir.",
+      en: "Fleet management app for company cars. Users book a car, the manager approves from a notification, and the confirmation returns to the user as a notification; car details are edited by the manager.",
+    },
+  },
+  {
+    year: "2018",
+    name: "Splitpay",
+    platform: "React Native",
+    description: {
+      tr: "Ortak harcamaları eşit ya da belirlenen katsayılara göre paylaştıran grup uygulaması; grup üyeleri anlık mesajlaşabilir.",
+      en: "A group app that splits shared expenses equally or by set coefficients, with instant chat between group members.",
+    },
+  },
+];

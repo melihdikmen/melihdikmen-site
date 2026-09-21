@@ -1,6 +1,6 @@
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/tr";
-import { projects } from "@/data/projects";
+import { projects, pastProjects } from "@/data/projects";
 import { t } from "@/lib/i18n";
 import { Section } from "./Section";
 import { Reveal } from "./Reveal";
@@ -68,6 +68,29 @@ export function Projects({ locale, dict }: { locale: Locale; dict: Dictionary })
           );
         })}
       </ul>
+
+      {pastProjects.length > 0 && (
+        <div className="mt-16">
+          <Reveal>
+            <h3 className="font-display text-xl font-bold tracking-tight">{dict.projects.earlier}</h3>
+            <p className="mt-2 max-w-2xl text-[15px] text-muted">{dict.projects.earlierSubtitle}</p>
+          </Reveal>
+          <ol className="mt-6 divide-y divide-line border-y border-line">
+            {pastProjects.map((p, i) => (
+              <Reveal as="li" key={`${p.year}-${p.name}`} delay={Math.min(i, 4) * 40}>
+                <div className="grid gap-x-6 gap-y-1 py-4 md:grid-cols-[56px_220px_1fr]">
+                  <span className="font-mono text-xs text-muted tabular-nums md:pt-1">{p.year}</span>
+                  <span>
+                    <span className="block font-semibold">{p.name}</span>
+                    <span className="block font-mono text-[11.5px] text-muted">{p.platform}</span>
+                  </span>
+                  <p className="text-[15px] leading-relaxed text-muted">{t(p.description, locale)}</p>
+                </div>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+      )}
     </Section>
   );
 }
