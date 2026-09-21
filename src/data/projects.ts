@@ -36,18 +36,6 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: "idnext",
-    name: "IdNext Digital KYC SDK",
-    status: "live",
-    description: {
-      tr: "Partner uygulamaların müşteri kazanımı için içine gömdüğü kimlik doğrulama paketi: belge çekimi, NFC çip okuma, video canlılık, konum kontrolü. iOS 15+ ve Android.",
-      en: "The identity verification package partner apps embed for onboarding: document capture, NFC chip read, video liveness, location checks. iOS 15+ and Android.",
-    },
-    tech: ["React Native", "Swift", "Kotlin", "NFC", "npm"],
-    accent: "#0F766E",
-    links: {},
-  },
-  {
     slug: "bip",
     name: "Turkcell BiP",
     status: "live",

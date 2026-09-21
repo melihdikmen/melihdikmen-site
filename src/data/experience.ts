@@ -34,8 +34,8 @@ export const experience: Experience[] = [
         en: "Lead the mobile team: code quality, team coordination, and planning the development workflow in line with business goals.",
       },
       {
-        tr: "IdNext Digital KYC SDK'sını tasarladım ve yayınladım: belge çekimi, NFC ile kimlik çipi okuma, video canlılık. Partner uygulamalar npm paketi olarak kullanıyor.",
-        en: "Designed and published the IdNext Digital KYC SDK: document capture, NFC ID chip read, video liveness. Partner apps consume it as an npm package.",
+        tr: "Dijital kimlik doğrulama (KYC) SDK'sını tasarladım ve yayınladım: belge çekimi, NFC ile kimlik çipi okuma, video canlılık. Partner uygulamalar npm paketi olarak kullanıyor.",
+        en: "Designed and published the digital identity verification (KYC) SDK: document capture, NFC ID chip read, video liveness. Partner apps consume it as an npm package.",
       },
       {
         tr: "Over-the-air güncelleme altyapısını, Sentry ile çökme takibini ve Smartlook ile oturum analizini kurdum.",
