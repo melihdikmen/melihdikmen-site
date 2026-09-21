@@ -14,8 +14,7 @@ export const profile = {
   cvPath: "/cv/Melih-Dikmen-CV.pdf",
   social: {
     github: "https://github.com/melihdikmen",
-    /** TODO: LinkedIn profil adresini ekle. */
-    linkedin: "https://www.linkedin.com/in/melihdikmen",
+    linkedin: "https://www.linkedin.com/in/melih-dikmen-79669a119/",
   },
   headline: {
     tr: "Milyonların ödeme yaptığı ve mesajlaştığı uygulamaları geliştiriyorum.",
