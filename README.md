@@ -1,4 +1,4 @@
-# melihdikmen.dev
+# melihdikmen.com
 
 Melih Dikmen'in kişisel portfolyo sitesi. Next.js 16 (App Router) + TypeScript + Tailwind CSS v4.
 

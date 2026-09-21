@@ -10,7 +10,7 @@ export const profile = {
   email: "melihdikmen06@gmail.com",
   location: { tr: "Ankara, Türkiye", en: "Ankara, Türkiye" } satisfies Localized,
   /** Canlı site adresi — Vercel'e deploy ettikten sonra güncelle. */
-  siteUrl: "https://melihdikmen.dev",
+  siteUrl: "https://melihdikmen.com",
   /** public/cv/ altındaki dosya adı. */
   cvPath: "/cv/Melih-Dikmen-CV.pdf",
   social: {
