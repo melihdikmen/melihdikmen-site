@@ -24,8 +24,8 @@ export const profile = {
     { value: 3, suffix: "", label: { tr: "platform: RN, Android, Flutter", en: "platforms: RN, Android, Flutter" } },
   ],
   tagline: {
-    tr: "React Native ve TypeScript ile fintech ve iletişim uygulamaları geliştiren, ekip yöneten bir mobil geliştiriciyim.",
-    en: "A mobile engineer who ships fintech and messaging apps with React Native and TypeScript, and leads the team doing it.",
+    tr: "React Native, Flutter ve TypeScript ile fintech'ten harita ve saha uygulamalarına birçok alanda mobil ürün geliştiren, ekip yöneten bir mobil geliştiriciyim.",
+    en: "A mobile engineer who ships apps across fintech, maps and field operations with React Native, Flutter and TypeScript, and leads the team doing it.",
   } satisfies Localized,
   about: {
     tr: [
