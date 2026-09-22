@@ -19,7 +19,6 @@ export const en: Dictionary = {
     cv: "Download CV",
     available: "Open to remote work",
     scroll: "Scroll",
-    badge: "React Native · Team Lead · Fintech · ",
   },
   about: {
     title: "About",

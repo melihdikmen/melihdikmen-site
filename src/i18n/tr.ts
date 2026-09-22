@@ -17,7 +17,6 @@ export const tr = {
     cv: "CV indir",
     available: "Remote çalışmaya açık",
     scroll: "Kaydır",
-    badge: "React Native · Takım Lideri · Fintech · ",
   },
   about: {
     title: "Hakkımda",
