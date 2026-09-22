@@ -6,7 +6,6 @@ import { t } from "@/lib/i18n";
 import { ArrowIcon, DownloadIcon } from "./Icons";
 import { PhoneMockup } from "./PhoneMockup";
 import { ParticleField } from "./ParticleField";
-import { RotatingBadge } from "./RotatingBadge";
 import { Marquee } from "./Marquee";
 
 export function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
@@ -57,9 +56,6 @@ export function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
 
           <div className="relative hidden justify-center lg:flex">
             <PhoneMockup dict={dict} />
-            <div className="absolute -left-10 top-8 rounded-full bg-bg/70 backdrop-blur">
-              <RotatingBadge text={dict.hero.badge.repeat(2)} />
-            </div>
           </div>
         </div>
 
