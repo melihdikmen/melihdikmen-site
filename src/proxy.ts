@@ -26,5 +26,5 @@ export function proxy(request: NextRequest) {
 
 export const config = {
   // _next, api, sitemap/robots, opengraph ve statik dosyalar hariç her yol.
-  matcher: ["/((?!_next|api|sitemap\\.xml|robots\\.txt|.*\\..*).*)"],
+  matcher: ["/((?!_next|api|apple-icon|icon|sitemap\\.xml|robots\\.txt|.*\\..*).*)"],
 };
