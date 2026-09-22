@@ -30,7 +30,7 @@ export const tr = {
     status: "Durum",
     statusValue: "Yeni fırsatlara ve remote işbirliğine açık",
     now: "Şu an",
-    nowValue: "Param'da dijital cüzdan ve mobil ekip liderliği",
+    nowValue: "Param'da mobil ekip liderliği",
     stack: "Günlük araç çantam",
   },
   experience: { title: "Deneyim", present: "Bugün" },

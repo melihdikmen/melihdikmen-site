@@ -32,7 +32,7 @@ export const en: Dictionary = {
     status: "Status",
     statusValue: "Open to new roles and remote collaboration",
     now: "Right now",
-    nowValue: "Digital wallet and mobile team lead at Param",
+    nowValue: "Mobile team lead at Param",
     stack: "Daily toolkit",
   },
   experience: { title: "Experience", present: "Present" },
