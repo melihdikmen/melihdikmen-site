@@ -54,3 +54,7 @@ src/
   data/                içerik
   i18n/                sözlükler
 ```
+
+## Deploy
+
+Proje Vercel'e GitHub üzerinden bağlı: `main` dalına her push otomatik olarak production'a deploy olur.
