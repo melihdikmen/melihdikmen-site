@@ -15,7 +15,7 @@ export type PlayerChapter = {
   body: string;
   chips: string[];
 };
-export type PlayerApp = { name: string; mark: string; color: string };
+export type PlayerApp = { name: string; mark: string };
 
 type Props = {
   locale: Locale;
@@ -27,8 +27,8 @@ type Props = {
 };
 
 const DURATION = 6500;
-/** Açık zeminli sahnelerde durum çubuğu koyu yazılır. */
-const LIGHT_SCENES: StoryScene[] = ["map", "wallet"];
+/** Kağıt zeminli sahneler; diğerleri mürekkep zeminli (ters) çizilir. */
+const LIGHT_SCENES: StoryScene[] = ["splash", "map", "wallet", "home"];
 
 export function StoryPlayer({ locale, chapters, apps, mapRows, stats, ui }: Props) {
   const [cur, setCur] = useState(0);
@@ -304,7 +304,7 @@ type SceneProps = {
   stats: { value: number; suffix: string; label: string }[];
 };
 
-const dotColors = ["#2749d6", "#0ea5c6", "#22b573", "#ef4b4b"];
+const dotColors = ["var(--accent)", "var(--ink)", "var(--ink-3)", "var(--accent)"];
 
 function Scene({ kind, p, apps, mapRows, stats }: SceneProps) {
   switch (kind) {
@@ -347,7 +347,7 @@ function Scene({ kind, p, apps, mapRows, stats }: SceneProps) {
             <span className="is-act">melih.ts</span>
             <span>konya.ts</span>
           </div>
-          <div className="st-code">
+          <div className="st-codebox">
             {lines.map((l, i) => (
               <span key={i} className="st-ln" style={{ "--d": `${0.2 + i * 0.55}s` } as CSSProperties}>
                 <span className="n">{i + 1}</span>
@@ -367,19 +367,19 @@ function Scene({ kind, p, apps, mapRows, stats }: SceneProps) {
       return (
         <>
           <svg className="st-map" viewBox="0 0 300 620" preserveAspectRatio="xMidYMid slice" aria-hidden>
-            <rect width="300" height="620" fill="#e7ede3" />
-            <path d="M-10 170 L310 140 M-10 330 L310 360 M-10 470 L310 440 M60 -10 L90 630 M190 -10 L170 630 M260 -10 L280 630" stroke="#ffffff" strokeWidth="14" fill="none" />
-            <path d="M-10 250 C80 240 120 300 310 270" stroke="#fff6d8" strokeWidth="18" fill="none" />
-            <rect x="100" y="180" width="60" height="70" rx="6" fill="#d3e3cb" />
-            <rect x="205" y="380" width="55" height="45" rx="6" fill="#d3e3cb" />
-            <circle cx="120" cy="410" r="30" fill="#bcdcf0" />
-            <path className="st-route" d="M76 520 L70 360 C68 330 90 300 130 296 L178 290 L186 160" stroke="#1f7a55" strokeWidth="5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-            <circle cx="76" cy="520" r="7" fill="#1f7a55" />
+            <rect width="300" height="620" className="m-ground" />
+            <path d="M-10 170 L310 140 M-10 330 L310 360 M-10 470 L310 440 M60 -10 L90 630 M190 -10 L170 630 M260 -10 L280 630" className="m-street" strokeWidth="14" fill="none" />
+            <path d="M-10 250 C80 240 120 300 310 270" className="m-avenue" strokeWidth="18" fill="none" />
+            <rect x="100" y="180" width="60" height="70" className="m-block" />
+            <rect x="205" y="380" width="55" height="45" className="m-block" />
+            <circle cx="120" cy="410" r="30" className="m-water" />
+            <path d="M76 520 L70 360 C68 330 90 300 130 296 L178 290 L186 160" className="st-route m-route" strokeWidth="4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+            <circle cx="76" cy="520" r="6" className="m-start" />
             <g transform="translate(186 150)">
-              <path d="M0 -26 C-11 -26 -17 -18 -17 -10 C-17 2 0 14 0 14 C0 14 17 2 17 -10 C17 -18 11 -26 0 -26Z" fill="#ef4b4b" />
-              <circle cy="-11" r="6" fill="#fff" />
+              <path d="M0 -26 C-11 -26 -17 -18 -17 -10 C-17 2 0 14 0 14 C0 14 17 2 17 -10 C17 -18 11 -26 0 -26Z" className="m-pin" />
+              <circle cy="-11" r="6" className="m-pin-hole" />
             </g>
-            <circle className="st-truck" r="9" fill="#2749d6" stroke="#fff" strokeWidth="3" cx="76" cy="520" />
+            <circle className="st-truck m-truck" r="8" strokeWidth="3" cx="76" cy="520" />
           </svg>
           <div className="st-mapcard">
             <div className="ic">B</div>
@@ -463,17 +463,17 @@ function Scene({ kind, p, apps, mapRows, stats }: SceneProps) {
           </div>
           <div className="st-tx">
             <div className="st-row">
-              <span className="dot" style={{ background: "#22b573" }} />
+              <span className="dot" style={{ background: "var(--ink-3)" }} />
               <span className="nm">{p.tx1}</span>
               <em>-₺184,90</em>
             </div>
             <div className="st-row">
-              <span className="dot" style={{ background: "#2749d6" }} />
+              <span className="dot" style={{ background: "var(--accent)" }} />
               <span className="nm">{p.tx2}</span>
               <em>+₺1.000,00</em>
             </div>
             <div className="st-row">
-              <span className="dot" style={{ background: "#ff7a2f" }} />
+              <span className="dot" style={{ background: "var(--ink-3)" }} />
               <span className="nm">{p.tx3}</span>
               <em>-₺62,00</em>
             </div>
@@ -492,7 +492,7 @@ function Scene({ kind, p, apps, mapRows, stats }: SceneProps) {
         <>
           <p className="st-nfc-t">{p.nfcTitle}</p>
           <p className="st-nfc-s">{p.nfcSub}</p>
-          <div className="st-nfc">
+          <div className="st-ring">
             <span className="wave" />
             <span className="wave" />
             <span className="wave" />
@@ -529,7 +529,7 @@ function Scene({ kind, p, apps, mapRows, stats }: SceneProps) {
           <div className="st-apps">
             {apps.map((a, i) => (
               <div key={a.name} className="st-app" style={{ animationDelay: `${0.3 + i * 0.09}s` }}>
-                <i style={{ background: a.color }}>{a.mark}</i>
+                <i className={i === 0 ? "is-lead" : ""}>{a.mark}</i>
                 <span>{a.name}</span>
               </div>
             ))}
