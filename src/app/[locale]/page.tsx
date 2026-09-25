@@ -5,6 +5,7 @@ import { getSections } from "@/lib/sections";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
+import { Story } from "@/components/Story";
 import { Experience } from "@/components/Experience";
 import { Projects } from "@/components/Projects";
 import { Skills } from "@/components/Skills";
@@ -31,6 +32,7 @@ export default async function Page({ params }: Props) {
         <Hero locale={locale} dict={dict} sections={sections} />
         <div className="h-16 md:h-24" />
         <About locale={locale} dict={dict} number={num("about")} />
+        <Story locale={locale} dict={dict} number={num("story")} />
         <Experience locale={locale} dict={dict} number={num("experience")} />
         <Projects locale={locale} dict={dict} number={num("projects")} />
         <Skills dict={dict} number={num("skills")} />

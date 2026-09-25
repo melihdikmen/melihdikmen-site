@@ -6,6 +6,7 @@ export type SectionInfo = { id: string; label: string; number: string };
 export function getSections(dict: Dictionary, showBlog: boolean): SectionInfo[] {
   const ids: [string, string][] = [
     ["about", dict.nav.about],
+    ["story", dict.nav.story],
     ["experience", dict.nav.experience],
     ["projects", dict.nav.projects],
     ["skills", dict.nav.skills],
