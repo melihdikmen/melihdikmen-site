@@ -1,18 +1,17 @@
+import Image from "next/image";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/tr";
 import { projects, pastProjects, type Project } from "@/data/projects";
 import { t } from "@/lib/i18n";
 import { Section } from "./Section";
 import { Reveal } from "./Reveal";
-import { ProjectCover } from "./ProjectCover";
 import { AppleIcon, ExternalIcon, GitHubIcon, PlayIcon } from "./Icons";
-import { TiltCard } from "./TiltCard";
 
 const statusTone: Record<string, string> = {
-  live: "text-g3",
-  beta: "text-g2",
-  wip: "text-muted",
-  internal: "text-muted",
+  live: "text-accent",
+  beta: "text-ink",
+  wip: "text-ink-3",
+  internal: "text-ink-3",
 };
 
 function Links({ p, dict }: { p: Project; dict: Dictionary }) {
@@ -24,11 +23,11 @@ function Links({ p, dict }: { p: Project; dict: Dictionary }) {
   ].filter(Boolean) as { href: string; label: string; Icon: typeof AppleIcon }[];
   if (links.length === 0) return null;
   return (
-    <ul className="mt-auto flex flex-wrap gap-4 pt-3">
+    <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
       {links.map(({ href, label, Icon }) => (
         <li key={href}>
-          <a href={href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm text-accent hover:underline underline-offset-4">
-            <Icon width={15} height={15} />
+          <a href={href} target="_blank" rel="noopener noreferrer" className="u inline-flex items-center gap-1.5 text-[13.5px]">
+            <Icon width={14} height={14} />
             {label}
           </a>
         </li>
@@ -37,90 +36,52 @@ function Links({ p, dict }: { p: Project; dict: Dictionary }) {
   );
 }
 
-function Tech({ items }: { items: string[] }) {
+export function Projects({ locale, dict, number }: { locale: Locale; dict: Dictionary; number: string }) {
   return (
-    <ul className="flex flex-wrap gap-1.5">
-      {items.map((tech) => (
-        <li key={tech} className="rounded-full border border-line px-2.5 py-0.5 font-mono text-[11.5px] text-muted">
-          {tech}
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-export function Projects({ locale, dict }: { locale: Locale; dict: Dictionary }) {
-  const [featured, ...rest] = projects;
-  return (
-    <Section id="projects" title={dict.projects.title} subtitle={dict.projects.subtitle}>
-      {featured && (
-        <Reveal>
-          <TiltCard max={4} className="gradient-border glow rounded-3xl bg-surface">
-            <article className="grid overflow-hidden rounded-3xl md:grid-cols-[1.1fr_1fr]">
-              <div className="[&>div]:h-full [&>div]:rounded-none [&>div]:md:rounded-l-3xl">
-                <ProjectCover project={featured} />
+    <Section id="projects" number={number} kicker={dict.section} title={dict.projects.title} subtitle={dict.projects.subtitle}>
+      <ol className="rule-t">
+        {projects.map((p, i) => (
+          <Reveal
+            as="li"
+            key={p.slug}
+            className={`row-hover grid gap-x-8 gap-y-4 rule-b py-10 md:grid-cols-[64px_1fr] md:py-12 ${p.image ? "lg:grid-cols-[64px_1fr_300px]" : ""}`}
+          >
+            <span className="font-mono text-[12px] text-ink-3">№ {i + 1}</span>
+            <div className="min-w-0">
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+                <h3 className="row-title font-display text-[clamp(2.2rem,5vw,4rem)] font-light leading-none tracking-[-0.025em]">{p.name}</h3>
+                <span className={`stamp ${statusTone[p.status]}`}>{dict.projects.status[p.status]}</span>
+                {i === 0 && <span className="smallcaps text-accent">{dict.projects.featured}</span>}
               </div>
-              <div className="flex flex-col gap-4 p-7 md:p-10">
-                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-g2">{dict.projects.featured}</p>
-                <header className="flex items-baseline justify-between gap-3">
-                  <h3 className="font-display text-3xl font-extrabold tracking-tight md:text-4xl">{featured.name}</h3>
-                  <span className={`font-mono text-[11px] uppercase tracking-[0.1em] ${statusTone[featured.status]}`}>
-                    {dict.projects.status[featured.status]}
-                  </span>
-                </header>
-                <p className="text-[16px] leading-relaxed text-muted">{t(featured.description, locale)}</p>
-                <Tech items={featured.tech} />
-                <Links p={featured} dict={dict} />
+              <p className="mt-5 max-w-2xl text-[16px] leading-relaxed">{t(p.description, locale)}</p>
+              <p className="mt-4 font-mono text-[11.5px] leading-relaxed text-ink-3">{p.tech.join(" / ")}</p>
+              <Links p={p} dict={dict} />
+            </div>
+            {p.image && (
+              <div className="relative aspect-[4/3] overflow-hidden rounded-sm border border-rule bg-paper-2 md:col-start-2 lg:col-start-3">
+                <Image src={p.image} alt={p.name} fill sizes="(max-width: 1024px) 100vw, 300px" className="object-cover" />
               </div>
-            </article>
-          </TiltCard>
-        </Reveal>
-      )}
-
-      <ul className="mt-6 grid gap-5 md:grid-cols-3">
-        {rest.map((p, i) => (
-          <Reveal as="li" key={p.slug} delay={i * 80} className="h-full">
-            <TiltCard className="gradient-border h-full rounded-2xl bg-surface">
-              <article className="flex h-full flex-col overflow-hidden rounded-2xl">
-                <ProjectCover project={p} />
-                <div className="flex flex-1 flex-col gap-3 p-5">
-                  <header className="flex items-baseline justify-between gap-3">
-                    <h3 className="font-display text-xl font-bold tracking-tight">{p.name}</h3>
-                    <span className={`font-mono text-[11px] uppercase tracking-[0.08em] ${statusTone[p.status]}`}>
-                      {dict.projects.status[p.status]}
-                    </span>
-                  </header>
-                  <p className="text-[15px] leading-relaxed text-muted">{t(p.description, locale)}</p>
-                  <Tech items={p.tech} />
-                  <Links p={p} dict={dict} />
-                </div>
-              </article>
-            </TiltCard>
+            )}
           </Reveal>
         ))}
-      </ul>
+      </ol>
 
       {pastProjects.length > 0 && (
         <div className="mt-20">
           <Reveal>
-            <h3 className="font-display text-2xl font-extrabold tracking-tight">
-              {dict.projects.earlier}
-              <span className="text-gradient">.</span>
-            </h3>
-            <p className="mt-2 max-w-2xl text-[15px] text-muted">{dict.projects.earlierSubtitle}</p>
+            <h3 className="font-display text-[1.75rem] font-normal leading-tight tracking-[-0.015em]">{dict.projects.earlier}</h3>
+            <p className="mt-2 max-w-2xl text-[15px] text-ink-2">{dict.projects.earlierSubtitle}</p>
           </Reveal>
-          <ol className="mt-6 divide-y divide-line border-y border-line">
+          <ol className="mt-6 rule-t">
             {pastProjects.map((p, i) => (
               <Reveal as="li" key={`${p.year}-${p.name}`} delay={Math.min(i, 4) * 40}>
-                <div className="group grid gap-x-6 gap-y-1 py-4 transition-colors md:grid-cols-[64px_230px_1fr]">
-                  <span className="font-display text-xl font-extrabold text-muted/70 tabular-nums transition-colors group-hover:text-gradient md:pt-0.5">
-                    {p.year}
-                  </span>
+                <div className="grid gap-x-6 gap-y-1 rule-b py-4 md:grid-cols-[64px_240px_1fr]">
+                  <span className="font-display text-[20px] font-light leading-none text-ink-3 tabular-nums md:pt-0.5">{p.year}</span>
                   <span>
-                    <span className="block font-semibold">{p.name}</span>
-                    <span className="block font-mono text-[11.5px] text-muted">{p.platform}</span>
+                    <span className="block font-medium">{p.name}</span>
+                    <span className="block font-mono text-[11px] text-ink-3">{p.platform}</span>
                   </span>
-                  <p className="text-[15px] leading-relaxed text-muted">{t(p.description, locale)}</p>
+                  <p className="text-[15px] leading-relaxed text-ink-2">{t(p.description, locale)}</p>
                 </div>
               </Reveal>
             ))}

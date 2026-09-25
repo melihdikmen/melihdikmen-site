@@ -38,23 +38,24 @@ function CountUp({ value, suffix }: { value: number; suffix: string }) {
   }, [value]);
   return (
     <span ref={ref} className="tabular-nums">
-      {n.toLocaleString("tr-TR")}
-      {suffix}
+      {n}
+      {suffix && <span className="text-accent">{suffix}</span>}
     </span>
   );
 }
 
 export function Stats({ items }: { items: Stat[] }) {
   return (
-    <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-4">
-      {items.map((s) => (
-        <div key={s.label} className="spotlight flex flex-col bg-surface/80 px-5 py-5 backdrop-blur">
-          <dt className="order-2 mt-1 text-[13px] text-muted">{s.label}</dt>
-          <dd className="order-1 font-display text-3xl font-extrabold tracking-tight md:text-4xl">
-            <span className="text-gradient">
-              <CountUp value={s.value} suffix={s.suffix} />
-            </span>
+    <dl className="grid grid-cols-2 rule-t md:grid-cols-4">
+      {items.map((s, i) => (
+        <div
+          key={s.label}
+          className={`flex flex-col rule-b py-6 md:py-8 ${i % 2 === 1 ? "border-l border-rule pl-5 md:pl-6" : ""} ${i >= 2 ? "md:border-l md:border-rule md:pl-6" : ""}`}
+        >
+          <dd className="font-display order-1 text-[clamp(2.75rem,6vw,5rem)] font-light leading-none tracking-[-0.03em]">
+            <CountUp value={s.value} suffix={s.suffix} />
           </dd>
+          <dt className="order-2 mt-3 max-w-[16ch] text-[13.5px] leading-snug text-ink-2">{s.label}</dt>
         </div>
       ))}
     </dl>

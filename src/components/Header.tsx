@@ -1,54 +1,59 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/tr";
+import type { SectionInfo } from "@/lib/sections";
+import { container } from "@/lib/ui";
+import { profile } from "@/data/profile";
 import { ThemeToggle } from "./ThemeToggle";
 import { LocaleSwitch } from "./LocaleSwitch";
+import { LocalTime } from "./LocalTime";
 import { CloseIcon, MenuIcon } from "./Icons";
-import { profile } from "@/data/profile";
 
-type Props = { locale: Locale; dict: Dictionary; showBlog: boolean };
+type Props = { locale: Locale; dict: Dictionary; sections: SectionInfo[] };
 
-export function Header({ locale, dict, showBlog }: Props) {
+export function Header({ locale, dict, sections }: Props) {
   const [open, setOpen] = useState(false);
-  const items = [
-    ["about", dict.nav.about],
-    ["experience", dict.nav.experience],
-    ["projects", dict.nav.projects],
-    ["skills", dict.nav.skills],
-    ...(showBlog ? [["blog", dict.nav.blog]] : []),
-    ["contact", dict.nav.contact],
-  ];
+
+  useEffect(() => {
+    document.documentElement.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.documentElement.style.overflow = "";
+    };
+  }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line/60 bg-bg/70 backdrop-blur-md">
-      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-5">
-        <Link href={`/${locale}`} className="font-display text-lg font-extrabold tracking-tight">
+    <header className="sticky top-0 z-40 rule-b bg-paper">
+      <div className={`${container} flex h-14 items-center justify-between gap-4`}>
+        <Link href={`/${locale}`} className="font-display text-[21px] italic leading-none tracking-[-0.01em]">
           {profile.name}
-          <span className="text-gradient">.</span>
         </Link>
 
         <nav aria-label="Primary" className="hidden md:block">
-          <ul className="flex items-center gap-6">
-            {items.map(([id, label]) => (
-              <li key={id}>
-                <a href={`#${id}`} className="font-mono text-[13px] text-muted transition-colors hover:text-ink">
-                  {label}
+          <ul className="flex items-center gap-7">
+            {sections.map((s) => (
+              <li key={s.id}>
+                <a href={`#${s.id}`} className="group flex items-baseline gap-1.5 text-[13.5px]">
+                  <span className="font-mono text-[10px] text-ink-3">{s.number}</span>
+                  <span className="u-draw">{s.label}</span>
                 </a>
               </li>
             ))}
           </ul>
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-4">
+          <span className="hidden font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3 lg:inline">
+            ANK <LocalTime locale={locale} seconds={false} />
+          </span>
           <LocaleSwitch locale={locale} label={dict.lang.switch} short={dict.lang.short} />
           <ThemeToggle label={dict.theme.toggle} />
           <button
             type="button"
             id="menu-toggle"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-line text-muted md:hidden"
+            className="inline-flex h-8 w-8 items-center justify-center text-ink-2 md:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? dict.nav.close : dict.nav.menu}
@@ -59,20 +64,30 @@ export function Header({ locale, dict, showBlog }: Props) {
         </div>
       </div>
 
-      <nav id="mobile-nav" hidden={!open} aria-label="Mobile" className="border-t border-line md:hidden">
-        <ul className="mx-auto flex max-w-6xl flex-col px-5 py-2">
-          {items.map(([id, label]) => (
-            <li key={id}>
+      {/* Tam ekran mobil dizin */}
+      <nav
+        id="mobile-nav"
+        hidden={!open}
+        aria-label="Mobile"
+        className="fixed inset-0 top-14 z-50 flex flex-col bg-paper md:hidden"
+      >
+        <ol className={`${container} flex-1 pt-6`}>
+          {sections.map((s) => (
+            <li key={s.id} className="rule-b">
               <a
-                href={`#${id}`}
+                href={`#${s.id}`}
                 onClick={() => setOpen(false)}
-                className="block py-3 font-mono text-sm text-muted transition-colors hover:text-ink"
+                className="flex items-baseline gap-4 py-4 font-display text-[2.4rem] font-normal leading-none tracking-[-0.02em]"
               >
-                {label}
+                <span className="font-mono text-[11px] text-ink-3">{s.number}</span>
+                {s.label}
               </a>
             </li>
           ))}
-        </ul>
+        </ol>
+        <p className={`${container} smallcaps pb-8`}>
+          {profile.location[locale]} · <LocalTime locale={locale} seconds={false} />
+        </p>
       </nav>
     </header>
   );

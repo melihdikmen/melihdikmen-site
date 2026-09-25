@@ -4,25 +4,22 @@ import { posts } from "@/data/posts";
 import { t } from "@/lib/i18n";
 import { Section } from "./Section";
 import { Reveal } from "./Reveal";
-import { ArrowIcon } from "./Icons";
 
-export function Blog({ locale, dict }: { locale: Locale; dict: Dictionary }) {
+export function Blog({ locale, dict, number }: { locale: Locale; dict: Dictionary; number: string }) {
   return (
-    <Section id="blog" title={dict.blog.title}>
-      <ul className="divide-y divide-line border-y border-line">
+    <Section id="blog" number={number} kicker={dict.section} title={dict.blog.title}>
+      <ul className="rule-t">
         {posts.map((post) => (
-          <Reveal as="li" key={post.url}>
-            <a href={post.url} target="_blank" rel="noopener noreferrer" className="group grid gap-2 py-5 md:grid-cols-[120px_1fr_auto] md:items-baseline">
-              <time dateTime={post.date} className="font-mono text-xs text-muted">
+          <Reveal as="li" key={post.url} className="row-hover rule-b">
+            <a href={post.url} target="_blank" rel="noopener noreferrer" className="grid gap-2 py-6 md:grid-cols-[130px_1fr_auto] md:items-baseline">
+              <time dateTime={post.date} className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-3">
                 {new Intl.DateTimeFormat(locale === "tr" ? "tr-TR" : "en-GB", { dateStyle: "medium" }).format(new Date(post.date))}
               </time>
               <span>
-                <span className="font-display text-lg font-bold group-hover:text-accent">{t(post.title, locale)}</span>
-                <span className="mt-1 block text-[15px] text-muted">{t(post.summary, locale)}</span>
+                <span className="row-title font-display text-[1.6rem] font-normal leading-tight">{t(post.title, locale)}</span>
+                <span className="mt-1.5 block text-[15px] text-ink-2">{t(post.summary, locale)}</span>
               </span>
-              <span className="inline-flex items-center gap-1 text-sm text-accent">
-                {dict.blog.readMore} <ArrowIcon width={14} height={14} />
-              </span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-3">{dict.blog.readMore} →</span>
             </a>
           </Reveal>
         ))}

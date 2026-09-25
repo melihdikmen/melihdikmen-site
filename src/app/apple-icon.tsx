@@ -13,18 +13,12 @@ export default function AppleIcon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#0f1318",
+          background: "#f3eee4",
         }}
       >
         <svg viewBox="0 0 64 64" width="180" height="180">
-          <defs>
-            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stopColor="#6d8dff" />
-              <stop offset="1" stopColor="#b48cff" />
-            </linearGradient>
-          </defs>
-          <path d="M15 47V17l14 17 14-17v30" fill="none" stroke="url(#g)" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
-          <circle cx="51" cy="47" r="4.5" fill="#2dd4bf" />
+          <path d="M14 47V17l14 17 14-17v30" fill="none" stroke="#1a1714" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+          <circle cx="51" cy="46" r="4.5" fill="#c8321a" />
         </svg>
       </div>
     ),

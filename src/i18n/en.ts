@@ -10,23 +10,29 @@ export const en: Dictionary = {
     contact: "Contact",
     menu: "Menu",
     close: "Close",
+    top: "Back to top",
   },
   theme: { light: "Light theme", dark: "Dark theme", toggle: "Toggle theme" },
   lang: { switch: "Türkçeye geç", short: "TR" },
   hero: {
     eyebrow: "Mobile Engineer & Team Lead",
+    dateline: "Personal portfolio · {year} edition",
+    contents: "Contents",
     contact: "Get in touch",
     cv: "Download CV",
     available: "Open to remote work",
+    stamp: "Open to remote work · New roles · ",
     scroll: "Scroll",
   },
+  section: "Section",
   about: {
     title: "About",
     focusTitle: "Focus areas",
     leadTitle: "Leadership",
     educationTitle: "Education",
+    facts: "Colophon",
   },
-  bento: {
+  facts: {
     time: "Time in Ankara",
     location: "Location",
     status: "Status",
@@ -55,6 +61,7 @@ export const en: Dictionary = {
   },
   skills: {
     title: "Skills",
+    subtitle: "The tools I use every day; the first two are my native tongue.",
     groups: {
       mobile: "Mobile",
       backend: "Backend",
@@ -76,21 +83,12 @@ export const en: Dictionary = {
     error: "The message could not be sent. You can email me directly:",
     big: "Let's talk.",
     orMail: "or write directly:",
-  },
-  phone: {
-    balance: "Total balance",
-    card: "Virtual card",
-    recent: "Recent activity",
-    t1: "Groceries",
-    t2: "Bill payment",
-    t3: "Incoming transfer",
-    send: "Send",
-    request: "Request",
-    wallet: "Wallet",
+    elsewhere: "Elsewhere",
   },
   footer: {
     rights: "All rights reserved.",
-    built: "Built with Next.js and Tailwind.",
+    built: "Built with Next.js.",
+    typeset: "Set in Fraunces and Instrument Sans.",
   },
   meta: {
     title: "Melih Dikmen — Mobile Engineer & Team Lead",

@@ -1,23 +1,31 @@
 import type { ReactNode } from "react";
+import { container } from "@/lib/ui";
 import { Reveal } from "./Reveal";
 
-type Props = { id: string; title: string; subtitle?: string; children: ReactNode; className?: string };
+type Props = {
+  id: string;
+  number: string;
+  kicker: string;
+  title: string;
+  subtitle?: string;
+  children: ReactNode;
+};
 
-export function Section({ id, title, subtitle, children, className = "" }: Props) {
+/** Numaralı bölüm: solda yapışkan başlık sütunu, sağda içerik. */
+export function Section({ id, number, kicker, title, subtitle, children }: Props) {
   return (
-    <section id={id} className={`scroll-mt-24 py-20 md:py-28 ${className}`}>
-      <div className="mx-auto w-full max-w-6xl px-5">
-        <Reveal>
-          <div className="flex items-end gap-6">
-            <h2 className="font-display text-[clamp(2rem,4.5vw,3.25rem)] font-extrabold leading-none tracking-[-0.03em] text-balance">
-              {title}
-              <span className="text-gradient">.</span>
-            </h2>
-            <span aria-hidden className="mb-2 h-px flex-1 bg-[linear-gradient(90deg,var(--line),transparent)]" />
-          </div>
-          {subtitle && <p className="mt-5 max-w-2xl text-lg text-muted">{subtitle}</p>}
+    <section id={id} className="rule-t scroll-mt-16">
+      <div className={`${container} grid gap-8 py-16 md:grid-cols-[minmax(0,220px)_1fr] md:gap-12 md:py-24 lg:grid-cols-[minmax(0,300px)_1fr]`}>
+        <Reveal className="md:sticky md:top-20 md:self-start">
+          <p className="smallcaps">
+            {kicker} {number}
+          </p>
+          <h2 className="font-display mt-3 text-[clamp(2.4rem,5vw,4.25rem)] font-normal leading-[0.95] tracking-[-0.02em] text-balance">
+            {title}
+          </h2>
+          {subtitle && <p className="mt-5 max-w-xs text-[15px] leading-relaxed text-ink-2">{subtitle}</p>}
         </Reveal>
-        <div className="mt-10">{children}</div>
+        <div className="min-w-0">{children}</div>
       </div>
     </section>
   );

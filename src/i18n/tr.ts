@@ -8,23 +8,29 @@ export const tr = {
     contact: "İletişim",
     menu: "Menü",
     close: "Kapat",
+    top: "Başa dön",
   },
   theme: { light: "Açık tema", dark: "Koyu tema", toggle: "Temayı değiştir" },
   lang: { switch: "Switch to English", short: "EN" },
   hero: {
     eyebrow: "Mobil Uygulama Geliştirici & Takım Lideri",
+    dateline: "Kişisel portfolyo · {year} baskısı",
+    contents: "İçindekiler",
     contact: "İletişime geç",
     cv: "CV indir",
     available: "Remote çalışmaya açık",
+    stamp: "Remote çalışmaya açık · Yeni fırsatlar · ",
     scroll: "Kaydır",
   },
+  section: "Bölüm",
   about: {
     title: "Hakkımda",
     focusTitle: "Uzmanlık alanları",
     leadTitle: "Liderlik",
     educationTitle: "Eğitim",
+    facts: "Künye",
   },
-  bento: {
+  facts: {
     time: "Ankara'da saat",
     location: "Konum",
     status: "Durum",
@@ -53,6 +59,7 @@ export const tr = {
   },
   skills: {
     title: "Yetenekler",
+    subtitle: "Her gün kullandığım araçlar; ilk ikisi ana dilim.",
     groups: {
       mobile: "Mobil",
       backend: "Backend",
@@ -74,21 +81,12 @@ export const tr = {
     error: "Mesaj gönderilemedi. Doğrudan e-posta ile yazabilirsin:",
     big: "Konuşalım.",
     orMail: "ya da doğrudan yaz:",
-  },
-  phone: {
-    balance: "Toplam bakiye",
-    card: "Sanal kart",
-    recent: "Son işlemler",
-    t1: "Market",
-    t2: "Fatura ödemesi",
-    t3: "Gelen transfer",
-    send: "Gönder",
-    request: "İste",
-    wallet: "Cüzdan",
+    elsewhere: "Başka yerlerde",
   },
   footer: {
     rights: "Tüm hakları saklıdır.",
-    built: "Next.js ve Tailwind ile yapıldı.",
+    built: "Next.js ile yapıldı.",
+    typeset: "Fraunces ve Instrument Sans ile dizildi.",
   },
   meta: {
     title: "Melih Dikmen — Mobil Uygulama Geliştirici & Takım Lideri",

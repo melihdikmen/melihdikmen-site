@@ -19,7 +19,7 @@ export function LocaleSwitch({ locale, label, short }: { locale: Locale; label: 
           document.cookie = `locale=${other}; path=/; max-age=31536000; samesite=lax`;
         } catch {}
       }}
-      className="inline-flex h-9 items-center rounded-full border border-line px-3 font-mono text-xs text-muted transition-colors hover:border-accent hover:text-ink"
+      className="u font-mono text-[11px] uppercase tracking-[0.16em] text-ink-2"
     >
       {short}
     </Link>

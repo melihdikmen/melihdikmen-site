@@ -27,51 +27,44 @@ export function ContactForm({ dict, email }: { dict: Dictionary; email: string }
     }
   }
 
-  const field =
-    "w-full rounded-xl border border-line bg-surface/80 px-4 py-3 backdrop-blur text-[15px] text-ink placeholder:text-muted/70 focus:border-accent focus:outline-none";
-
   return (
-    <form onSubmit={onSubmit} className="grid gap-4" noValidate={false}>
-      <div className="grid gap-4 sm:grid-cols-2">
-        <label className="grid gap-1.5">
-          <span className="font-mono text-xs uppercase tracking-[0.08em] text-muted">{dict.contact.name}</span>
-          <input id="contact-name" name="name" required autoComplete="name" className={field} />
+    <form onSubmit={onSubmit} className="grid gap-7">
+      <div className="grid gap-7 sm:grid-cols-2">
+        <label className="grid gap-1">
+          <span className="smallcaps">{dict.contact.name}</span>
+          <input id="contact-name" name="name" required autoComplete="name" className="field" />
         </label>
-        <label className="grid gap-1.5">
-          <span className="font-mono text-xs uppercase tracking-[0.08em] text-muted">{dict.contact.email}</span>
-          <input id="contact-email" name="email" type="email" required autoComplete="email" className={field} />
+        <label className="grid gap-1">
+          <span className="smallcaps">{dict.contact.email}</span>
+          <input id="contact-email" name="email" type="email" required autoComplete="email" className="field" />
         </label>
       </div>
-      <label className="grid gap-1.5">
-        <span className="font-mono text-xs uppercase tracking-[0.08em] text-muted">{dict.contact.message}</span>
-        <textarea id="contact-message" name="message" required minLength={10} rows={5} className={field} />
+      <label className="grid gap-1">
+        <span className="smallcaps">{dict.contact.message}</span>
+        <textarea id="contact-message" name="message" required minLength={10} rows={4} className="field resize-y" />
       </label>
       {/* Honeypot */}
       <input type="text" name="company" tabIndex={-1} autoComplete="off" aria-hidden className="hidden" />
 
-      <div className="flex flex-wrap items-center gap-4">
-        <button
-          type="submit"
-          id="contact-submit"
-          disabled={state === "sending"}
-          className="glow inline-flex items-center rounded-xl bg-[linear-gradient(135deg,var(--g1),var(--g2))] px-6 py-3 font-display text-base font-bold text-white transition-transform hover:-translate-y-0.5 disabled:opacity-60"
-        >
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+        <button type="submit" id="contact-submit" disabled={state === "sending"} className="btn">
           {state === "sending" ? dict.contact.sending : dict.contact.send}
+          <span aria-hidden>→</span>
         </button>
-        <span className="text-sm text-muted">
+        <span className="text-[14px] text-ink-2">
           {dict.contact.orMail}{" "}
-          <a href={`mailto:${email}`} className="text-ink underline underline-offset-4">
+          <a href={`mailto:${email}`} className="u text-ink">
             {email}
           </a>
         </span>
       </div>
 
-      <p role="status" aria-live="polite" className="min-h-[1.5rem] text-sm">
-        {state === "sent" && <span className="text-teal">{dict.contact.sent}</span>}
+      <p role="status" aria-live="polite" className="min-h-[1.5rem] text-[14px]">
+        {state === "sent" && <span className="text-ink">{dict.contact.sent}</span>}
         {state === "error" && (
           <span className="text-accent">
             {dict.contact.error}{" "}
-            <a href={`mailto:${email}`} className="underline underline-offset-4">
+            <a href={`mailto:${email}`} className="u">
               {email}
             </a>
           </span>
