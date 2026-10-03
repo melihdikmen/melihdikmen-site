@@ -14,6 +14,8 @@ import { CloseIcon, MenuIcon } from "./Icons";
 
 type Props = { locale: Locale; dict: Dictionary; sections: SectionInfo[] };
 
+const menuTones = ["block-acid", "block-hot", "block-sky", "block-pink"];
+
 export function Header({ locale, dict, sections }: Props) {
   const [open, setOpen] = useState(false);
 
@@ -25,27 +27,35 @@ export function Header({ locale, dict, sections }: Props) {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 rule-b bg-paper">
-      <div className={`${container} flex h-14 items-center justify-between gap-4`}>
-        <Link href={`/${locale}`} className="font-display text-[21px] italic leading-none tracking-[-0.01em]">
-          {profile.name}
+    <header className="sticky top-0 z-40 border-b-[3px] border-ink bg-paper">
+      <div className={`${container} flex h-16 items-center justify-between gap-4`}>
+        <Link
+          href={`/${locale}`}
+          className="font-display inline-flex h-10 items-center gap-1 border-2 border-ink bg-[#0b0b0b] px-2.5 text-[20px] font-extrabold uppercase leading-none tracking-[-0.02em] text-[#f1efe8] shadow-hard-sm transition-transform active:translate-x-px active:translate-y-px"
+          aria-label={profile.name}
+        >
+          MD<span className="text-acid">.</span>
         </Link>
 
-        <nav aria-label="Primary" className="hidden md:block">
-          <ul className="flex items-center gap-7">
+        <nav aria-label="Primary" className="hidden lg:block">
+          <ul className="flex items-center gap-2">
             {sections.map((s) => (
               <li key={s.id}>
-                <a href={`#${s.id}`} className="group flex items-baseline gap-1.5 text-[13.5px]">
-                  <span className="font-mono text-[10px] text-ink-3">{s.number}</span>
-                  <span className="u-draw">{s.label}</span>
+                <a
+                  href={`#${s.id}`}
+                  className="group inline-flex items-center gap-1.5 border-2 border-transparent px-2.5 py-1.5 font-mono text-[12px] font-bold uppercase tracking-[0.08em] transition-colors hover:border-ink hover:bg-acid hover:text-[#0b0b0b]"
+                >
+                  <span className="text-ink-3 group-hover:text-[#0b0b0b]">{s.number}</span>
+                  {s.label}
                 </a>
               </li>
             ))}
           </ul>
         </nav>
 
-        <div className="flex items-center gap-4">
-          <span className="hidden font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3 lg:inline">
+        <div className="flex items-center gap-2">
+          <span className="label hidden items-center gap-2 border-2 border-ink px-2.5 py-2 xl:inline-flex">
+            <span className="blink inline-block h-2 w-2 bg-hot" aria-hidden />
             ANK <LocalTime locale={locale} seconds={false} />
           </span>
           <LocaleSwitch locale={locale} label={dict.lang.switch} short={dict.lang.short} />
@@ -53,40 +63,44 @@ export function Header({ locale, dict, sections }: Props) {
           <button
             type="button"
             id="menu-toggle"
-            className="inline-flex h-8 w-8 items-center justify-center text-ink-2 md:hidden"
+            className="icon-btn lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? dict.nav.close : dict.nav.menu}
             onClick={() => setOpen((v) => !v)}
           >
-            {open ? <CloseIcon /> : <MenuIcon />}
+            {open ? <CloseIcon strokeWidth={2.4} /> : <MenuIcon strokeWidth={2.4} />}
           </button>
         </div>
       </div>
 
-      {/* Tam ekran mobil dizin */}
+      {/* Tam ekran menü: her satır bir renk bloğu. */}
       <nav
         id="mobile-nav"
         hidden={!open}
         aria-label="Mobile"
-        className="fixed inset-0 top-14 z-50 flex flex-col bg-paper md:hidden"
+        className="fixed inset-0 top-16 z-50 flex flex-col overflow-y-auto bg-paper lg:hidden"
       >
-        <ol className={`${container} flex-1 pt-6`}>
-          {sections.map((s) => (
-            <li key={s.id} className="rule-b">
+        <ol className="flex flex-1 flex-col">
+          {sections.map((s, i) => (
+            <li key={s.id} className={`${menuTones[i % menuTones.length]} border-b-[3px] border-ink`}>
               <a
                 href={`#${s.id}`}
                 onClick={() => setOpen(false)}
-                className="flex items-baseline gap-4 py-4 font-display text-[2.4rem] font-normal leading-none tracking-[-0.02em]"
+                className={`${container} font-display flex items-baseline justify-between gap-4 py-5 text-[clamp(2rem,9vw,3.4rem)] font-extrabold uppercase leading-none tracking-[-0.02em]`}
               >
-                <span className="font-mono text-[11px] text-ink-3">{s.number}</span>
-                {s.label}
+                <span className="flex items-baseline gap-4">
+                  <span className="font-mono text-[12px] font-bold">{s.number}</span>
+                  {s.label}
+                </span>
+                <span aria-hidden>→</span>
               </a>
             </li>
           ))}
         </ol>
-        <p className={`${container} smallcaps pb-8`}>
-          {profile.location[locale]} · <LocalTime locale={locale} seconds={false} />
+        <p className={`${container} label flex items-center justify-between py-5`}>
+          <span>{profile.location[locale]}</span>
+          <LocalTime locale={locale} seconds={false} />
         </p>
       </nav>
     </header>

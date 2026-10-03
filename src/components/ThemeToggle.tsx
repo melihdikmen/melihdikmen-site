@@ -13,10 +13,10 @@ export function ThemeToggle({ label }: { label: string }) {
       aria-label={label}
       title={label}
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-      className="inline-flex h-8 w-8 items-center justify-center rounded-full text-ink-2 transition-colors hover:bg-paper-2 hover:text-accent"
+      className="icon-btn"
     >
-      <MoonIcon className="dark:hidden" />
-      <SunIcon className="hidden dark:block" />
+      <MoonIcon className="dark:hidden" strokeWidth={2.2} />
+      <SunIcon className="hidden dark:block" strokeWidth={2.2} />
     </button>
   );
 }

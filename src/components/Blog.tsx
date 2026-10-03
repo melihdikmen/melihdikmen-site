@@ -8,18 +8,20 @@ import { Reveal } from "./Reveal";
 export function Blog({ locale, dict, number }: { locale: Locale; dict: Dictionary; number: string }) {
   return (
     <Section id="blog" number={number} kicker={dict.section} title={dict.blog.title}>
-      <ul className="rule-t">
-        {posts.map((post) => (
-          <Reveal as="li" key={post.url} className="row-hover rule-b">
-            <a href={post.url} target="_blank" rel="noopener noreferrer" className="grid gap-2 py-6 md:grid-cols-[130px_1fr_auto] md:items-baseline">
-              <time dateTime={post.date} className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-3">
+      <ul className="grid gap-5">
+        {posts.map((post, i) => (
+          <Reveal as="li" key={post.url} delay={Math.min(i, 3) * 40} className="box lift row-hover shadow-hard">
+            <a href={post.url} target="_blank" rel="noopener noreferrer" className="grid gap-3 p-5 md:grid-cols-[140px_1fr_auto] md:items-center md:p-6">
+              <time dateTime={post.date} className="label text-ink-3">
                 {new Intl.DateTimeFormat(locale === "tr" ? "tr-TR" : "en-GB", { dateStyle: "medium" }).format(new Date(post.date))}
               </time>
               <span>
-                <span className="row-title font-display text-[1.6rem] font-normal leading-tight">{t(post.title, locale)}</span>
+                <span className="row-title font-display-wide text-[1.5rem] font-bold leading-tight">{t(post.title, locale)}</span>
                 <span className="mt-1.5 block text-[15px] text-ink-2">{t(post.summary, locale)}</span>
               </span>
-              <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-3">{dict.blog.readMore} →</span>
+              <span className="label inline-flex items-center gap-2 border-2 border-ink px-3 py-2">
+                {dict.blog.readMore} →
+              </span>
             </a>
           </Reveal>
         ))}

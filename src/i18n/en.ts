@@ -123,7 +123,7 @@ export const en: Dictionary = {
   footer: {
     rights: "All rights reserved.",
     built: "Built with Next.js.",
-    typeset: "Set in Fraunces and Instrument Sans.",
+    typeset: "Set in Bricolage Grotesque and Space Grotesk.",
   },
   meta: {
     title: "Melih Dikmen — Mobile Engineer & Team Lead",

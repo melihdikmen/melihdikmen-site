@@ -21,26 +21,43 @@ async function loadFont(family: string, text: string): Promise<ArrayBuffer | nul
   }
 }
 
+const INK = "#0b0b0b";
+const PAPER = "#f1efe8";
+const ACID = "#d4ff3f";
+const HOT = "#ff4f1f";
+const PINK = "#ff7ad9";
+
 export default async function Image({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: raw } = await params;
   const locale = isLocale(raw) ? raw : defaultLocale;
   const dict = getDictionary(locale);
-  const headline = `${profile.firstName} ${profile.lastName}.`;
-  const site = profile.siteUrl.replace(/^https?:\/\//, "");
   const up = (v: string) => v.toLocaleUpperCase(locale === "tr" ? "tr-TR" : "en-US");
+  const first = up(profile.firstName);
+  const last = up(profile.lastName);
   const eyebrow = up(dict.hero.eyebrow);
   const location = up(profile.location[locale]);
-  const stack = "React Native · TypeScript · Flutter".toUpperCase();
-  const siteLabel = site.toUpperCase();
-  const bodyText = [eyebrow, location, profile.tagline[locale], stack, siteLabel].join("");
-  const [serif, sans] = await Promise.all([
-    loadFont("Fraunces:ital,opsz,wght@1,144,300", headline),
-    loadFont("Instrument+Sans:wght@400", bodyText),
+  const available = up(dict.hero.available);
+  const stack = "REACT NATIVE · FLUTTER · TYPESCRIPT";
+  const site = profile.siteUrl.replace(/^https?:\/\//, "").toUpperCase();
+  const monoText = [eyebrow, location, available, stack, site, "MD.", "0123456789+"].join("");
+  const [display, mono] = await Promise.all([
+    loadFont("Bricolage+Grotesque:opsz,wdth,wght@96,75,800", `${first}${last}.`),
+    loadFont("Space+Mono:wght@700", monoText),
   ]);
   const fonts = [
-    ...(serif ? [{ name: "Fraunces", data: serif, style: "italic" as const, weight: 300 as const }] : []),
-    ...(sans ? [{ name: "Instrument Sans", data: sans, style: "normal" as const, weight: 400 as const }] : []),
+    ...(display ? [{ name: "Bricolage Grotesque", data: display, style: "normal" as const, weight: 800 as const }] : []),
+    ...(mono ? [{ name: "Space Mono", data: mono, style: "normal" as const, weight: 700 as const }] : []),
   ];
+  const monoFamily = mono ? "Space Mono" : "monospace";
+  const displayFamily = display ? "Bricolage Grotesque" : "sans-serif";
+
+  const label = {
+    fontFamily: monoFamily,
+    fontSize: 18,
+    fontWeight: 700,
+    letterSpacing: 3,
+    textTransform: "uppercase" as const,
+  };
 
   return new ImageResponse(
     (
@@ -50,61 +67,65 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
-          padding: 64,
-          background: "#f3eee4",
-          color: "#1a1714",
-          fontFamily: sans ? "Instrument Sans" : "sans-serif",
+          padding: 40,
+          background: PAPER,
+          backgroundImage: `radial-gradient(${INK}29 2px, transparent 2px)`,
+          backgroundSize: "28px 28px",
+          color: INK,
         }}
       >
         <div
           style={{
+            flex: 1,
             display: "flex",
-            justifyContent: "space-between",
-            borderBottom: "1px solid #1a1714",
-            paddingBottom: 18,
-            fontSize: 20,
-            letterSpacing: 3,
-            color: "#4d4740",
+            border: `6px solid ${INK}`,
+            boxShadow: `18px 18px 0 ${INK}`,
+            background: PAPER,
           }}
         >
-          <span>{eyebrow}</span>
-          <span>{location}</span>
-        </div>
+          {/* Sol: manşet */}
+          <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between", padding: 44 }}>
+            <div style={{ display: "flex", gap: 14 }}>
+              <span style={{ ...label, padding: "10px 18px", border: `4px solid ${INK}`, borderRadius: 999, background: ACID, boxShadow: `5px 5px 0 ${INK}`, transform: "rotate(-3deg)" }}>
+                {available}
+              </span>
+              <span style={{ ...label, padding: "10px 18px", border: `4px solid ${INK}`, borderRadius: 999, background: PAPER, boxShadow: `5px 5px 0 ${INK}`, transform: "rotate(2deg)" }}>
+                {location}
+              </span>
+            </div>
 
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <div
-            style={{
-              fontFamily: serif ? "Fraunces" : "serif",
-              fontStyle: "italic",
-              fontWeight: 300,
-              fontSize: 150,
-              letterSpacing: -7,
-              lineHeight: 0.95,
-              display: "flex",
-            }}
-          >
-            <span>{profile.firstName} {profile.lastName}</span>
-            <span style={{ color: "#c8321a", fontStyle: "normal" }}>.</span>
-          </div>
-          <div style={{ marginTop: 28, fontSize: 30, lineHeight: 1.3, maxWidth: 980, color: "#4d4740" }}>
-            {profile.tagline[locale]}
-          </div>
-        </div>
+            <div style={{ display: "flex", flexDirection: "column", fontFamily: displayFamily, fontWeight: 800, fontSize: 196, lineHeight: 0.82, letterSpacing: -10 }}>
+              <span>{first}</span>
+              <span style={{ display: "flex" }}>
+                {last}
+                <span style={{ color: HOT }}>.</span>
+              </span>
+            </div>
 
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            borderTop: "1px solid #d5cbb9",
-            paddingTop: 18,
-            fontSize: 20,
-            letterSpacing: 3,
-            color: "#8b8276",
-          }}
-        >
-          <span>{stack}</span>
-          <span>{siteLabel}</span>
+            <div style={{ display: "flex", justifyContent: "space-between", ...label, color: "#3a3a3a" }}>
+              <span>{eyebrow}</span>
+              <span>{site}</span>
+            </div>
+          </div>
+
+          {/* Sağ: renk blokları */}
+          <div style={{ width: 300, display: "flex", flexDirection: "column", borderLeft: `6px solid ${INK}` }}>
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: 26, background: ACID, borderBottom: `6px solid ${INK}` }}>
+              <span style={{ fontFamily: displayFamily, fontWeight: 800, fontSize: 120, lineHeight: 0.85, letterSpacing: -6 }}>
+                {profile.stats[0].value}
+                <span style={{ color: HOT }}>+</span>
+              </span>
+              <span style={{ ...label, fontSize: 15, marginTop: 10 }}>{up(profile.stats[0].label[locale])}</span>
+            </div>
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: 26, background: HOT, borderBottom: `6px solid ${INK}` }}>
+              <span style={{ ...label, fontSize: 15, lineHeight: 1.4 }}>{stack}</span>
+            </div>
+            <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", background: PINK }}>
+              <span style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 120, height: 120, borderRadius: 999, background: INK, color: PAPER, fontFamily: displayFamily, fontWeight: 800, fontSize: 56, letterSpacing: -3 }}>
+                MD<span style={{ color: ACID }}>.</span>
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     ),

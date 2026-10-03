@@ -121,7 +121,7 @@ export const tr = {
   footer: {
     rights: "Tüm hakları saklıdır.",
     built: "Next.js ile yapıldı.",
-    typeset: "Fraunces ve Instrument Sans ile dizildi.",
+    typeset: "Bricolage Grotesque ve Space Grotesk ile dizildi.",
   },
   meta: {
     title: "Melih Dikmen — Mobil Uygulama Geliştirici & Takım Lideri",

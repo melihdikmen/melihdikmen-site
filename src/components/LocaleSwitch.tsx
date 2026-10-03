@@ -19,7 +19,7 @@ export function LocaleSwitch({ locale, label, short }: { locale: Locale; label: 
           document.cookie = `locale=${other}; path=/; max-age=31536000; samesite=lax`;
         } catch {}
       }}
-      className="u font-mono text-[11px] uppercase tracking-[0.16em] text-ink-2"
+      className="icon-btn"
     >
       {short}
     </Link>

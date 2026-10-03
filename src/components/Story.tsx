@@ -37,7 +37,7 @@ export function Story({ locale, dict, number }: { locale: Locale; dict: Dictiona
   const stats = profile.stats.map((st, i) => ({ value: st.value, suffix: st.suffix, label: statLabels[i] ?? t(st.label, locale) }));
 
   return (
-    <Section id="story" number={number} kicker={dict.section} title={dict.story.title} subtitle={dict.story.subtitle}>
+    <Section id="story" number={number} kicker={dict.section} title={dict.story.title} subtitle={dict.story.subtitle} tone="ink">
       <StoryPlayer locale={locale} chapters={chapters} apps={apps} mapRows={mapRows} stats={stats} ui={dict.story} />
     </Section>
   );

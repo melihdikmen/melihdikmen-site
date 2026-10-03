@@ -1,27 +1,26 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { ThemeProvider } from "next-themes";
-import { Fraunces, Instrument_Sans, JetBrains_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Space_Grotesk, Space_Mono } from "next/font/google";
 import { locales, isLocale, defaultLocale, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n";
 import { profile } from "@/data/profile";
 import "../globals.css";
 
-const display = Fraunces({
+const display = Bricolage_Grotesque({
   subsets: ["latin", "latin-ext"],
-  style: ["normal", "italic"],
-  axes: ["opsz", "SOFT", "WONK"],
+  axes: ["opsz", "wdth"],
   variable: "--font-display",
   display: "swap",
 });
-const body = Instrument_Sans({
+const body = Space_Grotesk({
   subsets: ["latin", "latin-ext"],
-  style: ["normal", "italic"],
   variable: "--font-body",
   display: "swap",
 });
-const mono = JetBrains_Mono({
+const mono = Space_Mono({
   subsets: ["latin", "latin-ext"],
+  weight: ["400", "700"],
   variable: "--font-mono",
   display: "swap",
 });
