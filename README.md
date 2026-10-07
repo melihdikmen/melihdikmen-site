@@ -28,7 +28,7 @@ Metin alanları `{ tr: "...", en: "..." }` şeklinde iki dilli. Arayüz metinler
 ### Yapılacaklar
 - `projects.ts` içindeki mağaza linklerini ekle; istersen `public/projects/` altına görsel koyup `image` alanına yaz.
 - `profile.ts` içindeki `siteUrl` değerini gerçek domainle değiştir.
-- CV'yi güncellediğinde `public/cv/Melih-Dikmen-CV.pdf` dosyasının üzerine yaz.
+- CV'nin kaynağı `scripts/cv/cv.html`; metni orada düzenleyip `./scripts/cv/build-cv.sh` ile `public/cv/Melih-Dikmen-CV.pdf` dosyasını yeniden üret (headless Chrome kullanır).
 
 ## İletişim formu
 

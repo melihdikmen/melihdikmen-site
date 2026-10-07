@@ -20,6 +20,7 @@ export const tr = {
     contact: "İletişime geç",
     cv: "CV indir",
     available: "Remote çalışmaya açık",
+    aiBadge: "AI destekli geliştirici",
     stamp: "Remote çalışmaya açık · Yeni fırsatlar · ",
     scroll: "Kaydır",
   },
@@ -97,6 +98,7 @@ export const tr = {
     subtitle: "Her gün kullandığım araçlar; ilk ikisi ana dilim.",
     groups: {
       mobile: "Mobil",
+      ai: "AI ile geliştirme",
       backend: "Backend",
       database: "Veritabanı",
       tools: "Araçlar",
@@ -126,7 +128,7 @@ export const tr = {
   meta: {
     title: "Melih Dikmen — Mobil Uygulama Geliştirici & Takım Lideri",
     description:
-      "React Native ve TypeScript ile fintech ve iletişim uygulamaları geliştiren, Ankara merkezli, remote çalışan mobil takım lideri.",
+      "React Native ve TypeScript ile fintech ve iletişim uygulamaları geliştiren, AI destekli geliştirme akışlarıyla üreten, Ankara merkezli, remote çalışan mobil takım lideri.",
   },
 };
 

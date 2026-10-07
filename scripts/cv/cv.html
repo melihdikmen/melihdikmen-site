@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Melih Dikmen — CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  /* Sitenin brütalist dilinin baskı sürümü: siyah çizgiler, tek vurgu rengi, bol beyaz alan. */
+  @page { size: A4; margin: 14mm 14mm 16mm; }
+  :root { --ink: #0b0b0b; --ink-2: #3a3a3a; --ink-3: #6f6d66; --rule: #c9c6bb; --acid: #d4ff3f; --hot: #ff4f1f; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "Space Grotesk", "Helvetica Neue", Arial, sans-serif; font-size: 9.8pt; line-height: 1.4; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .display { font-family: "Bricolage Grotesque", "Arial Narrow", sans-serif; font-variation-settings: "opsz" 96, "wdth" 80; font-weight: 800; letter-spacing: -0.02em; }
+  .mono { font-family: "Space Mono", Menlo, monospace; font-size: 7.6pt; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+  a { color: inherit; text-decoration: none; }
+
+  /* Başlık */
+  header { display: grid; grid-template-columns: 1fr auto; gap: 10mm; align-items: end; border-bottom: 3px solid var(--ink); padding-bottom: 5mm; }
+  h1 { margin: 0; font-size: 38pt; line-height: 0.88; text-transform: uppercase; }
+  h1 .dot { color: var(--hot); }
+  .role { margin: 3mm 0 0; font-size: 12pt; font-weight: 700; }
+  .badges { display: flex; flex-wrap: wrap; gap: 2mm; margin-top: 3mm; }
+  .badge { display: inline-block; padding: 1.1mm 2.6mm; border: 1.5px solid var(--ink); border-radius: 999px; background: #fff; }
+  .badge.acid { background: var(--acid); }
+  .badge.hot { background: var(--hot); }
+  .contact { font-size: 8.8pt; line-height: 1.55; color: var(--ink-2); text-align: right; }
+  .contact b { color: var(--ink); }
+
+  /* Bölümler */
+  section { display: grid; grid-template-columns: 40mm 1fr; gap: 6mm; padding: 5mm 0; border-bottom: 1.5px solid var(--ink); break-inside: auto; }
+  section.keep { break-inside: avoid; }
+  section:last-of-type { border-bottom: 0; }
+  section > h2 { margin: 0; align-self: start; }
+  section > h2 .num { display: block; font-size: 22pt; line-height: 0.9; color: transparent; -webkit-text-stroke: 1.2px var(--ink); }
+  section > h2 .name { display: inline-block; margin-top: 1.5mm; padding: 0.8mm 2mm; background: var(--ink); color: #fff; font-size: 10.5pt; text-transform: uppercase; }
+  .profile { font-size: 10.6pt; line-height: 1.42; margin: 0; }
+  .profile + .profile { margin-top: 2.2mm; font-size: 9.8pt; color: var(--ink-2); }
+
+  /* Deneyim */
+  .job { break-inside: avoid; padding: 3mm 0; border-top: 1px solid var(--rule); }
+  .job:first-child { border-top: 0; padding-top: 0; }
+  .job-head { display: grid; grid-template-columns: 1fr auto; gap: 4mm; align-items: baseline; }
+  .job h3 { margin: 0; font-size: 13.5pt; text-transform: uppercase; line-height: 1; }
+  .job h3 small { display: block; margin-top: 1.2mm; font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 9.6pt; text-transform: none; letter-spacing: 0; }
+  .when { color: var(--ink-3); white-space: nowrap; }
+  .job p { margin: 1.8mm 0 0; color: var(--ink-2); }
+  .job ul { margin: 1.6mm 0 0; padding-left: 0; list-style: none; }
+  .job li { position: relative; padding-left: 4.5mm; margin-top: 0.8mm; }
+  .job li::before { content: "→"; position: absolute; left: 0; top: 0; color: var(--hot); font-weight: 700; }
+  .tags { display: flex; flex-wrap: wrap; gap: 1.4mm; margin-top: 2.2mm; }
+  .tag { padding: 0.5mm 1.6mm; border: 1px solid var(--ink); font-family: "Space Mono", monospace; font-size: 6.8pt; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+  .job.compact { padding: 2mm 0; }
+  .job.compact h3 { font-size: 10.5pt; }
+  .job.compact p { margin-top: 0.8mm; font-size: 9.3pt; }
+
+  /* Projeler */
+  .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
+  .proj { border: 1.5px solid var(--ink); box-shadow: 2mm 2mm 0 var(--ink); padding: 2.6mm 3mm 3mm; break-inside: avoid; }
+  .proj h3 { margin: 0; font-size: 12pt; text-transform: uppercase; line-height: 1; display: flex; justify-content: space-between; align-items: baseline; gap: 2mm; }
+  .proj h3 .status { font-family: "Space Mono", monospace; font-size: 6.6pt; letter-spacing: 0.1em; padding: 0.4mm 1.4mm; border: 1px solid var(--ink); border-radius: 999px; background: var(--acid); font-weight: 700; }
+  .proj p { margin: 1.5mm 0 0; font-size: 9.2pt; color: var(--ink-2); }
+  .proj .tags { margin-top: 1.8mm; }
+  .earlier { margin-top: 3.5mm; border-top: 1px solid var(--rule); }
+  .earlier .row { display: grid; grid-template-columns: 11mm 42mm 1fr; gap: 3mm; padding: 1.4mm 0; border-bottom: 1px solid var(--rule); font-size: 9pt; }
+  .earlier .row .y { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; }
+  .earlier .row .n b { display: block; }
+  .earlier .row .n span { color: var(--ink-3); font-family: "Space Mono", monospace; font-size: 6.6pt; letter-spacing: 0.08em; text-transform: uppercase; }
+  .earlier .row .d { color: var(--ink-2); }
+
+  /* Yetenekler */
+  .skillgroup { display: grid; grid-template-columns: 34mm 1fr; gap: 3mm; padding: 1.8mm 0; border-top: 1px solid var(--rule); align-items: start; }
+  .skillgroup:first-child { border-top: 0; padding-top: 0; }
+  .skillgroup .g { display: inline-block; padding: 0.8mm 2mm; border: 1.5px solid var(--ink); background: #fff; }
+  .skillgroup .g.acid { background: var(--acid); }
+  .skillgroup .g.hot { background: var(--hot); }
+  .skillgroup .list { font-size: 9.6pt; line-height: 1.6; }
+  .skillgroup .list b { font-weight: 700; }
+
+  /* Eğitim ve diller */
+  .edu { display: grid; grid-template-columns: 1fr auto; gap: 4mm; padding: 2mm 0; border-top: 1px solid var(--rule); }
+  .edu:first-child { border-top: 0; padding-top: 0; }
+  .edu h3 { margin: 0; font-size: 11.5pt; }
+  .edu p { margin: 0.6mm 0 0; color: var(--ink-2); }
+  .lang { display: flex; gap: 8mm; }
+  .lang div b { display: block; }
+  .lang div span { color: var(--ink-2); }
+
+  footer { margin-top: 4mm; padding-top: 2.5mm; border-top: 3px solid var(--ink); display: flex; justify-content: space-between; color: var(--ink-3); }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1 class="display">Melih<br />Dikmen<span class="dot">.</span></h1>
+    <p class="role">Senior Mobile Developer · Team Lead</p>
+    <div class="badges mono">
+      <span class="badge acid">Open to remote work</span>
+      <span class="badge">7+ years mobile</span>
+      <span class="badge hot">AI-assisted developer</span>
+    </div>
+  </div>
+  <div class="contact">
+    <b>Ankara, Türkiye</b> · Remote<br />
+    <a href="mailto:melihdikmen06@gmail.com"><b>melihdikmen06@gmail.com</b></a><br />
+    +90 545 563 92 58<br />
+    <a href="https://melihdikmen.com">melihdikmen.com</a><br />
+    <a href="https://github.com/melihdikmen">github.com/melihdikmen</a><br />
+    <a href="https://www.linkedin.com/in/melih-dikmen-79669a119/">linkedin.com/in/melih-dikmen-79669a119</a><br />
+    Born 23.09.1996 · Driving licence B
+  </div>
+</header>
+
+<section>
+  <h2 class="display"><span class="num">01</span><span class="name">Profile</span></h2>
+  <div>
+    <p class="profile">Mobile engineer who ships apps across fintech, maps and field operations with React Native, Flutter and TypeScript, and leads the team doing it. Since 2019: map-based field apps at Başarsoft, the calling experience of millions of users in Turkcell BiP's VoIP team, and today the digital wallet and KYC SDK of licensed e-money institution Param, built from scratch.</p>
+    <p class="profile">Strongest where JavaScript meets the platform: native iOS/Android module bridges, NFC ID-chip reading, over-the-air updates. Comfortable on the backend (.NET Web API, Oracle PL/SQL, PostgreSQL). AI-assisted development is part of the daily workflow: agent-based tools such as Claude Code for fast prototyping and quicker test and refactor cycles, with generated code reviewed to the same standard as hand-written code.</p>
+  </div>
+</section>
+
+<section>
+  <h2 class="display"><span class="num">02</span><span class="name">Experience</span></h2>
+  <div>
+    <article class="job">
+      <div class="job-head">
+        <h3 class="display">Param<small>Senior Mobile Developer · Team Lead · Remote</small></h3>
+        <span class="when mono">Jun 2023 — Present</span>
+      </div>
+      <p>The digital wallet and identity verification SDK of Param, one of Türkiye's largest payment and e-money companies.</p>
+      <ul>
+        <li>Built the Param digital wallet app from scratch with React Native; most active contributor to the codebase.</li>
+        <li>Lead the mobile team: code quality, team coordination, and planning the development workflow in line with business goals.</li>
+        <li>Designed and published the digital identity verification (KYC) SDK: document capture, NFC ID chip read, video liveness. Partner apps consume it as an npm package.</li>
+        <li>Set up over-the-air updates, crash monitoring with Sentry, and session analytics with Smartlook.</li>
+        <li>Brought AI-assisted development into the team's day-to-day: agent-based coding tools for prototyping, test generation and refactoring.</li>
+      </ul>
+      <div class="tags"><span class="tag">React Native</span><span class="tag">TypeScript</span><span class="tag">Redux Toolkit</span><span class="tag">Firebase</span><span class="tag">Sentry</span><span class="tag">CodePush</span><span class="tag">Smartlook</span><span class="tag">Swift / Kotlin bridge</span><span class="tag">NFC</span></div>
+    </article>
+
+    <article class="job">
+      <div class="job-head">
+        <h3 class="display">Turkcell BiP<small>Mobile Application Developer · Remote</small></h3>
+        <span class="when mono">Jun 2022 — Jun 2023</span>
+      </div>
+      <p>The VoIP team of BiP, Turkcell's messaging and communication app with millions of users.</p>
+      <ul>
+        <li>Integrated and customised the Jitsi Meet library inside the React Native app for real-time voice and video calling features.</li>
+      </ul>
+      <div class="tags"><span class="tag">React Native</span><span class="tag">Redux</span><span class="tag">Jitsi Meet</span><span class="tag">WebRTC</span></div>
+    </article>
+
+    <article class="job">
+      <div class="job-head">
+        <h3 class="display">Başarsoft<small>Mobile Developer · Ankara</small></h3>
+        <span class="when mono">Sep 2019 — Jun 2022</span>
+      </div>
+      <p>Mobile and backend development at Başarsoft, a maps and geographic information systems company.</p>
+      <ul>
+        <li>Built mobile apps with React Native, native Android and iOS; contributed to Flutter projects. Fleet booking, water-delivery and distribution apps, and a survey app used in 10 countries.</li>
+        <li>On the backend, wrote .NET Web API services and managed Oracle PL/SQL and PostgreSQL databases.</li>
+      </ul>
+      <div class="tags"><span class="tag">React Native</span><span class="tag">Android</span><span class="tag">iOS</span><span class="tag">Flutter</span><span class="tag">.NET Web API</span><span class="tag">Oracle PL/SQL</span><span class="tag">PostgreSQL</span><span class="tag">GIS</span></div>
+    </article>
+
+    <article class="job compact">
+      <div class="job-head">
+        <h3 class="display">Başarsoft<small>Intern · Ankara</small></h3>
+        <span class="when mono">Jun 2019 — Sep 2019</span>
+      </div>
+      <p>Mobile development internship with React Native.</p>
+    </article>
+
+    <article class="job compact">
+      <div class="job-head">
+        <h3 class="display">Sentos<small>Intern · Konya</small></h3>
+        <span class="when mono">Feb 2019 — Jun 2019</span>
+      </div>
+      <p>Assisted in web development and marketplace integration projects.</p>
+    </article>
+  </div>
+</section>
+
+<section>
+  <h2 class="display"><span class="num">03</span><span class="name">Projects</span></h2>
+  <div>
+    <div class="projects">
+      <div class="proj">
+        <h3 class="display">Param Wallet <span class="status">Live</span></h3>
+        <p>The digital wallet of licensed e-money institution Param: cards, transfers, bill payments, campaigns. Started from scratch with React Native in 2023; primary contributor since.</p>
+        <div class="tags"><span class="tag">React Native</span><span class="tag">TypeScript</span><span class="tag">Redux Toolkit</span><span class="tag">Firebase</span></div>
+      </div>
+      <div class="proj">
+        <h3 class="display">Param KYC SDK <span class="status">Live</span></h3>
+        <p>React Native SDK for digital identity verification: document capture, NFC ID-chip reading over a native bridge, video liveness. Shipped as an npm package and integrated into partner apps.</p>
+        <div class="tags"><span class="tag">Native bridge</span><span class="tag">NFC</span><span class="tag">Swift / Kotlin</span></div>
+      </div>
+      <div class="proj">
+        <h3 class="display">Turkcell BiP <span class="status">Live</span></h3>
+        <p>Turkcell's messaging and calling app with millions of users. In the VoIP team I integrated and customised Jitsi Meet based real-time calling features.</p>
+        <div class="tags"><span class="tag">React Native</span><span class="tag">Jitsi Meet</span><span class="tag">WebRTC</span></div>
+      </div>
+      <div class="proj">
+        <h3 class="display">Vouch <span class="status">Beta</span></h3>
+        <p>Side project. Offline-first cleaning-turnover app for short-term-rental hosts: before/after photos per checklist item, low-supply flags, damage reports, shareable PDF. Built largely with AI-assisted workflows.</p>
+        <div class="tags"><span class="tag">Expo</span><span class="tag">Supabase</span><span class="tag">MMKV</span><span class="tag">RevenueCat</span></div>
+      </div>
+    </div>
+    <div class="earlier">
+      <div class="row"><span class="y">2025</span><span class="n"><b>RestoSync</b><span>Next.js · in progress</span></span><span class="d">Restaurant POS and kitchen display merging dine-in, pickup, courier and delivery-platform orders in one flow.</span></div>
+      <div class="row"><span class="y">2021</span><span class="n"><b>Forest Fire Decision Support</b><span>React Native · GIS</span></span><span class="d">Active and extinguished fires on the map, spread estimation from parameters, unit positions with area and distance measurement.</span></div>
+      <div class="row"><span class="y">2021</span><span class="n"><b>Saka Su Courier</b><span>Flutter</span></span><span class="d">Order distribution for dealers: orders mapped by time, background refresh, push for new/changed/cancelled orders, route drawing.</span></div>
+      <div class="row"><span class="y">2020</span><span class="n"><b>Saka Su &amp; Erikli Distribution</b><span>Android</span></span><span class="d">Native Android distribution apps: order list and map, notifications, delivery route, order updates and cancellation.</span></div>
+      <div class="row"><span class="y">2020</span><span class="n"><b>GFK Survey</b><span>Android</span></span><span class="d">Development and bug fixing on a survey app actively used in 10 countries.</span></div>
+      <div class="row"><span class="y">2019</span><span class="n"><b>Başar Fleet</b><span>React Native</span></span><span class="d">Fleet management: users book company cars, managers approve via notification, confirmations return to the user.</span></div>
+      <div class="row"><span class="y">2018</span><span class="n"><b>Splitpay</b><span>React Native</span></span><span class="d">First React Native app: splits group expenses equally or by coefficient, with instant group chat.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="keep">
+  <h2 class="display"><span class="num">04</span><span class="name">Skills</span></h2>
+  <div>
+    <div class="skillgroup"><span class="g mono acid">Mobile</span><div class="list"><b>React Native</b>, <b>TypeScript</b>, Flutter, Android (Java / Kotlin), iOS (Swift), Expo, Redux Toolkit, Zustand, React Navigation, Reanimated, Jitsi Meet / WebRTC</div></div>
+    <div class="skillgroup"><span class="g mono hot">AI-assisted dev</span><div class="list"><b>AI-assisted development</b>, Claude Code, agentic coding workflows, prompt engineering, Claude API</div></div>
+    <div class="skillgroup"><span class="g mono">Backend</span><div class="list">.NET Web API, C#, Node.js, REST, Firebase, Supabase</div></div>
+    <div class="skillgroup"><span class="g mono">Database</span><div class="list">Oracle PL/SQL, PostgreSQL, SQL, MMKV, SQLite</div></div>
+    <div class="skillgroup"><span class="g mono">Tools</span><div class="list">Git, GitHub Actions, Jenkins, EAS, CodePush, Sentry, Smartlook, Jest, Testing Library, Figma</div></div>
+  </div>
+</section>
+
+<section class="keep">
+  <h2 class="display"><span class="num">05</span><span class="name">Education</span></h2>
+  <div>
+    <div class="edu">
+      <div><h3 class="display">Selçuk University · Konya</h3><p>B.Sc. in Computer Engineering · GPA 3.05 / 4.00</p></div>
+      <span class="when mono">Sep 2015 — Jun 2020</span>
+    </div>
+    <div class="edu">
+      <div><h3 class="display">Hasan Ali Yücel Anatolian Teacher High School · Ankara</h3></div>
+      <span class="when mono">Sep 2011 — Jun 2015</span>
+    </div>
+  </div>
+</section>
+
+<section class="keep">
+  <h2 class="display"><span class="num">06</span><span class="name">Languages</span></h2>
+  <div class="lang">
+    <div><b>Turkish</b><span>Native</span></div>
+    <div><b>English</b><span>Professional working proficiency</span></div>
+  </div>
+</section>
+
+<footer class="mono">
+  <span>Melih Dikmen · CV</span>
+  <span>melihdikmen.com</span>
+</footer>
+
+</body>
+</html>

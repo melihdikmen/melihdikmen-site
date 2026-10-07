@@ -41,7 +41,10 @@ export function Hero({ locale, dict, sections }: Props) {
               {years.value}
               {years.suffix} {t(years.label, locale).split(" ")[0]}
             </span>
-            <span className="sticker block-pink hidden sm:inline-flex" style={{ "--r": "-1.5deg" } as React.CSSProperties}>
+            <span className="sticker block-sky" style={{ "--r": "-1.5deg" } as React.CSSProperties}>
+              ✦ {dict.hero.aiBadge}
+            </span>
+            <span className="sticker block-pink hidden sm:inline-flex" style={{ "--r": "2.5deg" } as React.CSSProperties}>
               React Native · Flutter
             </span>
           </div>

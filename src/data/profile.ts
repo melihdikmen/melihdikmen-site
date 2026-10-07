@@ -32,11 +32,13 @@ export const profile = {
       "2019'dan beri mobil uygulama geliştiriyorum. Başarsoft'ta harita tabanlı uygulamalarla başladım, Turkcell BiP'in VoIP ekibinde milyonlarca kullanıcının görüşme deneyimi üzerinde çalıştım, bugün Param'da lisanslı bir e-para kuruluşunun dijital cüzdanını sıfırdan geliştirip ekibini yönetiyorum.",
       "En sevdiğim işler JavaScript ile platformun kesiştiği yerde: native iOS ve Android modülleri sarmalamak, NFC ile kimlik çipi okumak, birinin kirasının bağlı olduğu cüzdanı bozmadan over-the-air güncelleme çıkmak.",
       "Backend tarafını da biliyorum. .NET Web API ve Oracle PL/SQL ile uçtan uca özellik teslim ettim; bu, mobil ekiple backend ekibi arasındaki konuşmaları kısaltıyor.",
+      "AI destekli geliştirme günlük akışımın parçası. Claude Code gibi agent tabanlı araçlarla prototipi saatler içinde çıkarıyor, test ve refactor döngülerini hızlandırıyorum; üretilen kodu elle yazılmış kodla aynı standartta gözden geçiriyorum.",
     ],
     en: [
       "I have been building mobile apps since 2019. I started with map-based apps at Başarsoft, worked on the calling experience of millions of users in Turkcell BiP's VoIP team, and today I build and lead the digital wallet of a licensed e-money institution at Param, which I started from scratch.",
       "The work I like most sits where JavaScript meets the platform: wrapping native iOS and Android modules, reading ID chips over NFC, shipping over-the-air updates without breaking a wallet someone's rent depends on.",
       "I also know the backend. I have delivered features end to end with .NET Web API and Oracle PL/SQL, which keeps the conversation between the mobile and backend teams short.",
+      "AI-assisted development is part of my daily workflow. With agent-based tools like Claude Code I get a prototype out in hours and speed up test and refactor cycles, and I review generated code to the same standard as hand-written code.",
     ],
   },
   focus: [
@@ -44,6 +46,7 @@ export const profile = {
     { tr: "Native modül köprüleri (Swift / Kotlin)", en: "Native module bridges (Swift / Kotlin)" },
     { tr: "Fintech: KYC, ödeme, güvenlik", en: "Fintech: KYC, payments, security" },
     { tr: "Yayın süreçleri ve OTA güncellemeler", en: "Release pipelines and OTA updates" },
+    { tr: "AI destekli geliştirme (Claude Code, agent iş akışları)", en: "AI-assisted development (Claude Code, agentic workflows)" },
   ],
   education: [
     {

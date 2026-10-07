@@ -1,4 +1,4 @@
-export type SkillGroup = "mobile" | "backend" | "database" | "tools";
+export type SkillGroup = "mobile" | "ai" | "backend" | "database" | "tools";
 
 export const skills: Record<SkillGroup, string[]> = {
   mobile: [
@@ -14,6 +14,7 @@ export const skills: Record<SkillGroup, string[]> = {
     "Reanimated",
     "Jitsi Meet / WebRTC",
   ],
+  ai: ["AI-assisted development", "Claude Code", "Agentic coding workflows", "Prompt engineering", "Claude API"],
   backend: [".NET Web API", "C#", "Node.js", "REST", "Firebase", "Supabase"],
   database: ["Oracle PL/SQL", "PostgreSQL", "SQL", "MMKV", "SQLite"],
   tools: ["Git", "GitHub Actions", "Jenkins", "EAS", "CodePush", "Sentry", "Smartlook", "Jest", "Testing Library", "Figma"],

@@ -22,6 +22,7 @@ export const en: Dictionary = {
     contact: "Get in touch",
     cv: "Download CV",
     available: "Open to remote work",
+    aiBadge: "AI-assisted developer",
     stamp: "Open to remote work · New roles · ",
     scroll: "Scroll",
   },
@@ -99,6 +100,7 @@ export const en: Dictionary = {
     subtitle: "The tools I use every day; the first two are my native tongue.",
     groups: {
       mobile: "Mobile",
+      ai: "AI-assisted",
       backend: "Backend",
       database: "Database",
       tools: "Tools",
@@ -128,6 +130,6 @@ export const en: Dictionary = {
   meta: {
     title: "Melih Dikmen — Mobile Engineer & Team Lead",
     description:
-      "Mobile team lead building fintech and messaging apps with React Native and TypeScript. Based in Ankara, working remotely.",
+      "Mobile team lead building fintech and messaging apps with React Native and TypeScript, with AI-assisted development in the daily workflow. Based in Ankara, working remotely.",
   },
 };
