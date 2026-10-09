@@ -23,6 +23,12 @@ export const tr = {
     aiBadge: "AI destekli geliştirici",
     stamp: "Remote çalışmaya açık · Yeni fırsatlar · ",
     scroll: "Kaydır",
+    platforms: "Platformlar",
+  },
+  phone: {
+    label: "Ana ekranım",
+    notifApp: "Param · şu an",
+    dock: "Dock",
   },
   section: "Bölüm",
   about: {
@@ -92,6 +98,11 @@ export const tr = {
       wip: "Geliştiriliyor",
       internal: "Kurum içi",
     },
+    platforms: {
+      ios: "iOS",
+      android: "Android",
+      web: "Web",
+    },
   },
   skills: {
     title: "Yetenekler",
@@ -103,6 +114,8 @@ export const tr = {
       database: "Veritabanı",
       tools: "Araçlar",
     },
+    buildTitle: "build.log",
+    buildDone: "BUILD SUCCESSFUL · 2019'dan beri, 11 uygulama yayında",
   },
   blog: { title: "Yazılar", readMore: "Oku", empty: "Yakında." },
   contact: {

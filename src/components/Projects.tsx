@@ -1,17 +1,23 @@
 import Image from "next/image";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/tr";
-import { projects, pastProjects, type Project } from "@/data/projects";
+import { projects, pastProjects, type Platform, type Project } from "@/data/projects";
 import { t } from "@/lib/i18n";
 import { Section } from "./Section";
 import { Reveal } from "./Reveal";
-import { AppleIcon, ExternalIcon, GitHubIcon, PlayIcon } from "./Icons";
+import { AndroidIcon, AppleIcon, ExternalIcon, GitHubIcon, GlobeIcon, PlayIcon } from "./Icons";
 
 const statusTone: Record<string, string> = {
   live: "block-acid",
   beta: "block-pink",
   wip: "block-sky",
   internal: "",
+};
+
+const platformIcon: Record<Platform, typeof AppleIcon> = {
+  ios: AppleIcon,
+  android: AndroidIcon,
+  web: GlobeIcon,
 };
 
 function Links({ p, dict }: { p: Project; dict: Dictionary }) {
@@ -47,8 +53,8 @@ export function Projects({ locale, dict, number }: { locale: Locale; dict: Dicti
       <ol className="grid gap-8 md:grid-cols-2">
         {projects.map((p, i) => (
           <Reveal as="li" key={p.slug} delay={(i % 2) * 60} className="box lift row-hover flex flex-col shadow-hard-lg">
-            {/* Kapak: proje rengi ya da görsel */}
-            <div className="relative flex min-h-[170px] items-end justify-between gap-4 overflow-hidden border-b-2 border-ink p-5" style={{ background: p.accent }}>
+            {/* Kapak: mağaza sayfası gibi; uygulama ikonu ve platform rozetleri */}
+            <div className="relative flex min-h-[190px] flex-col justify-between gap-6 overflow-hidden border-b-2 border-ink p-5" style={{ background: p.accent }}>
               {p.image ? (
                 <Image src={p.image} alt={p.name} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
               ) : (
@@ -56,10 +62,28 @@ export function Projects({ locale, dict, number }: { locale: Locale; dict: Dicti
                   {String(i + 1).padStart(2, "0")}
                 </span>
               )}
-              <span className="relative font-mono text-[12px] font-bold uppercase tracking-[0.12em] text-white">№ {i + 1}</span>
-              <span className={`sticker relative ${statusTone[p.status]}`} style={{ "--r": "3deg" } as React.CSSProperties}>
-                {dict.projects.status[p.status]}
-              </span>
+              <div className="relative flex items-start justify-between gap-4">
+                <span className="font-mono text-[12px] font-bold uppercase tracking-[0.12em] text-white">№ {i + 1}</span>
+                <span className={`sticker ${statusTone[p.status]}`} style={{ "--r": "3deg" } as React.CSSProperties}>
+                  {dict.projects.status[p.status]}
+                </span>
+              </div>
+              <div className="relative flex flex-wrap items-end gap-4">
+                <span className="app-icon h-16 w-16 bg-[#f1efe8] text-[32px]" style={{ color: p.accent, boxShadow: "4px 4px 0 #0b0b0b" }} aria-hidden>
+                  {p.name.split(" ").pop()![0]}
+                </span>
+                <span className="flex flex-wrap gap-2">
+                  {p.platforms.map((pl) => {
+                    const Icon = platformIcon[pl];
+                    return (
+                      <span key={pl} className="store-badge">
+                        <Icon width={13} height={13} />
+                        {dict.projects.platforms[pl]}
+                      </span>
+                    );
+                  })}
+                </span>
+              </div>
             </div>
 
             <div className="flex flex-1 flex-col p-5 md:p-6">

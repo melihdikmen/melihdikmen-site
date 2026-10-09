@@ -288,6 +288,83 @@ body {
   );
 }
 
+/* ---------- Mobil: telefon çerçevesi, uygulama ikonu, terminal ---------- */
+.phone {
+  position: relative;
+  width: min(100%, 264px);
+  aspect-ratio: 9 / 18.5;
+  padding: 9px;
+  border: 3px solid var(--ink);
+  border-radius: 40px;
+  background: #0b0b0b;
+  box-shadow: 10px 10px 0 var(--ink);
+}
+.dark .phone { box-shadow: 10px 10px 0 var(--acid); }
+.phone-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 31px;
+  background-color: var(--acid);
+  background-image: radial-gradient(rgba(11, 11, 11, 0.18) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+.app-icon {
+  display: grid;
+  place-items: center;
+  border: 2px solid #0b0b0b;
+  border-radius: 13px;
+  box-shadow: 2px 2px 0 #0b0b0b;
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1;
+}
+.notif,
+.dock {
+  border: 2px solid #0b0b0b;
+  border-radius: 14px;
+  background: #f1efe8;
+  color: #0b0b0b;
+  box-shadow: 3px 3px 0 #0b0b0b;
+}
+.dock { background: rgba(241, 239, 232, 0.7); }
+/* Mağaza rozeti: kartlarda platform etiketi */
+.store-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 2px solid #0b0b0b;
+  border-radius: 8px;
+  background: #0b0b0b;
+  color: #f1efe8;
+  padding: 4px 9px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+}
+/* Terminal kutusu: build log */
+.terminal {
+  border: 3px solid var(--ink);
+  background: #0b0b0b;
+  color: #f1efe8;
+  font-family: var(--font-mono);
+  box-shadow: 10px 10px 0 var(--acid);
+}
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border-bottom: 2px solid #3a3a3a;
+  padding: 10px 14px;
+}
+.terminal-bar > i {
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  border: 1.5px solid #f1efe8;
+}
+
 /* Kayan şerit */
 .marquee {
   display: flex;

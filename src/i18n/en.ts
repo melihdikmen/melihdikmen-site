@@ -25,6 +25,12 @@ export const en: Dictionary = {
     aiBadge: "AI-assisted developer",
     stamp: "Open to remote work · New roles · ",
     scroll: "Scroll",
+    platforms: "Platforms",
+  },
+  phone: {
+    label: "My home screen",
+    notifApp: "Param · now",
+    dock: "Dock",
   },
   section: "Section",
   about: {
@@ -94,6 +100,11 @@ export const en: Dictionary = {
       wip: "In progress",
       internal: "Internal",
     },
+    platforms: {
+      ios: "iOS",
+      android: "Android",
+      web: "Web",
+    },
   },
   skills: {
     title: "Skills",
@@ -105,6 +116,8 @@ export const en: Dictionary = {
       database: "Database",
       tools: "Tools",
     },
+    buildTitle: "build.log",
+    buildDone: "BUILD SUCCESSFUL · since 2019, 11 apps shipped",
   },
   blog: { title: "Writing", readMore: "Read", empty: "Coming soon." },
   contact: {

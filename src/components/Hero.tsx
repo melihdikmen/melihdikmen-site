@@ -5,10 +5,10 @@ import { profile } from "@/data/profile";
 import { skills } from "@/data/skills";
 import { t } from "@/lib/i18n";
 import { container } from "@/lib/ui";
-import { ArrowIcon, DownloadIcon } from "./Icons";
+import { AndroidIcon, AppleIcon, ArrowIcon, DownloadIcon } from "./Icons";
 import { Stamp } from "./Stamp";
 import { Marquee } from "./Marquee";
-import { LocalTime } from "./LocalTime";
+import { PhoneMock } from "./PhoneMock";
 
 type Props = { locale: Locale; dict: Dictionary; sections: SectionInfo[] };
 
@@ -49,6 +49,17 @@ export function Hero({ locale, dict, sections }: Props) {
             </span>
           </div>
 
+          {/* Platform rozetleri */}
+          <div className="fade-in -mt-6 flex flex-wrap items-center gap-2" style={css("320ms")}>
+            <span className="label mr-1">{dict.hero.platforms}</span>
+            <span className="store-badge">
+              <AppleIcon width={13} height={13} /> iOS
+            </span>
+            <span className="store-badge">
+              <AndroidIcon width={14} height={14} /> Android
+            </span>
+          </div>
+
           {/* Manşet */}
           <h1 className="font-display font-extrabold uppercase leading-[0.82] tracking-[-0.04em]">
             <span className="line-mask">
@@ -77,24 +88,15 @@ export function Hero({ locale, dict, sections }: Props) {
           </div>
         </div>
 
-        {/* Sağ sütun: renk blokları */}
-        <div className="grid border-t-[3px] border-ink md:col-span-4 md:grid-rows-[auto_auto_1fr] md:border-l-[3px] md:border-t-0">
-          <div className="fade-in block-acid border-b-[3px] border-ink p-5" style={css("300ms")}>
-            <p className="label">{dict.facts.time}</p>
-            <p className="font-display mt-1 text-[clamp(2.6rem,5vw,4.2rem)] font-extrabold leading-none tracking-[-0.03em]">
-              <LocalTime locale={locale} />
-            </p>
+        {/* Sağ sütun: telefon */}
+        <div className="hatch relative grid place-items-center border-t-[3px] border-ink px-6 py-12 md:col-span-4 md:border-l-[3px] md:border-t-0 md:px-8">
+          <div className="fade-in w-full max-w-[264px]" style={css("300ms")}>
+            <PhoneMock locale={locale} dict={dict} />
           </div>
-          <div className="fade-in block-hot border-b-[3px] border-ink p-5" style={css("380ms")}>
-            <p className="label">{dict.facts.now}</p>
-            <p className="font-display-wide mt-1 text-[clamp(1.25rem,1.8vw,1.6rem)] font-bold leading-tight">{dict.facts.nowValue}</p>
-          </div>
-          <div className="fade-in hatch relative grid min-h-[220px] place-items-center p-6" style={css("460ms")}>
-            <Stamp text={dict.hero.stamp} className="pop-in h-40 w-40 md:h-44 md:w-44 lg:h-52 lg:w-52" />
-            <span className="sticker sticker-sq absolute bottom-4 right-4 hidden md:inline-flex" style={{ "--r": "4deg" } as React.CSSProperties}>
-              {dict.hero.scroll} ↓
-            </span>
-          </div>
+          <Stamp text={dict.hero.stamp} className="pop-in absolute right-3 top-3 h-24 w-24 lg:h-28 lg:w-28" />
+          <span className="sticker sticker-sq absolute bottom-4 left-4 hidden md:inline-flex" style={{ "--r": "-4deg" } as React.CSSProperties}>
+            {dict.hero.scroll} ↓
+          </span>
         </div>
       </div>
 

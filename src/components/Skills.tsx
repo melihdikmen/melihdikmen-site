@@ -17,6 +17,32 @@ const angles = [-3, 2, -1.5, 3.5, -2.5, 1, -4, 2.5, -1, 3, -2, 1.5];
 export function Skills({ dict, number }: { dict: Dictionary; number: string }) {
   return (
     <Section id="skills" number={number} kicker={dict.section} title={dict.skills.title} subtitle={dict.skills.subtitle} tone="ink">
+      {/* Build log: mobil yığın bir derleme çıktısı gibi */}
+      <Reveal className="terminal mb-14 max-w-3xl">
+        <div className="terminal-bar">
+          <i aria-hidden />
+          <i aria-hidden />
+          <i aria-hidden />
+          <span className="ml-2 text-[12px] font-bold text-[#8a877e]">~/melih — {dict.skills.buildTitle}</span>
+        </div>
+        <div className="space-y-1.5 p-4 text-[12.5px] leading-relaxed md:p-6 md:text-[13.5px]">
+          <p>
+            <span className="text-acid">$</span> npx react-native run-ios && ./gradlew assembleRelease
+          </p>
+          {skills.mobile.slice(0, 7).map((s, i) => (
+            <p key={s} className="flex gap-3">
+              <span className="text-[#8a877e]">[{String(i + 1).padStart(2, "0")}/07]</span>
+              <span className="flex-1 truncate">{s}</span>
+              <span className="text-acid">✓</span>
+            </p>
+          ))}
+          <p className="pt-2 font-bold text-acid">
+            {dict.skills.buildDone}
+            <span className="blink ml-1 inline-block h-[1em] w-[0.55em] translate-y-[2px] bg-acid" aria-hidden />
+          </p>
+        </div>
+      </Reveal>
+
       <div className="grid gap-10">
         {order.map((group, gi) => (
           <Reveal key={group} delay={gi * 60} className="grid gap-5 md:grid-cols-[200px_1fr]">

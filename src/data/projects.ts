@@ -1,6 +1,7 @@
 import type { Localized } from "@/i18n/config";
 
 export type ProjectStatus = "live" | "beta" | "wip" | "internal";
+export type Platform = "ios" | "android" | "web";
 
 export type Project = {
   slug: string;
@@ -8,6 +9,8 @@ export type Project = {
   status: ProjectStatus;
   description: Localized;
   tech: string[];
+  /** Uygulamanın çalıştığı platformlar; kartta mağaza rozeti olarak görünür. */
+  platforms: Platform[];
   /** public/projects/ altındaki görsel. Boş bırakılırsa otomatik kapak üretilir. */
   image?: string;
   /** Kapak rengi (görsel yoksa). */
@@ -30,6 +33,7 @@ export const projects: Project[] = [
       en: "The digital wallet of licensed e-money institution Param: cards, transfers, bill payments, campaigns. Started it from scratch with React Native in 2023; primary contributor since.",
     },
     tech: ["React Native", "TypeScript", "Redux Toolkit", "Firebase", "Sentry", "CodePush"],
+    platforms: ["ios", "android"],
     accent: "#E8541E",
     links: {
       // TODO: Param uygulamasının App Store ve Google Play adreslerini ekle.
@@ -44,6 +48,7 @@ export const projects: Project[] = [
       en: "Turkcell's messaging and calling app with millions of users. In the VoIP team I integrated and customised Jitsi Meet based real-time calling features.",
     },
     tech: ["React Native", "Redux", "Jitsi Meet", "WebRTC"],
+    platforms: ["ios", "android"],
     accent: "#1D4ED8",
     links: {
       // TODO: BiP mağaza adreslerini ekle.
@@ -58,6 +63,7 @@ export const projects: Project[] = [
       en: "An offline-first cleaning-turnover app for short-term-rental hosts: before/after photos per checklist item, low-supply flags, damage reports, and a shareable PDF.",
     },
     tech: ["Expo", "Expo Router", "Supabase", "MMKV", "RevenueCat"],
+    platforms: ["ios", "android"],
     accent: "#1B2436",
     links: { github: "https://github.com/melihdikmen/vouch" },
   },
@@ -70,6 +76,7 @@ export const projects: Project[] = [
       en: "A restaurant POS and kitchen display system that merges dine-in orders with pickup, courier and delivery-platform orders in one flow.",
     },
     tech: ["Next.js", "TypeScript", "Supabase", "PostgreSQL", "TanStack Query"],
+    platforms: ["web"],
     accent: "#7C3AED",
     links: {},
   },
