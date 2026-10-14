@@ -18,9 +18,9 @@ const dock = [
  */
 export function PhoneMock({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const apps = [
-    ...projects.map((p) => ({ name: p.name.split(" ").pop()!, bg: p.accent, light: true })),
+    ...projects.map((p) => ({ name: p.short ?? p.name, bg: p.accent, light: true })),
     ...[...new Set(pastProjects.map((p) => p.name.split(" ")[0]))].map((name, i) => ({ name, bg: palette[i % palette.length], light: false })),
-  ];
+  ].slice(0, 12); // 3 sıra: dock'a kadar olan alana sığan en fazla ikon
 
   return (
     <div className="phone" role="img" aria-label={dict.phone.label}>

@@ -104,6 +104,7 @@ export const en: Dictionary = {
       ios: "iOS",
       android: "Android",
       web: "Web",
+      desktop: "Desktop",
     },
   },
   skills: {

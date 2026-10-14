@@ -5,7 +5,7 @@ import { projects, pastProjects, type Platform, type Project } from "@/data/proj
 import { t } from "@/lib/i18n";
 import { Section } from "./Section";
 import { Reveal } from "./Reveal";
-import { AndroidIcon, AppleIcon, ExternalIcon, GitHubIcon, GlobeIcon, PlayIcon } from "./Icons";
+import { AndroidIcon, AppleIcon, DesktopIcon, ExternalIcon, GitHubIcon, GlobeIcon, PlayIcon } from "./Icons";
 
 const statusTone: Record<string, string> = {
   live: "block-acid",
@@ -18,6 +18,7 @@ const platformIcon: Record<Platform, typeof AppleIcon> = {
   ios: AppleIcon,
   android: AndroidIcon,
   web: GlobeIcon,
+  desktop: DesktopIcon,
 };
 
 function Links({ p, dict }: { p: Project; dict: Dictionary }) {
@@ -70,7 +71,7 @@ export function Projects({ locale, dict, number }: { locale: Locale; dict: Dicti
               </div>
               <div className="relative flex flex-wrap items-end gap-4">
                 <span className="app-icon h-16 w-16 bg-[#f1efe8] text-[32px]" style={{ color: p.accent, boxShadow: "4px 4px 0 #0b0b0b" }} aria-hidden>
-                  {p.name.split(" ").pop()![0]}
+                  {(p.short ?? p.name)[0]}
                 </span>
                 <span className="flex flex-wrap gap-2">
                   {p.platforms.map((pl) => {

@@ -1,11 +1,13 @@
 import type { Localized } from "@/i18n/config";
 
 export type ProjectStatus = "live" | "beta" | "wip" | "internal";
-export type Platform = "ios" | "android" | "web";
+export type Platform = "ios" | "android" | "web" | "desktop";
 
 export type Project = {
   slug: string;
   name: string;
+  /** Uygulama ikonunda ve telefon ekranında kullanılan kısa ad; boşsa `name`. */
+  short?: string;
   status: ProjectStatus;
   description: Localized;
   tech: string[];
@@ -42,6 +44,7 @@ export const projects: Project[] = [
   {
     slug: "bip",
     name: "Turkcell BiP",
+    short: "BiP",
     status: "live",
     description: {
       tr: "Turkcell'in milyonlarca kullanıcısı olan mesajlaşma ve arama uygulaması. VoIP ekibinde Jitsi Meet tabanlı gerçek zamanlı görüşme özelliklerini entegre ettim ve özelleştirdim.",
@@ -66,6 +69,58 @@ export const projects: Project[] = [
     platforms: ["ios", "android"],
     accent: "#1B2436",
     links: { github: "https://github.com/melihdikmen/vouch" },
+  },
+  {
+    slug: "streetshelf",
+    name: "StreetShelf",
+    status: "beta",
+    description: {
+      tr: "Mahalle ve site ölçeğinde eşya hediye etme, ödünç verme ve günlük kiralama ağı; ihtiyaç ilanı da açılabiliyor. Konuma ya da davet koduyla girilen kapalı gruplara göre ilanlar, ilan içinde mesajlaşma ve işlem kartları.",
+      en: "A hyper-local network to gift, lend or rent things to neighbours, or post what you need. Listings by distance or invite-only groups, with in-listing chat and transaction cards.",
+    },
+    tech: ["Expo SDK 57", "Expo Router", "React Native", "Supabase", "pgTAP"],
+    platforms: ["ios", "android"],
+    accent: "#0F766E",
+    links: { web: "https://streetshelf.app" },
+  },
+  {
+    slug: "bardak-bardak",
+    name: "Bardak Bardak",
+    status: "wip",
+    description: {
+      tr: "Çay sıralama bulmacası: çayları bardaktan bardağa dök, her bardakta tek çeşit kalsın. Flutter ve Flame oyun motoruyla yazıldı, AdMob reklamlarıyla App Store ve Google Play'e hazırlanıyor.",
+      en: "A tea-sorting puzzle: pour tea from glass to glass until each holds one kind. Built with Flutter and the Flame engine, with AdMob ads, being prepared for the App Store and Google Play.",
+    },
+    tech: ["Flutter", "Flame", "Dart", "AdMob"],
+    platforms: ["ios", "android"],
+    accent: "#B91C1C",
+    links: {},
+  },
+  {
+    slug: "acentedefteri",
+    name: "AcenteDefteri",
+    status: "wip",
+    description: {
+      tr: "Küçük sigorta acenteleri için poliçe yenileme takibi. Yüklenen poliçe PDF'lerini AI ile ayrıştırıp müşteri ve yenileme tarihlerini otomatik çıkarıyor; ücretsiz kotalar dolunca sağlayıcılar arasında sırayla geçiyor.",
+      en: "Policy renewal tracking for small insurance agencies. Parses uploaded policy PDFs with AI to pull out customers and renewal dates, falling back across providers as free quotas run out.",
+    },
+    tech: ["React", "Vite", "TypeScript", "Supabase", "Edge Functions", "TanStack Query"],
+    platforms: ["web"],
+    accent: "#0E7490",
+    links: {},
+  },
+  {
+    slug: "agent-office",
+    name: "Agent Office",
+    status: "live",
+    description: {
+      tr: "Claude Code ajanlarından oluşan bir ekibi masaüstündeki piksel-art bir ofisten yöneten Electron uygulaması. Lider hedefi alt görevlere böler, ekip çalışır; her görev ancak kanıtıyla (typecheck, build, test) kapanır.",
+      en: "An Electron app that runs a team of Claude Code agents from a pixel-art office on your desktop. The lead splits the goal into tasks, the team works, and every task closes only with evidence (typecheck, build, tests).",
+    },
+    tech: ["Electron", "TypeScript", "Claude Code", "MCP"],
+    platforms: ["desktop"],
+    accent: "#4338CA",
+    links: { github: "https://github.com/melihdikmen/agent-office" },
   },
   {
     slug: "restosync",

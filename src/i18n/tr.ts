@@ -102,6 +102,7 @@ export const tr = {
       ios: "iOS",
       android: "Android",
       web: "Web",
+      desktop: "Masaüstü",
     },
   },
   skills: {
