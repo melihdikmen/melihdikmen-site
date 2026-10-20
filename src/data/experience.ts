@@ -21,8 +21,8 @@ export const experience: Experience[] = [
     start: "2023-06",
     location: { tr: "Remote", en: "Remote" },
     summary: {
-      tr: "Türkiye'nin en büyük ödeme ve e-para şirketlerinden Param'ın dijital cüzdanı ve dijital kimlik doğrulama SDK'sı.",
-      en: "The digital wallet and identity verification SDK of Param, one of Türkiye's largest payment and e-money companies.",
+      tr: "Türkiye'nin en büyük ödeme ve e-para şirketlerinden Param'ın dijital cüzdanı.",
+      en: "The digital wallet of Param, one of Türkiye's largest payment and e-money companies.",
     },
     highlights: [
       {
@@ -34,8 +34,8 @@ export const experience: Experience[] = [
         en: "Lead the mobile team: code quality, team coordination, and planning the development workflow in line with business goals.",
       },
       {
-        tr: "Dijital kimlik doğrulama (KYC) SDK'sını tasarladım ve yayınladım: belge çekimi, NFC ile kimlik çipi okuma, video canlılık. Partner uygulamalar npm paketi olarak kullanıyor.",
-        en: "Designed and published the digital identity verification (KYC) SDK: document capture, NFC ID chip read, video liveness. Partner apps consume it as an npm package.",
+        tr: "Hazır native iOS ve Android kimlik doğrulama (KYC) SDK'sını React Native'e taşıdım: belge çekimi, NFC ile kimlik çipi okuma ve video canlılık adımlarını yürüten native SDK'yı köprüyle JavaScript tarafına açan bir React Native paketi hazırladım. Paket npm'de yayında, partner uygulamalar kullanıyor.",
+        en: "Brought an existing native iOS and Android identity verification (KYC) SDK to React Native: built a package that exposes the native SDK's document capture, NFC ID chip reading and video liveness to JavaScript through a native bridge. Published on npm and used by partner apps.",
       },
       {
         tr: "Over-the-air güncelleme altyapısını, Sentry ile çökme takibini ve Smartlook ile oturum analizini kurdum.",

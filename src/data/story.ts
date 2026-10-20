@@ -82,12 +82,12 @@ export const story: StoryChapter[] = [
   {
     scene: "nfc",
     mark: "NFC",
-    label: { tr: "KYC SDK", en: "KYC SDK" },
+    label: { tr: "KYC köprüsü", en: "KYC bridge" },
     eyebrow: { tr: "Param · Kimlik doğrulama", en: "Param · Identity verification" },
     title: { tr: "Telefonu kimliğe dokundur.", en: "Tap your phone to your ID." },
     body: {
-      tr: "Dijital kimlik doğrulama (KYC) için bir React Native SDK geliştirdim. Native köprü üzerinden NFC ile kimlik kartındaki çipi okuyor. SDK başka bir uygulamaya da entegre edildi.",
-      en: "I built a React Native SDK for digital identity verification (KYC). It reads the chip on the ID card over NFC through a native bridge. The SDK has been integrated into another app as well.",
+      tr: "Hazır native kimlik doğrulama (KYC) SDK'sını React Native'e taşıdım. Çip okuma ve canlılık gibi asıl işi native SDK yapıyor; ben onu native köprüyle React Native'e açtım. Paket başka bir uygulamaya da entegre edildi.",
+      en: "I brought an existing native identity verification (KYC) SDK to React Native. The native SDK does the heavy lifting, like chip reading and liveness; I exposed it to React Native through a native bridge. The package has been integrated into another app as well.",
     },
     chips: ["Native bridge", "NFC", "KYC"],
   },
