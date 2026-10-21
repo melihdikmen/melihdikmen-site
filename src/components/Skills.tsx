@@ -9,10 +9,8 @@ const groupTone: Record<SkillGroup, string> = {
   ai: "block-hot",
   backend: "block-sky",
   database: "block-pink",
-  tools: "",
+  tools: "block-acid",
 };
-/** Deterministik hafif açı: her sticker farklı yöne eğik durur. */
-const angles = [-3, 2, -1.5, 3.5, -2.5, 1, -4, 2.5, -1, 3, -2, 1.5];
 
 export function Skills({ dict, number }: { dict: Dictionary; number: string }) {
   return (
@@ -23,7 +21,7 @@ export function Skills({ dict, number }: { dict: Dictionary; number: string }) {
           <i aria-hidden />
           <i aria-hidden />
           <i aria-hidden />
-          <span className="ml-2 text-[12px] font-bold text-[#8a877e]">~/melih — {dict.skills.buildTitle}</span>
+          <span className="ml-2 text-[12px] font-bold text-ink-3">~/melih — {dict.skills.buildTitle}</span>
         </div>
         <div className="space-y-1.5 p-4 text-[12.5px] leading-relaxed md:p-6 md:text-[13.5px]">
           <p>
@@ -31,7 +29,7 @@ export function Skills({ dict, number }: { dict: Dictionary; number: string }) {
           </p>
           {skills.mobile.slice(0, 7).map((s, i) => (
             <p key={s} className="flex gap-3">
-              <span className="text-[#8a877e]">[{String(i + 1).padStart(2, "0")}/07]</span>
+              <span className="text-ink-3">[{String(i + 1).padStart(2, "0")}/07]</span>
               <span className="flex-1 truncate">{s}</span>
               <span className="text-acid">✓</span>
             </p>
@@ -46,7 +44,7 @@ export function Skills({ dict, number }: { dict: Dictionary; number: string }) {
       <div className="grid gap-10">
         {order.map((group, gi) => (
           <Reveal key={group} delay={gi * 60} className="grid gap-5 md:grid-cols-[200px_1fr]">
-            <h3 className={`${groupTone[group]} sticker sticker-sq self-start justify-self-start text-[13px]`} style={{ "--r": `${angles[gi]}deg` } as React.CSSProperties}>
+            <h3 className={`${groupTone[group]} sticker self-start justify-self-start text-[12px]`}>
               {String(gi + 1).padStart(2, "0")} · {dict.skills.groups[group]}
             </h3>
             <ul className="flex flex-wrap gap-3">
@@ -55,8 +53,7 @@ export function Skills({ dict, number }: { dict: Dictionary; number: string }) {
                 return (
                   <li
                     key={s}
-                    className={`sticker ${primary ? groupTone[group] : ""} text-[13px] md:text-[14px]`}
-                    style={{ "--r": `${angles[(j + gi * 3) % angles.length]}deg` } as React.CSSProperties}
+                    className={`sticker ${primary ? groupTone[group] : ""} text-[12px] md:text-[13px]`}
                   >
                     {primary && <span aria-hidden>★</span>}
                     {s}

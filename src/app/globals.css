@@ -3,48 +3,33 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ------------------------------------------------------------------
-   Neo-brütalist poster paleti: tebeşir zemin, kalın mürekkep çizgiler,
-   asit yeşili + turuncu + mavi + pembe renk blokları.
+   Uzay / cyberpunk paleti: derin boşluk zemini, cam paneller, neon
+   cyan + magenta + mor + amber. Tema yalnızca koyu.
    (--paper/--ink/--accent/--rule adları hikâye telefonunun CSS'i tarafından
    da kullanılır; adlar korunur, değerler yeni palete göre ayarlanır.)
    ------------------------------------------------------------------ */
-:root {
-  --paper: #f1efe8;
-  --paper-2: #e4e1d6;
-  --ink: #0b0b0b;
-  --ink-2: #3a3a3a;
-  --ink-3: #6f6d66;
-  --rule: #b8b5aa;
-  --accent: #ff4f1f;
-  --accent-soft: #ffd2c2;
-  --shadow: rgba(11, 11, 11, 0.25);
-  --acid: #d4ff3f;
-  --hot: #ff4f1f;
-  --sky: #3d6bff;
-  --pink: #ff7ad9;
-  --on-color: #0b0b0b;
-  color-scheme: light;
-}
-
+:root,
 .dark {
-  --paper: #0d0d0d;
-  --paper-2: #181817;
-  --ink: #f1efe8;
-  --ink-2: #c9c6bb;
-  --ink-3: #8a877e;
-  --rule: #3a3936;
-  --accent: #ff6a40;
-  --accent-soft: #4a2316;
-  --shadow: rgba(0, 0, 0, 0.6);
-  --acid: #c8ff2e;
-  --hot: #ff5a2b;
-  --sky: #5b82ff;
-  --pink: #ff8ae0;
-  --on-color: #0b0b0b;
+  --void: #04050d;
+  --paper: #0a0d1c;
+  --paper-2: #111631;
+  --ink: #e6f4ff;
+  --ink-2: #a9bdd6;
+  --ink-3: #6b7a99;
+  --rule: #1f2a4a;
+  --accent: #00f0ff;
+  --accent-soft: #093a44;
+  --shadow: rgba(0, 240, 255, 0.25);
+  --acid: #00f0ff;   /* cyan: ana vurgu */
+  --hot: #ff2bd6;    /* magenta */
+  --sky: #8b5cff;    /* mor */
+  --pink: #ffd166;   /* amber */
+  --on-color: #04050d;
   color-scheme: dark;
 }
 
 @theme inline {
+  --color-void: var(--void);
   --color-paper: var(--paper);
   --color-paper-2: var(--paper-2);
   --color-ink: var(--ink);
@@ -58,7 +43,7 @@
   --color-sky: var(--sky);
   --color-pink: var(--pink);
   --color-on-color: var(--on-color);
-  --font-display: var(--font-display), "Arial Narrow", Impact, "Helvetica Neue", sans-serif;
+  --font-display: var(--font-display), "Eurostile", "Bank Gothic", "Helvetica Neue", sans-serif;
   --font-sans: var(--font-body), "Helvetica Neue", Arial, sans-serif;
   --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 }
@@ -68,26 +53,65 @@ html {
 }
 
 body {
-  background: var(--paper);
+  position: relative;
+  background: var(--void);
   color: var(--ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  /* Noktalı kılavuz: poster kâğıdı hissi. */
-  background-image: radial-gradient(color-mix(in srgb, var(--ink) 16%, transparent) 1px, transparent 1px);
-  background-size: 22px 22px;
+  overflow-x: hidden;
 }
-.dark body {
-  background-image: radial-gradient(color-mix(in srgb, var(--ink) 12%, transparent) 1px, transparent 1px);
+
+/* Yıldız alanı: üç katman, farklı yoğunluk ve hız. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -10% 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 48% 72%, #fff 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 83% 31%, #9fe9ff 50%, transparent 51%),
+    radial-gradient(1px 1px at 27% 86%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 66% 12%, #ffd1f5 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 92% 78%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 38% 44%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 73% 58%, #c9b5ff 50%, transparent 51%),
+    radial-gradient(1px 1px at 5% 60%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 57% 93%, #fff 50%, transparent 51%),
+    radial-gradient(ellipse 60% 40% at 80% -10%, rgba(139, 92, 255, 0.22), transparent 70%),
+    radial-gradient(ellipse 50% 35% at 10% 110%, rgba(0, 240, 255, 0.12), transparent 70%),
+    radial-gradient(ellipse 40% 30% at 55% 50%, rgba(255, 43, 214, 0.07), transparent 70%);
+  background-size:
+    420px 420px, 420px 420px, 560px 560px, 480px 480px, 640px 640px,
+    520px 520px, 380px 380px, 700px 700px, 460px 460px, 600px 600px,
+    100% 100%, 100% 100%, 100% 100%;
+  animation: drift 160s linear infinite;
+}
+/* Tarama çizgileri + vinyet */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.028) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse 90% 80% at 50% 50%, transparent 60%, rgba(0, 0, 0, 0.55) 100%);
+  mix-blend-mode: normal;
+}
+@keyframes drift {
+  to { background-position: 0 -420px, 0 -420px, 0 -560px, 0 -480px, 0 -640px, 0 -520px, 0 -380px, 0 -700px, 0 -460px, 0 -600px, 0 0, 0 0, 0 0; }
 }
 
 ::selection {
   background: var(--acid);
-  color: #0b0b0b;
+  color: var(--on-color);
 }
 
 :focus-visible {
-  outline: 3px solid var(--hot);
+  outline: 2px solid var(--hot);
   outline-offset: 3px;
 }
 
@@ -95,25 +119,22 @@ body {
 /* ---------- Tipografi ---------- */
 .font-display {
   font-family: var(--font-display);
-  font-variation-settings: "opsz" 96, "wdth" 75;
-  font-optical-sizing: none;
+  letter-spacing: 0.02em;
 }
 .font-display-wide {
   font-family: var(--font-display);
-  font-variation-settings: "opsz" 96, "wdth" 100;
-  font-optical-sizing: none;
+  letter-spacing: 0.04em;
 }
-.display-text {
-  font-variation-settings: "opsz" 24, "wdth" 100;
-}
-/* Kontur yazı: sadece dış çizgi. */
+.display-text { font-family: var(--font-display); }
+/* Kontur yazı: neon dış çizgi. */
 .outline-text {
   color: transparent;
-  -webkit-text-stroke: 2px var(--ink);
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--acid) 60%, transparent);
   paint-order: stroke fill;
+  text-shadow: 0 0 24px color-mix(in srgb, var(--acid) 35%, transparent);
 }
 @media (min-width: 768px) {
-  .outline-text { -webkit-text-stroke-width: 3px; }
+  .outline-text { -webkit-text-stroke-width: 1.5px; }
 }
 .line-mask,
 .line-mask > * {
@@ -124,8 +145,9 @@ body {
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
+  color: var(--ink-2);
 }
 .smallcaps {
   font-family: var(--font-mono);
@@ -135,133 +157,194 @@ body {
   color: var(--ink-3);
 }
 
-/* ---------- Brütal kutu, sert gölge ---------- */
+/* Neon yazı */
+.neon { text-shadow: 0 0 8px color-mix(in srgb, currentColor 70%, transparent), 0 0 28px color-mix(in srgb, currentColor 40%, transparent); }
+.neon-cyan { color: var(--acid); text-shadow: 0 0 8px rgba(0, 240, 255, 0.7), 0 0 30px rgba(0, 240, 255, 0.35); }
+.neon-hot { color: var(--hot); text-shadow: 0 0 8px rgba(255, 43, 214, 0.7), 0 0 30px rgba(255, 43, 214, 0.35); }
+
+/* Glitch: iki renkli kopya, kesitlerle oynar. data-text zorunlu. */
+.glitch { position: relative; display: inline-block; }
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.85;
+}
+.glitch::before { color: var(--acid); translate: -2px 0; clip-path: inset(10% 0 60% 0); opacity: 0; animation: glitch-a 4s steps(1) infinite; }
+.glitch::after { color: var(--hot); translate: 2px 0; clip-path: inset(55% 0 15% 0); opacity: 0; animation: glitch-b 3.4s steps(1) infinite 0.6s; }
+/* Dinlenirken görünmez; birkaç saniyede bir kısa patlama. */
+@keyframes glitch-a {
+  0%, 91%, 100% { opacity: 0; }
+  92% { opacity: 0.9; clip-path: inset(40% 0 30% 0); translate: -6px 0; }
+  94% { opacity: 0.9; clip-path: inset(70% 0 5% 0); translate: 4px 0; }
+  96% { opacity: 0.9; clip-path: inset(5% 0 85% 0); translate: -3px 0; }
+  97% { opacity: 0; }
+}
+@keyframes glitch-b {
+  0%, 89%, 100% { opacity: 0; }
+  90% { opacity: 0.9; clip-path: inset(15% 0 70% 0); translate: 6px 0; }
+  93% { opacity: 0.9; clip-path: inset(80% 0 2% 0); translate: -4px 0; }
+  95% { opacity: 0.9; clip-path: inset(30% 0 40% 0); translate: 3px 0; }
+  96% { opacity: 0; }
+}
+
+/* ---------- Panel: cam zemin, köşeleri kesik, ince neon çerçeve ---------- */
 .box {
-  border: 2px solid var(--ink);
-  background: var(--paper);
+  position: relative;
+  border: 1px solid color-mix(in srgb, var(--acid) 35%, var(--rule));
+  background: color-mix(in srgb, var(--paper) 82%, transparent);
+  backdrop-filter: blur(6px);
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
 }
-.box-thick { border-width: 3px; }
-.shadow-hard { box-shadow: 6px 6px 0 var(--ink); }
-.shadow-hard-sm { box-shadow: 4px 4px 0 var(--ink); }
-.shadow-hard-lg { box-shadow: 10px 10px 0 var(--ink); }
-.shadow-hard-acid { box-shadow: 6px 6px 0 var(--acid); }
-.shadow-hard-hot { box-shadow: 6px 6px 0 var(--hot); }
+.box-thick { border-width: 1px; }
+/* Gölgeler: ofset yerine neon ışıma */
+.shadow-hard { box-shadow: 0 0 0 1px color-mix(in srgb, var(--acid) 15%, transparent), 0 0 28px -6px color-mix(in srgb, var(--acid) 45%, transparent); }
+.shadow-hard-sm { box-shadow: 0 0 18px -6px color-mix(in srgb, var(--acid) 40%, transparent); }
+.shadow-hard-lg { box-shadow: 0 0 0 1px color-mix(in srgb, var(--acid) 20%, transparent), 0 0 48px -8px color-mix(in srgb, var(--acid) 55%, transparent); }
+.shadow-hard-acid { box-shadow: 0 0 32px -6px var(--acid); }
+.shadow-hard-hot { box-shadow: 0 0 32px -6px var(--hot); }
 
-/* Hover'da kalkar, basınca çöker. */
+/* HUD köşe ayraçları */
+.hud { position: relative; }
+.hud::before,
+.hud::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--acid);
+  pointer-events: none;
+  z-index: 2;
+}
+.hud::before { top: -2px; left: -2px; border-right: 0; border-bottom: 0; }
+.hud::after { bottom: -2px; right: -2px; border-left: 0; border-top: 0; }
+.hud-hot::before, .hud-hot::after { border-color: var(--hot); }
+
+/* Hover'da yükselir ve ışıması artar. */
 .lift {
-  transition: transform 0.15s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.15s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition: transform 0.2s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.2s ease, border-color 0.2s ease;
 }
-.lift:hover { transform: translate(-3px, -3px); box-shadow: 9px 9px 0 var(--ink); }
-.lift:active { transform: translate(3px, 3px); box-shadow: 0 0 0 var(--ink); }
+.lift:hover { transform: translateY(-3px); border-color: var(--acid); box-shadow: 0 0 0 1px color-mix(in srgb, var(--acid) 40%, transparent), 0 0 44px -6px color-mix(in srgb, var(--acid) 70%, transparent); }
+.lift:active { transform: translateY(0); }
 
-/* Renk bloğu: zemin rengini verir, yazı her temada siyah kalır. */
-.block-acid { background: var(--acid); color: var(--on-color); }
-.block-hot { background: var(--hot); color: var(--on-color); }
-.block-sky { background: var(--sky); color: var(--on-color); }
-.block-pink { background: var(--pink); color: var(--on-color); }
-.block-ink { background: #0b0b0b; color: #f1efe8; }  /* her temada siyah */
-.block-acid .label, .block-hot .label, .block-sky .label, .block-pink .label { color: var(--on-color); }
-.block-acid .box, .block-hot .box, .block-sky .box, .block-pink .box { color: var(--ink); }
+/* Renk bloğu: panel zeminine neon tonu katar; yazı açık kalır. */
+.block-acid { --tone: var(--acid); background: color-mix(in srgb, var(--acid) 10%, var(--paper)); color: var(--ink); border-color: color-mix(in srgb, var(--acid) 45%, transparent); }
+.block-hot { --tone: var(--hot); background: color-mix(in srgb, var(--hot) 12%, var(--paper)); color: var(--ink); border-color: color-mix(in srgb, var(--hot) 45%, transparent); }
+.block-sky { --tone: var(--sky); background: color-mix(in srgb, var(--sky) 16%, var(--paper)); color: var(--ink); border-color: color-mix(in srgb, var(--sky) 50%, transparent); }
+.block-pink { --tone: var(--pink); background: color-mix(in srgb, var(--pink) 10%, var(--paper)); color: var(--ink); border-color: color-mix(in srgb, var(--pink) 45%, transparent); }
+.block-ink { background: var(--void); color: var(--ink); }
+.block-acid .label { color: var(--acid); }
+.block-hot .label { color: var(--hot); }
+.block-sky .label { color: color-mix(in srgb, var(--sky) 70%, #fff); }
+.block-pink .label { color: var(--pink); }
+/* Bölüm zemini olarak: çok hafif ton + üstte renkli ışık hattı */
+section.block-acid, section.block-hot, section.block-sky, section.block-pink {
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, color-mix(in srgb, var(--tone) 14%, transparent), transparent 70%),
+    transparent;
+  border-top-color: color-mix(in srgb, var(--tone) 60%, transparent);
+}
 
-/* Ters bölüm: siyah zemin. İçindeki kutular kendiliğinden ters döner. */
+/* Ters bölüm: daha derin boşluk + ızgara */
 .inverted {
-  --paper: #0d0d0d;
-  --paper-2: #181817;
-  --ink: #f1efe8;
-  --ink-2: #c9c6bb;
-  --ink-3: #8a877e;
-  --rule: #3a3936;
-  background: var(--paper);
+  background:
+    linear-gradient(color-mix(in srgb, var(--acid) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--acid) 6%, transparent) 1px, transparent 1px),
+    color-mix(in srgb, var(--void) 70%, transparent);
+  background-size: 48px 48px, 48px 48px, 100% 100%;
   color: var(--ink);
-  color-scheme: dark;
 }
 
-/* Sticker: hafif döndürülmüş hap. Hover'da düzelir. */
+/* Sticker → HUD etiketi: köşeleri kesik kapsül, neon kenar. */
 .sticker {
   display: inline-flex;
   align-items: center;
   gap: 0.5em;
-  padding: 0.45em 0.9em;
-  border: 2px solid var(--ink);
-  border-radius: 999px;
-  background: var(--paper);
+  padding: 0.45em 0.95em;
+  border: 1px solid color-mix(in srgb, var(--acid) 60%, transparent);
+  background: color-mix(in srgb, var(--paper) 85%, transparent);
   color: var(--ink);
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   line-height: 1.2;
   white-space: nowrap;
-  box-shadow: 3px 3px 0 var(--ink);
-  rotate: var(--r, 0deg);
-  transition: rotate 0.25s cubic-bezier(0.2, 1.4, 0.4, 1), transform 0.2s ease, box-shadow 0.2s ease;
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  box-shadow: inset 0 0 12px -6px var(--acid);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
-.sticker:hover { rotate: 0deg; transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--ink); }
-.sticker-sq { border-radius: 4px; }
-/* Renkli sticker: blok rengi .sticker zeminini ezer. */
-.sticker.block-acid { background: var(--acid); color: #0b0b0b; }
-.sticker.block-hot { background: var(--hot); color: #0b0b0b; }
-.sticker.block-sky { background: var(--sky); color: #0b0b0b; }
-.sticker.block-pink { background: var(--pink); color: #0b0b0b; }
+.sticker:hover { transform: translateY(-2px); box-shadow: inset 0 0 14px -4px var(--acid), 0 0 18px -4px var(--acid); }
+.sticker-sq { clip-path: none; }
+/* Renkli sticker: dolu neon, koyu yazı */
+.sticker.block-acid { background: var(--acid); color: var(--on-color); border-color: var(--acid); box-shadow: 0 0 18px -4px var(--acid); }
+.sticker.block-hot { background: var(--hot); color: var(--on-color); border-color: var(--hot); box-shadow: 0 0 18px -4px var(--hot); }
+.sticker.block-sky { background: var(--sky); color: #fff; border-color: var(--sky); box-shadow: 0 0 18px -4px var(--sky); }
+.sticker.block-pink { background: var(--pink); color: var(--on-color); border-color: var(--pink); box-shadow: 0 0 18px -4px var(--pink); }
 
-/* Düğme */
+/* Düğme: kesik köşeli, neon çerçeve; hover'da dolar. */
 .btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.7em;
-  padding: 1rem 1.5rem;
-  border: 2px solid var(--ink);
-  background: var(--ink);
-  color: var(--paper);
+  padding: 1rem 1.6rem;
+  border: 1px solid var(--acid);
+  background: color-mix(in srgb, var(--acid) 12%, transparent);
+  color: var(--acid);
   font-family: var(--font-mono);
   font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  box-shadow: 6px 6px 0 var(--hot);
-  transition: transform 0.15s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.15s cubic-bezier(0.2, 0.7, 0.2, 1), background-color 0.15s ease, color 0.15s ease;
+  clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+  box-shadow: inset 0 0 20px -8px var(--acid), 0 0 24px -8px var(--acid);
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
 }
-.btn:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 var(--hot); }
-.btn:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--hot); }
+.btn:hover { background: var(--acid); color: var(--on-color); box-shadow: 0 0 36px -4px var(--acid); transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
 .btn:disabled { opacity: 0.55; pointer-events: none; }
-.btn-ghost { background: var(--paper); color: var(--ink); box-shadow: 6px 6px 0 var(--ink); }
-.btn-ghost:hover { box-shadow: 8px 8px 0 var(--ink); background: var(--acid); color: #0b0b0b; }
-.btn-ghost:active { box-shadow: 0 0 0 var(--ink); }
-.btn-acid { background: var(--acid); color: #0b0b0b; box-shadow: 6px 6px 0 var(--ink); }
-.btn-acid:hover { box-shadow: 8px 8px 0 var(--ink); }
-.btn-acid:active { box-shadow: 0 0 0 var(--ink); }
+.btn-ghost { border-color: color-mix(in srgb, var(--ink) 40%, transparent); background: transparent; color: var(--ink); box-shadow: none; }
+.btn-ghost:hover { border-color: var(--hot); background: var(--hot); color: var(--on-color); box-shadow: 0 0 36px -4px var(--hot); }
+.btn-acid { background: var(--acid); color: var(--on-color); box-shadow: 0 0 28px -4px var(--acid); }
+.btn-acid:hover { background: color-mix(in srgb, var(--acid) 85%, #fff); }
 
-/* Kare ikon düğmesi (tema, dil, menü) */
+/* Kare ikon düğmesi (dil, menü) */
 .icon-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 38px;
   height: 38px;
-  border: 2px solid var(--ink);
-  background: var(--paper);
+  border: 1px solid color-mix(in srgb, var(--acid) 45%, var(--rule));
+  background: color-mix(in srgb, var(--paper) 80%, transparent);
   color: var(--ink);
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+  clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+  transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
 }
-.icon-btn:hover { background: var(--acid); color: #0b0b0b; }
+.icon-btn:hover { background: var(--acid); color: var(--on-color); box-shadow: 0 0 18px -4px var(--acid); }
 .icon-btn:active { transform: translate(1px, 1px); }
 
 /* Alt çizgi vurgulu bağlantı */
 .u {
   text-decoration: none;
+  color: var(--acid);
   background-image: linear-gradient(var(--acid), var(--acid));
   background-repeat: no-repeat;
-  background-size: 100% 3px;
-  background-position: 0 92%;
-  transition: background-size 0.2s cubic-bezier(0.2, 0.7, 0.2, 1);
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  transition: background-size 0.2s cubic-bezier(0.2, 0.7, 0.2, 1), color 0.2s ease;
 }
-.u:hover { background-size: 100% 100%; color: #0b0b0b; }
+.u:hover { background-size: 100% 100%; color: var(--on-color); }
 .u-draw {
   text-decoration: none;
   background-image: linear-gradient(var(--acid), var(--acid));
@@ -271,22 +354,35 @@ body {
   transition: background-size 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 .u-draw:hover,
-.group:hover .u-draw { background-size: 100% 100%; color: #0b0b0b; }
+.group:hover .u-draw { background-size: 100% 100%; color: var(--on-color); }
 
-/* Kalın cetveller */
-.rule-t { border-top: 2px solid var(--ink); }
-.rule-b { border-bottom: 2px solid var(--ink); }
-.rule-thick { border-width: 3px; }
+/* Cetveller: ince, neon gradyanlı */
+.rule-t { border-top: 1px solid var(--rule); }
+.rule-b { border-bottom: 1px solid var(--rule); }
+.rule-thick { border-width: 1px; border-image: linear-gradient(90deg, transparent, var(--acid), var(--hot), transparent) 1; }
 .rule-faint { border-color: var(--rule); }
 
-/* Çizgili zemin (diyagonal tarama) */
+/* Perspektif ızgara zemini (eski "hatch") */
 .hatch {
-  background-image: repeating-linear-gradient(
-    -45deg,
-    var(--ink) 0 2px,
-    transparent 2px 10px
-  );
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, color-mix(in srgb, var(--sky) 22%, transparent), transparent 70%);
 }
+.hatch::before {
+  content: "";
+  position: absolute;
+  inset: 40% -60% -10% -60%;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--acid) 55%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--acid) 55%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+  transform: perspective(420px) rotateX(62deg);
+  transform-origin: 50% 0;
+  mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 80%, transparent);
+  animation: grid-move 4s linear infinite;
+  pointer-events: none;
+}
+@keyframes grid-move { to { background-position: 0 48px, 0 0; } }
 
 /* ---------- Mobil: telefon çerçevesi, uygulama ikonu, terminal ---------- */
 .phone {
@@ -294,50 +390,52 @@ body {
   width: min(100%, 264px);
   aspect-ratio: 9 / 18.5;
   padding: 9px;
-  border: 3px solid var(--ink);
+  border: 1px solid color-mix(in srgb, var(--acid) 50%, transparent);
   border-radius: 40px;
-  background: #0b0b0b;
-  box-shadow: 10px 10px 0 var(--ink);
+  background: #05070f;
+  box-shadow: 0 0 0 1px rgba(0, 240, 255, 0.15), 0 0 60px -10px var(--acid), 0 30px 60px -30px #000;
 }
-.dark .phone { box-shadow: 10px 10px 0 var(--acid); }
 .phone-screen {
   display: flex;
   flex-direction: column;
   height: 100%;
   overflow: hidden;
   border-radius: 31px;
-  background-color: var(--acid);
-  background-image: radial-gradient(rgba(11, 11, 11, 0.18) 1px, transparent 1px);
-  background-size: 14px 14px;
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(ellipse 80% 40% at 50% 0%, color-mix(in srgb, var(--sky) 35%, transparent), transparent 70%),
+    linear-gradient(color-mix(in srgb, var(--acid) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--acid) 7%, transparent) 1px, transparent 1px);
+  background-size: 100% 100%, 22px 22px, 22px 22px;
 }
 .app-icon {
   display: grid;
   place-items: center;
-  border: 2px solid #0b0b0b;
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 13px;
-  box-shadow: 2px 2px 0 #0b0b0b;
+  box-shadow: 0 0 14px -4px currentColor, inset 0 0 10px -6px #fff;
   font-family: var(--font-display);
   font-weight: 800;
   line-height: 1;
 }
 .notif,
 .dock {
-  border: 2px solid #0b0b0b;
+  border: 1px solid color-mix(in srgb, var(--acid) 40%, transparent);
   border-radius: 14px;
-  background: #f1efe8;
-  color: #0b0b0b;
-  box-shadow: 3px 3px 0 #0b0b0b;
+  background: color-mix(in srgb, var(--paper-2) 75%, transparent);
+  color: var(--ink);
+  backdrop-filter: blur(8px);
+  box-shadow: inset 0 0 20px -10px var(--acid);
 }
-.dock { background: rgba(241, 239, 232, 0.7); }
 /* Mağaza rozeti: kartlarda platform etiketi */
 .store-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  border: 2px solid #0b0b0b;
-  border-radius: 8px;
-  background: #0b0b0b;
-  color: #f1efe8;
+  border: 1px solid color-mix(in srgb, var(--ink) 30%, transparent);
+  border-radius: 6px;
+  background: rgba(4, 5, 13, 0.7);
+  color: var(--ink);
   padding: 4px 9px;
   font-family: var(--font-mono);
   font-size: 11px;
@@ -345,24 +443,26 @@ body {
 }
 /* Terminal kutusu: build log */
 .terminal {
-  border: 3px solid var(--ink);
-  background: #0b0b0b;
-  color: #f1efe8;
+  border: 1px solid color-mix(in srgb, var(--acid) 50%, transparent);
+  background: rgba(4, 5, 13, 0.85);
+  color: var(--ink);
   font-family: var(--font-mono);
-  box-shadow: 10px 10px 0 var(--acid);
+  box-shadow: 0 0 0 1px rgba(0, 240, 255, 0.1), 0 0 48px -10px var(--acid);
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
 }
 .terminal-bar {
   display: flex;
   align-items: center;
   gap: 7px;
-  border-bottom: 2px solid #3a3a3a;
+  border-bottom: 1px solid var(--rule);
   padding: 10px 14px;
 }
 .terminal-bar > i {
-  width: 11px;
-  height: 11px;
+  width: 10px;
+  height: 10px;
   border-radius: 999px;
-  border: 1.5px solid #f1efe8;
+  border: 1px solid var(--acid);
+  box-shadow: 0 0 8px -2px var(--acid);
 }
 
 /* Kayan şerit */
@@ -392,12 +492,18 @@ body {
 @keyframes blink { 50% { opacity: 0.25; } }
 .blink { animation: blink 1.2s steps(1) infinite; }
 
-/* Hafif sallanan sticker */
-@keyframes wiggle {
-  0%, 100% { rotate: var(--r, 0deg); }
-  50% { rotate: calc(var(--r, 0deg) * -1); }
+/* Neon titremesi */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  41% { opacity: 1; }
+  42% { opacity: 0.6; }
+  43% { opacity: 1; }
+  78% { opacity: 1; }
+  79% { opacity: 0.75; }
+  80% { opacity: 1; }
 }
-.wiggle { animation: wiggle 4s ease-in-out infinite; }
+.flicker { animation: flicker 6s linear infinite; }
+.wiggle { animation: flicker 6s linear infinite; }
 
 /* Scroll'da beliren öğeler: JS yoksa ya da hareket azaltılmışsa her şey görünür. */
 @media (prefers-reduced-motion: no-preference) {
@@ -447,35 +553,35 @@ body {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
   }
-  .spin, .marquee > *, .wiggle, .blink { animation: none !important; }
+  .spin, .marquee > *, .wiggle, .blink, .flicker, .glitch::before, .glitch::after, .hatch::before, body::before { animation: none !important; }
 }
 
-/* Form alanı: kutu, odakta asit zemin */
+/* Form alanı: koyu cam, odakta neon */
 .field {
   width: 100%;
-  border: 2px solid var(--ink);
+  border: 1px solid color-mix(in srgb, var(--acid) 35%, var(--rule));
   border-radius: 0;
-  background: var(--paper);
+  background: rgba(4, 5, 13, 0.6);
   padding: 0.9rem 1rem;
   font-size: 16px;
   color: var(--ink);
-  box-shadow: 4px 4px 0 var(--ink);
-  transition: box-shadow 0.15s ease, transform 0.15s ease, background-color 0.15s ease;
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
 }
 .field::placeholder { color: var(--ink-3); }
 .field:focus {
   outline: none;
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 var(--hot);
+  border-color: var(--acid);
+  box-shadow: inset 0 0 24px -10px var(--acid);
 }
 
 /* Proje satırı */
-.row-hover .row-title { transition: color 0.2s ease; }
-.row-hover:hover .row-title { color: var(--hot); }
+.row-hover .row-title { transition: color 0.2s ease, text-shadow 0.2s ease; }
+.row-hover:hover .row-title { color: var(--acid); text-shadow: 0 0 18px color-mix(in srgb, var(--acid) 60%, transparent); }
 
-/* Kaydırma çubuğu: kalın, mürekkep */
+/* Kaydırma çubuğu */
 .scroller {
   scrollbar-width: thin;
-  scrollbar-color: var(--ink) transparent;
+  scrollbar-color: var(--acid) transparent;
 }
 }

@@ -53,16 +53,16 @@ export function ContactForm({ dict, email }: { dict: Dictionary; email: string }
         </button>
         <span className="text-[14px] text-ink-2">
           {dict.contact.orMail}{" "}
-          <a href={`mailto:${email}`} className="u font-semibold text-ink">
+          <a href={`mailto:${email}`} className="u font-semibold">
             {email}
           </a>
         </span>
       </div>
 
       <p role="status" aria-live="polite" className="min-h-[1.5rem] text-[14px] font-medium">
-        {state === "sent" && <span className="inline-block border-2 border-ink bg-acid px-3 py-1.5 text-[#0b0b0b]">{dict.contact.sent}</span>}
+        {state === "sent" && <span className="inline-block border border-acid bg-acid/15 px-3 py-1.5 text-acid">{dict.contact.sent}</span>}
         {state === "error" && (
-          <span className="inline-block border-2 border-ink bg-hot px-3 py-1.5 text-[#0b0b0b]">
+          <span className="inline-block border border-hot bg-hot/15 px-3 py-1.5 text-hot">
             {dict.contact.error}{" "}
             <a href={`mailto:${email}`} className="underline">
               {email}

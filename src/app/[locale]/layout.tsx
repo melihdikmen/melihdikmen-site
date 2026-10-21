@@ -1,24 +1,24 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { ThemeProvider } from "next-themes";
-import { Bricolage_Grotesque, Space_Grotesk, Space_Mono } from "next/font/google";
+import { Orbitron, Exo_2, JetBrains_Mono } from "next/font/google";
 import { locales, isLocale, defaultLocale, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n";
 import { profile } from "@/data/profile";
 import "../globals.css";
 
-const display = Bricolage_Grotesque({
-  subsets: ["latin", "latin-ext"],
-  axes: ["opsz", "wdth"],
+const display = Orbitron({
+  subsets: ["latin"],
+  weight: ["500", "700", "800", "900"],
   variable: "--font-display",
   display: "swap",
 });
-const body = Space_Grotesk({
+const body = Exo_2({
   subsets: ["latin", "latin-ext"],
   variable: "--font-body",
   display: "swap",
 });
-const mono = Space_Mono({
+const mono = JetBrains_Mono({
   subsets: ["latin", "latin-ext"],
   weight: ["400", "700"],
   variable: "--font-mono",
@@ -67,13 +67,13 @@ export default async function RootLayout({ children, params }: Props) {
     <html
       lang={locale}
       suppressHydrationWarning
-      className={`${display.variable} ${body.variable} ${mono.variable} h-full`}
+      className={`${display.variable} ${body.variable} ${mono.variable} dark h-full`}
     >
-      <body className="min-h-full flex flex-col bg-paper text-ink">
+      <body className="min-h-full flex flex-col bg-void text-ink">
         <Script id="js-flag" strategy="beforeInteractive">
           {`document.documentElement.classList.add('js')`}
         </Script>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" forcedTheme="dark" disableTransitionOnChange>
           {children}
         </ThemeProvider>
       </body>

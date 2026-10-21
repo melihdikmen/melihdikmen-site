@@ -9,7 +9,7 @@ export function Stamp({ text, className = "" }: { text: string; className?: stri
           <defs>
             <path id="stamp-ring" d={`M100,100 m-${r},0 a${r},${r} 0 1,1 ${2 * r},0 a${r},${r} 0 1,1 -${2 * r},0`} />
           </defs>
-          <circle cx="100" cy="100" r="98" fill="#0b0b0b" />
+          <circle cx="100" cy="100" r="98" fill="#0a0d1c" stroke="var(--acid)" strokeWidth="1.5" />
           <circle cx="100" cy="100" r="58" fill="none" stroke="var(--acid)" strokeWidth="2" strokeDasharray="6 6" />
           <text fill="var(--acid)" className="font-mono text-[12.5px] font-bold uppercase" style={{ letterSpacing: "0.2em" }}>
             <textPath href="#stamp-ring" textLength={c} lengthAdjust="spacing">
@@ -17,8 +17,8 @@ export function Stamp({ text, className = "" }: { text: string; className?: stri
             </textPath>
           </text>
         </svg>
-        <span className="font-display absolute inset-0 flex items-center justify-center text-[44px] font-extrabold uppercase leading-none tracking-[-0.04em] text-[#f1efe8] md:text-[52px] lg:text-[60px]">
-          M<span className="text-hot">.</span>
+        <span className="font-display neon-cyan absolute inset-0 flex items-center justify-center text-[34px] font-extrabold uppercase leading-none md:text-[40px] lg:text-[46px]">
+          M<span className="neon-hot">_</span>
         </span>
       </div>
     </div>

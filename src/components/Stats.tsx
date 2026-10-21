@@ -44,7 +44,7 @@ function CountUp({ value, suffix }: { value: number; suffix: string }) {
   );
 }
 
-const tones = ["", "block-pink", "block-sky", "block-hot"];
+const tones = ["block-acid", "block-pink", "block-sky", "block-hot"];
 
 /** Dört sert gölgeli karo; her biri farklı renk bloğu. */
 export function Stats({ items }: { items: Stat[] }) {
@@ -52,10 +52,10 @@ export function Stats({ items }: { items: Stat[] }) {
     <dl className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
       {items.map((s, i) => (
         <div key={s.label} className={`box lift flex flex-col p-5 shadow-hard ${tones[i % tones.length]}`}>
-          <dd className="font-display order-1 text-[clamp(3.5rem,7vw,6rem)] font-extrabold leading-none tracking-[-0.04em]">
+          <dd className="font-display neon order-1 text-[clamp(2.6rem,5vw,4.2rem)] font-extrabold leading-none">
             <CountUp value={s.value} suffix={s.suffix} />
           </dd>
-          <dt className="order-2 mt-3 border-t-2 border-current pt-3 font-mono text-[12px] font-bold uppercase leading-snug tracking-[0.08em]">{s.label}</dt>
+          <dt className="order-2 mt-3 border-t border-current/30 pt-3 font-mono text-[11px] font-bold uppercase leading-snug tracking-[0.12em] text-ink-2">{s.label}</dt>
         </div>
       ))}
     </dl>

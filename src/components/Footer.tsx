@@ -8,14 +8,14 @@ import { Marquee } from "./Marquee";
 export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const site = profile.siteUrl.replace(/^https?:\/\//, "");
   return (
-    <footer className="inverted border-t-[3px] border-ink">
+    <footer className="inverted border-t border-acid/40">
       <Marquee
         items={[site.toUpperCase(), profile.name.toUpperCase(), dict.hero.eyebrow.toUpperCase()]}
-        className="font-display border-b-2 border-ink py-3 text-[clamp(2.5rem,7vw,5.5rem)] font-extrabold uppercase leading-none tracking-[-0.03em]"
+        className="font-display outline-text border-b border-rule py-3 text-[clamp(1.8rem,5vw,4rem)] font-extrabold uppercase leading-none"
         speed={28}
         separator="✦"
       />
-      <div className={`${container} label flex flex-wrap items-center justify-between gap-x-8 gap-y-3 py-6 text-ink-2`}>
+      <div className={`${container} label flex flex-wrap items-center justify-between gap-x-8 gap-y-3 py-6 text-ink-3`}>
         <span>
           © {new Date().getFullYear()} {profile.name} · {dict.footer.rights}
         </span>
