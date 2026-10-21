@@ -615,3 +615,36 @@ body {
   .pane { overflow: visible; flex: 1 0 auto; }
   .status { position: sticky; bottom: 0; z-index: 5; }
 }
+
+/* ---------- Rehberli tur ---------- */
+.tour { position: fixed; inset: 0; z-index: 50; }
+.tour-veil { position: absolute; inset: 0; background: transparent; cursor: default; border: 0; }
+.tour-ring {
+  position: absolute;
+  border-radius: 8px;
+  box-shadow: 0 0 0 2px var(--accent), 0 0 0 9999px rgba(0, 0, 0, 0.45), 0 0 24px 2px color-mix(in srgb, var(--accent) 60%, transparent);
+  pointer-events: none;
+  transition: top 0.3s ease, left 0.3s ease, width 0.3s ease, height 0.3s ease;
+}
+.tour-box {
+  position: absolute;
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--fg);
+  box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.6);
+  animation: tour-in 0.25s ease;
+}
+.tour-box h3 { margin: 4px 0 6px; font-size: 15px; font-weight: 600; }
+.tour-box p { margin: 0; font-size: 13.5px; line-height: 1.5; color: var(--fg-2); }
+.tour-step { font-family: var(--font-mono); font-size: 11px !important; color: var(--accent) !important; }
+.tour-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 14px; }
+@keyframes tour-in { from { opacity: 0; translate: 0 6px; } }
+.tour-btn { display: inline-flex; align-items: center; gap: 5px; height: 18px; padding: 0 7px; border-radius: 4px; background: rgba(255, 255, 255, 0.18); color: #fff; font-size: 11px; }
+.tour-btn:hover { background: rgba(255, 255, 255, 0.3); }
+.tree-row small { margin-left: auto; padding-left: 8px; font-size: 11px; color: var(--fg-3); overflow: hidden; text-overflow: ellipsis; }
+.md .hint { display: flex; align-items: center; gap: 8px; margin: 0 0 18px; padding: 8px 12px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); font-size: 13px; }
+.hint-m { display: inline; }
+.hint-d { display: none; }
+@media (min-width: 1024px) { .hint-m { display: none; } .hint-d { display: inline; } }

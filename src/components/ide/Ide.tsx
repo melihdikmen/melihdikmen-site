@@ -9,20 +9,21 @@ import { LocalTime } from "../LocalTime";
 import { LocaleSwitch } from "../LocaleSwitch";
 import { ThemeToggle } from "../ThemeToggle";
 import { Simulator } from "./Simulator";
+import { Tour } from "./Tour";
 import { AboutView, ContactView, EarlierView, ExperienceView, ProjectView, ReadmeView, SkillsView, StoryView } from "./views";
 
 type Ext = "md" | "json" | "tsx" | "ts" | "yaml" | "mp4";
-type FileDef = { id: string; name: string; ext: Ext; dir?: string };
+type FileDef = { id: string; name: string; ext: Ext; dir?: string; desc: keyof Dictionary["ide"]["desc"] };
 
 const files: FileDef[] = [
-  { id: "readme", name: "README.md", ext: "md" },
-  { id: "about", name: "about.md", ext: "md" },
-  { id: "experience", name: "experience.json", ext: "json" },
-  ...projects.map((p): FileDef => ({ id: `projects/${p.slug}`, name: `${p.slug}.tsx`, ext: "tsx", dir: "projects" })),
-  { id: "projects/earlier", name: "earlier.json", ext: "json", dir: "projects" },
-  { id: "skills", name: "skills.yaml", ext: "yaml" },
-  { id: "story", name: "story.mp4", ext: "mp4" },
-  { id: "contact", name: "contact.ts", ext: "ts" },
+  { id: "readme", name: "README.md", ext: "md", desc: "readme" },
+  { id: "about", name: "about.md", ext: "md", desc: "about" },
+  { id: "experience", name: "experience.json", ext: "json", desc: "experience" },
+  ...projects.map((p): FileDef => ({ id: `projects/${p.slug}`, name: `${p.slug}.tsx`, ext: "tsx", dir: "projects", desc: "projects" })),
+  { id: "projects/earlier", name: "earlier.json", ext: "json", dir: "projects", desc: "earlier" },
+  { id: "skills", name: "skills.yaml", ext: "yaml", desc: "skills" },
+  { id: "story", name: "story.mp4", ext: "mp4", desc: "story" },
+  { id: "contact", name: "contact.ts", ext: "ts", desc: "contact" },
 ];
 const byId = Object.fromEntries(files.map((f) => [f.id, f])) as Record<string, FileDef>;
 const extLabel: Record<Ext, string> = { md: "MD", json: "{ }", tsx: "TSX", ts: "TS", yaml: "YML", mp4: "▶" };
@@ -37,6 +38,26 @@ export function Ide({ locale, dict }: Props) {
   const [tabs, setTabs] = useState<string[]>(["readme"]);
   const [active, setActive] = useState("readme");
   const [projOpen, setProjOpen] = useState(true);
+  const [tour, setTour] = useState<number | null>(null);
+
+  // Tur bir kez gösterilir; localStorage okunamazsa yine gösterilir.
+  useEffect(() => {
+    let seen = false;
+    try {
+      seen = localStorage.getItem("ide-tour") === "1";
+    } catch {}
+    if (seen) return;
+    const id = window.setTimeout(() => setTour(0), 400);
+    return () => window.clearTimeout(id);
+  }, []);
+  const onTour = useCallback((s: number | null) => {
+    setTour(s);
+    if (s === null) {
+      try {
+        localStorage.setItem("ide-tour", "1");
+      } catch {}
+    }
+  }, []);
 
   const open = useCallback((id: string) => {
     if (!byId[id]) return;
@@ -81,12 +102,14 @@ export function Ide({ locale, dict }: Props) {
   const rootFiles = files.filter((f) => !f.dir);
   const projFiles = files.filter((f) => f.dir === "projects");
 
-  const TreeRow = ({ f }: { f: FileDef }) => (
+  const desc = (k: keyof Dictionary["ide"]["desc"]) => dict.ide.desc[k].replace("{n}", String(projects.length));
+  const TreeRow = ({ f, hideDesc }: { f: FileDef; hideDesc?: boolean }) => (
     <li>
       <button type="button" className={`tree-row ${active === f.id ? "is-act" : ""}`} onClick={() => open(f.id)}>
         <span className="car" aria-hidden />
         <Fx ext={f.ext} />
         {f.name}
+        {!hideDesc && <small>{desc(f.desc)}</small>}
       </button>
     </li>
   );
@@ -135,11 +158,12 @@ export function Ide({ locale, dict }: Props) {
                     <span className="car">{projOpen ? "▾" : "▸"}</span>
                     <span className="fx fx-dir">▸</span>
                     projects
+                    <small>{desc("projects")}</small>
                   </button>
                   {projOpen && (
                     <ul className="tree-sub">
                       {projFiles.map((f) => (
-                        <TreeRow key={f.id} f={f} />
+                        <TreeRow key={f.id} f={f} hideDesc={f.desc === "projects"} />
                       ))}
                     </ul>
                   )}
@@ -247,9 +271,12 @@ export function Ide({ locale, dict }: Props) {
         <span>
           Ankara <LocalTime locale={locale} seconds={false} />
         </span>
-        <span className="hidden sm:inline-flex">UTF-8</span>
-        <span className="hidden sm:inline-flex">{locale.toUpperCase()}</span>
+        <button type="button" className="tour-btn" onClick={() => onTour(0)}>
+          ? {dict.ide.tour.open}
+        </button>
       </footer>
+
+      <Tour step={tour} onStep={onTour} dict={dict.ide.tour} />
     </div>
   );
 }

@@ -22,6 +22,11 @@ export function ReadmeView({ locale, dict, open }: Ctx) {
   const ids = ["about", "experience", `projects/${projects[0].slug}`, "skills", "story", "contact"];
   return (
     <div className="md">
+      <p className="hint">
+        <span aria-hidden>→</span>
+        <span className="hint-d">{dict.ide.hint}</span>
+        <span className="hint-m">{dict.ide.hintMobile}</span>
+      </p>
       <p className="flex flex-wrap gap-2">
         <span className="badge badge-green">
           <span className="blink inline-block h-1.5 w-1.5 rounded-full bg-current" aria-hidden />
@@ -85,8 +90,7 @@ export function ReadmeView({ locale, dict, open }: Ctx) {
         <span className="k">##</span>
         {dict.ide.readme.getStarted}
       </h2>
-      <p>{dict.ide.readme.openFile}</p>
-      <ul>
+<ul>
         {files.map((f, i) => (
           <li key={f}>
             <button type="button" className="u" onClick={() => open(ids[i])}>
