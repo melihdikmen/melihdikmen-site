@@ -2,17 +2,16 @@ import { notFound } from "next/navigation";
 import { isLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n";
 import { getSections } from "@/lib/sections";
-import { Header } from "@/components/Header";
-import { Hero } from "@/components/Hero";
-import { About } from "@/components/About";
-import { Story } from "@/components/Story";
-import { Experience } from "@/components/Experience";
-import { Projects } from "@/components/Projects";
-import { Skills } from "@/components/Skills";
+import { StoreHeader } from "@/components/store/StoreHeader";
+import { StoreHero } from "@/components/store/StoreHero";
+import { Screenshots } from "@/components/store/Screenshots";
+import { Description } from "@/components/store/Description";
+import { WhatsNew } from "@/components/store/WhatsNew";
+import { Ratings } from "@/components/store/Ratings";
+import { Information } from "@/components/store/Information";
+import { Support } from "@/components/store/Support";
 import { Blog } from "@/components/Blog";
-import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
-import { SectionIndex } from "@/components/SectionIndex";
 import { posts } from "@/data/posts";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -27,20 +26,18 @@ export default async function Page({ params }: Props) {
 
   return (
     <>
-      <Header locale={locale} dict={dict} sections={sections} />
+      <StoreHeader locale={locale} dict={dict} sections={sections} />
       <main className="flex-1">
-        <Hero locale={locale} dict={dict} sections={sections} />
-        <div className="h-16 md:h-24" />
-        <About locale={locale} dict={dict} number={num("about")} />
-        <Story locale={locale} dict={dict} number={num("story")} />
-        <Experience locale={locale} dict={dict} number={num("experience")} />
-        <Projects locale={locale} dict={dict} number={num("projects")} />
-        <Skills dict={dict} number={num("skills")} />
+        <StoreHero locale={locale} dict={dict} />
+        <Screenshots locale={locale} dict={dict} />
+        <Description locale={locale} dict={dict} />
+        <WhatsNew locale={locale} dict={dict} />
+        <Ratings locale={locale} dict={dict} />
+        <Information locale={locale} dict={dict} />
         {showBlog && <Blog locale={locale} dict={dict} number={num("blog")} />}
-        <Contact locale={locale} dict={dict} number={num("contact")} />
+        <Support dict={dict} />
       </main>
       <Footer locale={locale} dict={dict} />
-      <SectionIndex sections={sections} kicker={dict.section} />
     </>
   );
 }
