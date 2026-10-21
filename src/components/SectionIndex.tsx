@@ -5,6 +5,7 @@ import type { SectionInfo } from "@/lib/sections";
 
 /** Sol alt köşede o an okunan bölümü gösterir; masaüstünde görünür. */
 export function SectionIndex({ sections, kicker }: { sections: SectionInfo[]; kicker: string }) {
+  void kicker;
   const [active, setActive] = useState<string | null>(null);
 
   useEffect(() => {
@@ -33,15 +34,15 @@ export function SectionIndex({ sections, kicker }: { sections: SectionInfo[]; ki
   return (
     <div
       aria-hidden
-      className={`pointer-events-none fixed bottom-5 left-5 z-30 hidden items-center gap-3 border-2 border-ink bg-paper px-3 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-ink shadow-hard-sm transition-opacity duration-300 lg:flex ${current ? "opacity-100" : "opacity-0"}`}
+      className={`pointer-events-none fixed bottom-5 left-5 z-30 hidden items-center gap-3 rounded-full bg-paper/80 px-4 py-2 text-[12px] font-medium text-ink-2 shadow-hard-sm backdrop-blur-xl transition-opacity duration-300 lg:flex ${current ? "opacity-100" : "opacity-0"}`}
     >
       <span className="flex gap-1">
         {sections.map((s) => (
-          <span key={s.id} className={`h-[6px] w-4 border border-ink transition-colors ${s.id === active ? "bg-hot" : "bg-paper"}`} />
+          <span key={s.id} className={`h-1.5 w-1.5 rounded-full transition-colors ${s.id === active ? "bg-accent" : "bg-rule"}`} />
         ))}
       </span>
       <span>
-        {kicker} {current?.number} — <span className="bg-acid px-1 text-[#0b0b0b]">{current?.label}</span>
+        <span className="text-ink">{current?.label}</span>
       </span>
     </div>
   );

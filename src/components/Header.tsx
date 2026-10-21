@@ -14,8 +14,6 @@ import { CloseIcon, MenuIcon } from "./Icons";
 
 type Props = { locale: Locale; dict: Dictionary; sections: SectionInfo[] };
 
-const menuTones = ["block-acid", "block-hot", "block-sky", "block-pink"];
-
 export function Header({ locale, dict, sections }: Props) {
   const [open, setOpen] = useState(false);
 
@@ -27,25 +25,24 @@ export function Header({ locale, dict, sections }: Props) {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 border-b-[3px] border-ink bg-paper">
-      <div className={`${container} flex h-16 items-center justify-between gap-4`}>
+    <header className="sticky top-0 z-40 border-b border-rule/70 bg-paper/75 backdrop-blur-xl backdrop-saturate-150">
+      <div className={`${container} flex h-14 items-center justify-between gap-4`}>
         <Link
           href={`/${locale}`}
-          className="font-display inline-flex h-10 items-center gap-1 border-2 border-ink bg-[#0b0b0b] px-2.5 text-[20px] font-extrabold uppercase leading-none tracking-[-0.02em] text-[#f1efe8] shadow-hard-sm transition-transform active:translate-x-px active:translate-y-px"
+          className="font-display inline-flex h-10 items-center text-[19px] font-semibold tracking-[-0.03em]"
           aria-label={profile.name}
         >
-          MD<span className="text-acid">.</span>
+          {profile.firstName} {profile.lastName}<span className="text-accent">.</span>
         </Link>
 
         <nav aria-label="Primary" className="hidden lg:block">
-          <ul className="flex items-center gap-2">
+          <ul className="flex items-center gap-1">
             {sections.map((s) => (
               <li key={s.id}>
                 <a
                   href={`#${s.id}`}
-                  className="group inline-flex items-center gap-1.5 border-2 border-transparent px-2.5 py-1.5 font-mono text-[12px] font-bold uppercase tracking-[0.08em] transition-colors hover:border-ink hover:bg-acid hover:text-[#0b0b0b]"
+                  className="group inline-flex items-center rounded-full px-3 py-1.5 text-[13px] font-medium text-ink-2 transition-colors hover:bg-paper-2 hover:text-ink"
                 >
-                  <span className="text-ink-3 group-hover:text-[#0b0b0b]">{s.number}</span>
                   {s.label}
                 </a>
               </li>
@@ -54,8 +51,8 @@ export function Header({ locale, dict, sections }: Props) {
         </nav>
 
         <div className="flex items-center gap-2">
-          <span className="label hidden items-center gap-2 border-2 border-ink px-2.5 py-2 xl:inline-flex">
-            <span className="blink inline-block h-2 w-2 bg-hot" aria-hidden />
+          <span className="hidden items-center gap-2 text-[13px] font-medium text-ink-3 xl:inline-flex">
+            <span className="blink inline-block h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
             ANK <LocalTime locale={locale} seconds={false} />
           </span>
           <LocaleSwitch locale={locale} label={dict.lang.switch} short={dict.lang.short} />
@@ -79,26 +76,23 @@ export function Header({ locale, dict, sections }: Props) {
         id="mobile-nav"
         hidden={!open}
         aria-label="Mobile"
-        className="fixed inset-0 top-16 z-50 flex flex-col overflow-y-auto bg-paper lg:hidden"
+        className="fixed inset-0 top-14 z-50 flex flex-col overflow-y-auto bg-paper/95 backdrop-blur-xl lg:hidden"
       >
-        <ol className="flex flex-1 flex-col">
-          {sections.map((s, i) => (
-            <li key={s.id} className={`${menuTones[i % menuTones.length]} border-b-[3px] border-ink`}>
+        <ol className="flex flex-1 flex-col px-5 pt-4">
+          {sections.map((s) => (
+            <li key={s.id} className="border-b border-rule">
               <a
                 href={`#${s.id}`}
                 onClick={() => setOpen(false)}
-                className={`${container} font-display flex items-baseline justify-between gap-4 py-5 text-[clamp(2rem,9vw,3.4rem)] font-extrabold uppercase leading-none tracking-[-0.02em]`}
+                className="font-display flex items-baseline justify-between gap-4 py-4 text-[clamp(1.6rem,6vw,2.2rem)] font-semibold tracking-[-0.03em]"
               >
-                <span className="flex items-baseline gap-4">
-                  <span className="font-mono text-[12px] font-bold">{s.number}</span>
-                  {s.label}
-                </span>
-                <span aria-hidden>→</span>
+                <span>{s.label}</span>
+                <span aria-hidden className="text-ink-3">›</span>
               </a>
             </li>
           ))}
         </ol>
-        <p className={`${container} label flex items-center justify-between py-5`}>
+        <p className={`${container} label flex items-center justify-between py-6`}>
           <span>{profile.location[locale]}</span>
           <LocalTime locale={locale} seconds={false} />
         </p>

@@ -1,27 +1,15 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { ThemeProvider } from "next-themes";
-import { Bricolage_Grotesque, Space_Grotesk, Space_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import { locales, isLocale, defaultLocale, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n";
 import { profile } from "@/data/profile";
 import "../globals.css";
 
-const display = Bricolage_Grotesque({
-  subsets: ["latin", "latin-ext"],
-  axes: ["opsz", "wdth"],
-  variable: "--font-display",
-  display: "swap",
-});
-const body = Space_Grotesk({
+const body = Inter({
   subsets: ["latin", "latin-ext"],
   variable: "--font-body",
-  display: "swap",
-});
-const mono = Space_Mono({
-  subsets: ["latin", "latin-ext"],
-  weight: ["400", "700"],
-  variable: "--font-mono",
   display: "swap",
 });
 
@@ -67,7 +55,7 @@ export default async function RootLayout({ children, params }: Props) {
     <html
       lang={locale}
       suppressHydrationWarning
-      className={`${display.variable} ${body.variable} ${mono.variable} h-full`}
+      className={`${body.variable} h-full`}
     >
       <body className="min-h-full flex flex-col bg-paper text-ink">
         <Script id="js-flag" strategy="beforeInteractive">

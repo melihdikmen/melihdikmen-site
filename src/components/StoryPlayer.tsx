@@ -247,7 +247,7 @@ export function StoryPlayer({ locale, chapters, apps, mapRows, stats, ui }: Prop
 
         <div className="st-panel">
           <div className="st-txt" key={`txt-${cur}`} aria-live="polite">
-            <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-accent">{c.eyebrow}</p>
+            <p className="text-[12px] font-semibold uppercase tracking-[0.02em] text-accent">{c.eyebrow}</p>
             <h3 className="font-display text-[clamp(2rem,3.6vw,3.25rem)] font-normal leading-[1] tracking-[-0.02em] text-balance">{c.title}</h3>
             <p className="max-w-[46ch] text-[16px] leading-relaxed text-ink-2">{c.body}</p>
             <p className="flex flex-wrap gap-2">
@@ -275,7 +275,7 @@ export function StoryPlayer({ locale, chapters, apps, mapRows, stats, ui }: Prop
                 <path d="M9 6l6 6-6 6" />
               </svg>
             </button>
-            <span className="font-mono text-[12px] tabular-nums text-ink-3">
+            <span className="text-[13px] tabular-nums text-ink-3">
               {String(cur + 1).padStart(2, "0")} / {String(chapters.length).padStart(2, "0")}
             </span>
           </div>

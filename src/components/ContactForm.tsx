@@ -28,8 +28,8 @@ export function ContactForm({ dict, email }: { dict: Dictionary; email: string }
   }
 
   return (
-    <form onSubmit={onSubmit} className="grid gap-7">
-      <div className="grid gap-7 sm:grid-cols-2">
+    <form onSubmit={onSubmit} className="grid gap-5">
+      <div className="grid gap-5 sm:grid-cols-2">
         <label className="grid gap-2">
           <span className="label">{dict.contact.name}</span>
           <input id="contact-name" name="name" required autoComplete="name" className="field" />
@@ -49,20 +49,20 @@ export function ContactForm({ dict, email }: { dict: Dictionary; email: string }
       <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-2">
         <button type="submit" id="contact-submit" disabled={state === "sending"} className="btn btn-acid">
           {state === "sending" ? dict.contact.sending : dict.contact.send}
-          <span aria-hidden>→</span>
+          <span aria-hidden>›</span>
         </button>
         <span className="text-[14px] text-ink-2">
           {dict.contact.orMail}{" "}
-          <a href={`mailto:${email}`} className="u font-semibold text-ink">
+          <a href={`mailto:${email}`} className="u font-medium">
             {email}
           </a>
         </span>
       </div>
 
       <p role="status" aria-live="polite" className="min-h-[1.5rem] text-[14px] font-medium">
-        {state === "sent" && <span className="inline-block border-2 border-ink bg-acid px-3 py-1.5 text-[#0b0b0b]">{dict.contact.sent}</span>}
+        {state === "sent" && <span className="inline-block rounded-full bg-[#30d158]/15 px-3 py-1.5 text-[#1d7a3a] dark:text-[#30d158]">{dict.contact.sent}</span>}
         {state === "error" && (
-          <span className="inline-block border-2 border-ink bg-hot px-3 py-1.5 text-[#0b0b0b]">
+          <span className="inline-block rounded-full bg-hot/10 px-3 py-1.5 text-hot">
             {dict.contact.error}{" "}
             <a href={`mailto:${email}`} className="underline">
               {email}

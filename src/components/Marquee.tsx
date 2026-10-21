@@ -14,7 +14,7 @@ export function Marquee({ items, className = "", speed = 30, reverse = false, se
       {items.map((it, i) => (
         <span key={`${it}-${i}`} className="flex items-center">
           <span className="px-5">{it}</span>
-          <span aria-hidden className="text-hot">
+          <span aria-hidden className="text-ink-3">
             {separator}
           </span>
         </span>

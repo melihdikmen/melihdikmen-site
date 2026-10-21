@@ -29,24 +29,14 @@ const toneClass: Record<SectionTone, string> = {
  */
 export function Section({ id, number, kicker, title, subtitle, tone = "paper", children }: Props) {
   return (
-    <section id={id} className={`rule-t rule-thick scroll-mt-16 ${toneClass[tone]}`}>
-      <div className={`${container} py-14 md:py-20`}>
-        <Reveal className="mb-10 flex flex-wrap items-end gap-x-6 gap-y-4 md:mb-14">
-          <span
-            aria-hidden
-            className="font-display outline-text text-[clamp(5rem,14vw,11rem)] font-extrabold leading-[0.8] tracking-[-0.04em]"
-          >
-            {number}
-          </span>
-          <div className="min-w-0 flex-1 pb-1">
-            <p className="label">
-              {kicker} {number}
-            </p>
-            <h2 className="font-display mt-2 inline-block bg-ink px-3 py-1 text-[clamp(2rem,5.5vw,4.5rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.02em] text-paper md:px-4">
-              {title}
-            </h2>
-            {subtitle && <p className="mt-4 max-w-xl text-[16px] leading-relaxed">{subtitle}</p>}
-          </div>
+    <section id={id} className={`scroll-mt-16 ${toneClass[tone]}`}>
+      <div className={`${container} py-20 md:py-28`}>
+        <Reveal className="mb-12 max-w-3xl md:mb-16">
+          <p className="label">
+            {kicker} {number}
+          </p>
+          <h2 className="font-display mt-3 text-[clamp(2.2rem,5vw,4rem)] font-semibold leading-[1.05] tracking-[-0.035em]">{title}</h2>
+          {subtitle && <p className="mt-4 max-w-xl text-[clamp(1.05rem,1.4vw,1.2rem)] leading-[1.5] text-ink-2">{subtitle}</p>}
         </Reveal>
         <div className="min-w-0">{children}</div>
       </div>

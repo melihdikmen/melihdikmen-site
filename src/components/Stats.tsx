@@ -39,23 +39,23 @@ function CountUp({ value, suffix }: { value: number; suffix: string }) {
   return (
     <span ref={ref} className="tabular-nums">
       {n}
-      {suffix && <span className="text-hot">{suffix}</span>}
+      {suffix && <span className="text-accent">{suffix}</span>}
     </span>
   );
 }
 
-const tones = ["", "block-pink", "block-sky", "block-hot"];
+const tones = ["", "", "", ""];
 
 /** Dört sert gölgeli karo; her biri farklı renk bloğu. */
 export function Stats({ items }: { items: Stat[] }) {
   return (
     <dl className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
       {items.map((s, i) => (
-        <div key={s.label} className={`box lift flex flex-col p-5 shadow-hard ${tones[i % tones.length]}`}>
-          <dd className="font-display order-1 text-[clamp(3.5rem,7vw,6rem)] font-extrabold leading-none tracking-[-0.04em]">
+        <div key={s.label} className={`box flex flex-col bg-paper-2 p-6 ${tones[i % tones.length]}`}>
+          <dd className="font-display order-1 text-[clamp(2.8rem,5vw,4rem)] font-semibold leading-none tracking-[-0.04em]">
             <CountUp value={s.value} suffix={s.suffix} />
           </dd>
-          <dt className="order-2 mt-3 border-t-2 border-current pt-3 font-mono text-[12px] font-bold uppercase leading-snug tracking-[0.08em]">{s.label}</dt>
+          <dt className="order-2 mt-3 text-[14px] font-medium leading-snug text-ink-2">{s.label}</dt>
         </div>
       ))}
     </dl>

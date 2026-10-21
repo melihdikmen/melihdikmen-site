@@ -16,11 +16,11 @@ export function Blog({ locale, dict, number }: { locale: Locale; dict: Dictionar
                 {new Intl.DateTimeFormat(locale === "tr" ? "tr-TR" : "en-GB", { dateStyle: "medium" }).format(new Date(post.date))}
               </time>
               <span>
-                <span className="row-title font-display-wide text-[1.5rem] font-bold leading-tight">{t(post.title, locale)}</span>
+                <span className="row-title text-[1.3rem] font-semibold leading-tight tracking-[-0.02em]">{t(post.title, locale)}</span>
                 <span className="mt-1.5 block text-[15px] text-ink-2">{t(post.summary, locale)}</span>
               </span>
-              <span className="label inline-flex items-center gap-2 border-2 border-ink px-3 py-2">
-                {dict.blog.readMore} →
+              <span className="u inline-flex items-center gap-1 text-[14px] font-medium">
+                {dict.blog.readMore} ›
               </span>
             </a>
           </Reveal>
