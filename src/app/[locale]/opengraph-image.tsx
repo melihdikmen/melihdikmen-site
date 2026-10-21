@@ -21,111 +21,139 @@ async function loadFont(family: string, text: string): Promise<ArrayBuffer | nul
   }
 }
 
-const INK = "#0b0b0b";
-const PAPER = "#f1efe8";
-const ACID = "#d4ff3f";
-const HOT = "#ff4f1f";
-const PINK = "#ff7ad9";
+/* IDE paleti (globals.css .dark ile aynı) */
+const BG = "#1e1e1e";
+const PANEL = "#252526";
+const BORDER = "#3c3c3c";
+const FG = "#d4d4d4";
+const FG_2 = "#9d9d9d";
+const FG_3 = "#6e6e6e";
+const ACCENT = "#007acc";
+const GREEN = "#4ec9b0";
+const KEY = "#9cdcfe";
+const STR = "#ce9178";
 
 export default async function Image({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: raw } = await params;
   const locale = isLocale(raw) ? raw : defaultLocale;
   const dict = getDictionary(locale);
-  const up = (v: string) => v.toLocaleUpperCase(locale === "tr" ? "tr-TR" : "en-US");
-  const first = up(profile.firstName);
-  const last = up(profile.lastName);
-  const eyebrow = up(dict.hero.eyebrow);
-  const location = up(profile.location[locale]);
-  const available = up(dict.hero.available);
-  const stack = "REACT NATIVE · FLUTTER · TYPESCRIPT";
-  const site = profile.siteUrl.replace(/^https?:\/\//, "").toUpperCase();
-  const monoText = [eyebrow, location, available, stack, site, "MD.", "0123456789+"].join("");
-  const [display, mono] = await Promise.all([
-    loadFont("Bricolage+Grotesque:opsz,wdth,wght@96,75,800", `${first}${last}.`),
-    loadFont("Space+Mono:wght@700", monoText),
+  const name = `${profile.firstName} ${profile.lastName}`;
+  const eyebrow = dict.hero.eyebrow;
+  const location = profile.location[locale];
+  const site = profile.siteUrl.replace(/^https?:\/\//, "");
+  const years = `${profile.stats[0].value}${profile.stats[0].suffix} ${profile.stats[0].label[locale]}`;
+  const apps = `${profile.stats[2].value} ${profile.stats[2].label[locale]}`;
+  const files = ["README.md", "about.md", "experience.json", "projects/", "skills.yaml", "contact.ts"];
+
+  const uiText = [name, eyebrow].join("");
+  const monoText = [...files, location, site, years, apps, "melihdikmen Build Succeeded · apps · iOS Android React Native Flutter TypeScript { } : , \" _ 0123456789"].join("");
+  const [sans, mono] = await Promise.all([
+    loadFont("Inter:wght@700", uiText),
+    loadFont("JetBrains+Mono:wght@400", monoText),
   ]);
   const fonts = [
-    ...(display ? [{ name: "Bricolage Grotesque", data: display, style: "normal" as const, weight: 800 as const }] : []),
-    ...(mono ? [{ name: "Space Mono", data: mono, style: "normal" as const, weight: 700 as const }] : []),
+    ...(sans ? [{ name: "Inter", data: sans, style: "normal" as const, weight: 700 as const }] : []),
+    ...(mono ? [{ name: "JetBrains Mono", data: mono, style: "normal" as const, weight: 400 as const }] : []),
   ];
-  const monoFamily = mono ? "Space Mono" : "monospace";
-  const displayFamily = display ? "Bricolage Grotesque" : "sans-serif";
+  const monoFamily = mono ? "JetBrains Mono" : "monospace";
+  const sansFamily = sans ? "Inter" : "sans-serif";
 
-  const label = {
-    fontFamily: monoFamily,
-    fontSize: 18,
-    fontWeight: 700,
-    letterSpacing: 3,
-    textTransform: "uppercase" as const,
-  };
+  const row = (n: number, children: React.ReactNode) => (
+    <div style={{ display: "flex", alignItems: "baseline", gap: 28, fontFamily: monoFamily, fontSize: 24, lineHeight: 1.6 }}>
+      <span style={{ width: 36, textAlign: "right", color: FG_3 }}>{n}</span>
+      <span style={{ display: "flex", gap: 12 }}>{children}</span>
+    </div>
+  );
 
   return new ImageResponse(
     (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          padding: 40,
-          background: PAPER,
-          backgroundImage: `radial-gradient(${INK}29 2px, transparent 2px)`,
-          backgroundSize: "28px 28px",
-          color: INK,
-        }}
-      >
-        <div
-          style={{
-            flex: 1,
-            display: "flex",
-            border: `6px solid ${INK}`,
-            boxShadow: `18px 18px 0 ${INK}`,
-            background: PAPER,
-          }}
-        >
-          {/* Sol: manşet */}
-          <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between", padding: 44 }}>
-            <div style={{ display: "flex", gap: 14 }}>
-              <span style={{ ...label, padding: "10px 18px", border: `4px solid ${INK}`, borderRadius: 999, background: ACID, boxShadow: `5px 5px 0 ${INK}`, transform: "rotate(-3deg)" }}>
-                {available}
-              </span>
-              <span style={{ ...label, padding: "10px 18px", border: `4px solid ${INK}`, borderRadius: 999, background: PAPER, boxShadow: `5px 5px 0 ${INK}`, transform: "rotate(2deg)" }}>
-                {location}
-              </span>
-            </div>
+      <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", background: BG, color: FG }}>
+        {/* Başlık çubuğu */}
+        <div style={{ display: "flex", alignItems: "center", height: 56, padding: "0 24px", background: PANEL, borderBottom: `1px solid ${BORDER}` }}>
+          <div style={{ display: "flex", gap: 10 }}>
+            <span style={{ width: 16, height: 16, borderRadius: 999, background: "#ff5f57" }} />
+            <span style={{ width: 16, height: 16, borderRadius: 999, background: "#febc2e" }} />
+            <span style={{ width: 16, height: 16, borderRadius: 999, background: "#28c840" }} />
+          </div>
+          <span style={{ flex: 1, textAlign: "center", marginLeft: 24, fontFamily: monoFamily, fontSize: 20, color: FG_2 }}>
+            melihdikmen — README.md
+          </span>
+          <span style={{ width: 70 }} />
+        </div>
 
-            <div style={{ display: "flex", flexDirection: "column", fontFamily: displayFamily, fontWeight: 800, fontSize: 196, lineHeight: 0.82, letterSpacing: -10 }}>
-              <span>{first}</span>
-              <span style={{ display: "flex" }}>
-                {last}
-                <span style={{ color: HOT }}>.</span>
+        <div style={{ flex: 1, display: "flex" }}>
+          {/* Dosya ağacı */}
+          <div style={{ width: 250, display: "flex", flexDirection: "column", padding: "22px 0", background: PANEL, borderRight: `1px solid ${BORDER}`, fontFamily: monoFamily, fontSize: 20 }}>
+            <span style={{ padding: "0 24px 12px", color: FG_3, fontSize: 16, letterSpacing: 2 }}>MELIHDIKMEN</span>
+            {files.map((f, i) => (
+              <span
+                key={f}
+                style={{
+                  padding: "8px 24px",
+                  color: i === 0 ? "#fff" : FG_2,
+                  background: i === 0 ? "#37373d" : "transparent",
+                  borderLeft: `3px solid ${i === 0 ? ACCENT : "transparent"}`,
+                }}
+              >
+                {f}
               </span>
-            </div>
-
-            <div style={{ display: "flex", justifyContent: "space-between", ...label, color: "#3a3a3a" }}>
-              <span>{eyebrow}</span>
-              <span>{site}</span>
-            </div>
+            ))}
           </div>
 
-          {/* Sağ: renk blokları */}
-          <div style={{ width: 300, display: "flex", flexDirection: "column", borderLeft: `6px solid ${INK}` }}>
-            <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: 26, background: ACID, borderBottom: `6px solid ${INK}` }}>
-              <span style={{ fontFamily: displayFamily, fontWeight: 800, fontSize: 120, lineHeight: 0.85, letterSpacing: -6 }}>
-                {profile.stats[0].value}
-                <span style={{ color: HOT }}>+</span>
+          {/* Editör */}
+          <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+            <div style={{ display: "flex", borderBottom: `1px solid ${BORDER}`, background: PANEL }}>
+              <span style={{ padding: "12px 24px", background: BG, borderTop: `2px solid ${ACCENT}`, fontFamily: monoFamily, fontSize: 20, color: "#fff" }}>
+                README.md
               </span>
-              <span style={{ ...label, fontSize: 15, marginTop: 10 }}>{up(profile.stats[0].label[locale])}</span>
             </div>
-            <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: 26, background: HOT, borderBottom: `6px solid ${INK}` }}>
-              <span style={{ ...label, fontSize: 15, lineHeight: 1.4 }}>{stack}</span>
-            </div>
-            <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", background: PINK }}>
-              <span style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 120, height: 120, borderRadius: 999, background: INK, color: PAPER, fontFamily: displayFamily, fontWeight: 800, fontSize: 56, letterSpacing: -3 }}>
-                MD<span style={{ color: ACID }}>.</span>
-              </span>
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 48px 0 24px", gap: 2 }}>
+              {row(1, <span style={{ color: FG_3 }}># {site}</span>)}
+              {row(
+                2,
+                <span style={{ fontFamily: sansFamily, fontWeight: 700, fontSize: 84, lineHeight: 1.1, letterSpacing: -3, color: "#fff" }}>
+                  {name}
+                  <span style={{ color: ACCENT }}>.</span>
+                </span>,
+              )}
+              {row(3, <span style={{ fontFamily: sansFamily, fontWeight: 700, fontSize: 30, color: FG_2 }}>{eyebrow}</span>)}
+              {row(4, <span />)}
+              {row(
+                5,
+                <>
+                  <span style={{ color: KEY }}>stack</span>
+                  <span style={{ color: FG_2 }}>:</span>
+                  <span style={{ color: STR }}>&quot;React Native · Flutter · TypeScript&quot;</span>
+                </>,
+              )}
+              {row(
+                6,
+                <>
+                  <span style={{ color: KEY }}>platforms</span>
+                  <span style={{ color: FG_2 }}>:</span>
+                  <span style={{ color: STR }}>&quot;iOS · Android&quot;</span>
+                </>,
+              )}
+              {row(
+                7,
+                <>
+                  <span style={{ color: KEY }}>location</span>
+                  <span style={{ color: FG_2 }}>:</span>
+                  <span style={{ color: STR }}>&quot;{location}&quot;</span>
+                </>,
+              )}
             </div>
           </div>
+        </div>
+
+        {/* Durum çubuğu */}
+        <div style={{ display: "flex", alignItems: "center", gap: 36, height: 44, padding: "0 24px", background: ACCENT, color: "#fff", fontFamily: monoFamily, fontSize: 18 }}>
+          <span style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <span style={{ width: 12, height: 12, borderRadius: 999, background: GREEN }} /> Build Succeeded
+          </span>
+          <span>{years}</span>
+          <span>{apps}</span>
+          <span style={{ marginLeft: "auto" }}>{site}</span>
         </div>
       </div>
     ),
