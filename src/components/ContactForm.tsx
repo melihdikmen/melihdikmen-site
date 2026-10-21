@@ -28,41 +28,41 @@ export function ContactForm({ dict, email }: { dict: Dictionary; email: string }
   }
 
   return (
-    <form onSubmit={onSubmit} className="grid gap-7">
-      <div className="grid gap-7 sm:grid-cols-2">
+    <form onSubmit={onSubmit} className="grid gap-4">
+      <div className="grid gap-4">
         <label className="grid gap-2">
           <span className="label">{dict.contact.name}</span>
-          <input id="contact-name" name="name" required autoComplete="name" className="field" />
+          <input id="contact-name" name="name" required autoComplete="name" className="field bg-paper" />
         </label>
         <label className="grid gap-2">
           <span className="label">{dict.contact.email}</span>
-          <input id="contact-email" name="email" type="email" required autoComplete="email" className="field" />
+          <input id="contact-email" name="email" type="email" required autoComplete="email" className="field bg-paper" />
         </label>
       </div>
       <label className="grid gap-2">
         <span className="label">{dict.contact.message}</span>
-        <textarea id="contact-message" name="message" required minLength={10} rows={5} className="field resize-y" />
+        <textarea id="contact-message" name="message" required minLength={10} rows={4} className="field resize-y bg-paper" />
       </label>
       {/* Honeypot */}
       <input type="text" name="company" tabIndex={-1} autoComplete="off" aria-hidden className="hidden" />
 
-      <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-2">
-        <button type="submit" id="contact-submit" disabled={state === "sending"} className="btn btn-acid">
+      <div className="grid gap-3 pt-1">
+        <button type="submit" id="contact-submit" disabled={state === "sending"} className="btn btn-acid w-full">
           {state === "sending" ? dict.contact.sending : dict.contact.send}
-          <span aria-hidden>→</span>
+          
         </button>
-        <span className="text-[14px] text-ink-2">
+        <span className="text-center text-[13px] text-ink-3">
           {dict.contact.orMail}{" "}
-          <a href={`mailto:${email}`} className="u font-semibold text-ink">
+          <a href={`mailto:${email}`} className="u font-medium">
             {email}
           </a>
         </span>
       </div>
 
-      <p role="status" aria-live="polite" className="min-h-[1.5rem] text-[14px] font-medium">
-        {state === "sent" && <span className="inline-block border-2 border-ink bg-acid px-3 py-1.5 text-[#0b0b0b]">{dict.contact.sent}</span>}
+      <p role="status" aria-live="polite" className="text-[14px] font-medium empty:hidden">
+        {state === "sent" && <span className="pill pill-green">{dict.contact.sent}</span>}
         {state === "error" && (
-          <span className="inline-block border-2 border-ink bg-hot px-3 py-1.5 text-[#0b0b0b]">
+          <span className="block rounded-xl bg-hot/10 px-3 py-2 text-hot">
             {dict.contact.error}{" "}
             <a href={`mailto:${email}`} className="underline">
               {email}
